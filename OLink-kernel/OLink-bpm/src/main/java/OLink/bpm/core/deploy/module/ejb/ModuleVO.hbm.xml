@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="OLink.bpm.core.deploy.module.ejb.ModuleVO"
+        table="T_MODULE"
+        lazy="false"
+    >
+
+        <id
+            name="id"
+            column="ID"
+            type="java.lang.String"
+            length="100"
+        >
+            <generator class="assigned">
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-ModuleVO.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+        <property
+            name="commitDate"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="COMMITDATE"
+        />
+
+        <many-to-one
+            name="application"
+            class="OLink.bpm.core.deploy.application.ejb.ApplicationVO"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            column="APPLICATION"
+        />
+
+        <property
+            name="lastmodifytime"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="LASTMODIFYTIME"
+        />
+
+        <property
+            name="description"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="DESCRIPTION"
+        />
+
+        <property
+            name="ispublished"
+            type="boolean"
+            update="true"
+            insert="true"
+            column="ISPUBLISHED"
+        />
+
+        <property
+            name="name"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="NAME"
+        />
+
+        <property
+            name="orderno"
+            type="int"
+            update="true"
+            insert="true"
+            column="ORDERNO"
+        />
+
+        <property
+            name="pathname"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="PATHNAME"
+        />
+   
+        <many-to-one
+            name="superior"
+            class="OLink.bpm.core.deploy.module.ejb.ModuleVO"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            column="SUPERIOR"
+            not-null="false"
+        />
+
+        <set
+            name="views"
+            lazy="true"
+            inverse="true"
+            cascade="delete"
+            sort="unsorted"
+        >
+
+            <key
+                column="MODULE"
+            >
+            </key>
+
+            <one-to-many
+                  class="OLink.bpm.core.dynaform.view.ejb.View"
+            />
+
+        </set>
+
+        <set
+            name="forms"
+            lazy="true"
+            inverse="true"
+            cascade="delete"
+            sort="unsorted"
+            order-by="ID"
+        >
+
+            <key
+                column="MODULE"
+            >
+            </key>
+
+            <one-to-many
+                  class="OLink.bpm.core.dynaform.form.ejb.Form"
+            />
+
+        </set>
+        <set
+            name="imglibs"
+            lazy="true"
+            inverse="true"
+            cascade="delete"
+            sort="unsorted"
+            order-by="ID"
+        >
+
+            <key
+                column="MODULE"
+            >
+            </key>
+
+            <one-to-many
+                  class="OLink.bpm.core.image.repository.ejb.ImageRepositoryVO"
+            />
+
+        </set>
+
+        <set
+            name="stylelibs"
+            lazy="true"
+            inverse="true"
+            cascade="delete"
+            sort="unsorted"
+        >
+
+            <key
+                column="MODULE"
+            >
+            </key>
+
+            <one-to-many
+                  class="OLink.bpm.core.style.repository.ejb.StyleRepositoryVO"
+            />
+
+        </set>
+
+        <set
+            name="flowdefis"
+            lazy="true"
+            inverse="true"
+            cascade="delete"
+            sort="unsorted"
+        >
+
+            <key
+                column="MODULE"
+            >
+            </key>
+
+            <one-to-many
+                  class="OLink.bpm.core.workflow.storage.definition.ejb.BillDefiVO"
+            />
+
+        </set>
+
+
+        <property
+            name="remoteServer"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="REMOTESERVER"
+        />
+
+        <set
+            name="tasks"
+            lazy="true"
+            inverse="true"
+            cascade="delete"
+            sort="unsorted"
+        >
+
+            <key
+                column="MODULE"
+            >
+            </key>
+
+            <one-to-many
+                  class="OLink.bpm.core.task.ejb.Task"
+            />
+
+        </set>
+        
+        <set
+            name="printers"
+            lazy="true"
+            inverse="true"
+            cascade="delete"
+            sort="unsorted"
+        >
+
+            <key
+                column="MODULE"
+            >
+            </key>
+
+            <one-to-many
+                  class="OLink.bpm.core.dynaform.printer.ejb.Printer"
+            />
+
+        </set>
+
+        <property
+            name="sortId"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="SORTID"
+        />
+
+        <property
+            name="applicationid"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="APPLICATIONID"
+        />
+        
+     
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-ModuleVO.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

@@ -1,0 +1,165 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<package name="dynaform_form" extends="eWAP-default"
+		namespace="/core/dynaform/form">
+		
+		<action name="select"
+			class="OLink.bpm.core.dynaform.form.action.FormAction"
+			method="doSelect">
+			<result name="success" type="dispatcher">select.jsp</result>
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="selectFormName"
+			class="OLink.bpm.core.dynaform.form.action.FormAction"
+			method="doSelectFormNameById">
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="selectField"
+			class="OLink.bpm.core.dynaform.form.action.FormAction"
+			method="doSelectField">
+			<result name="success" type="dispatcher">
+				selectfield.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="new"
+			class="OLink.bpm.core.dynaform.form.action.FormAction"
+			method="doNew">
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="edit"
+			class="OLink.bpm.core.dynaform.form.action.FormAction"
+			method="doEdit">
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		<action name="editform"
+			class="OLink.bpm.core.dynaform.form.action.FormAction"
+			method="doEdit">
+			<result name="success" type="dispatcher">
+				content2.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="save"
+			class="OLink.bpm.core.dynaform.form.action.FormAction"
+			method="doSave">
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="validationWorkflowStack"/>
+		</action>
+		
+		<!-- one key create view -->
+		<action name="onekeycreview"
+			class="OLink.bpm.core.dynaform.form.action.FormAction"
+			method="doOnekeycreview">
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="saveforminfo"
+			class="OLink.bpm.core.dynaform.form.action.FormAction"
+			method="doSave">
+			<result name="success" type="dispatcher">
+				success.jsp
+			</result>
+			<result name="input" type="dispatcher">
+			 	forminfo.jsp
+			</result>
+			<interceptor-ref name="validationWorkflowStack"/>
+		</action>
+		
+		<action name="delete"
+			class="OLink.bpm.core.dynaform.form.action.FormAction"
+			method="delete">
+			<interceptor-ref name="params" />
+			<interceptor-ref name="basicStack" />
+			<result name="success" type="chain">list</result>
+			<result name="input" type="chain">list</result>
+		</action>
+		
+		<action name="list"
+			class="OLink.bpm.core.dynaform.form.action.FormAction"
+			method="doFormList">
+			<!-- 			<interceptor-ref name="basicStack" />  -->
+			<result name="success" type="dispatcher">list.jsp</result>
+			<result name="input" type="dispatcher">list.jsp</result>
+			<interceptor-ref name="chain" />
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="synchronouslyData"
+			class="OLink.bpm.core.dynaform.form.action.FormAction"
+			method="synchronouslyData">
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="validationWorkflowStack"/>
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="cleardata"
+			class="OLink.bpm.core.dynaform.form.action.FormAction"
+			method="doClearData">
+			<result name="success" type="dispatcher">
+				deletedata.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				deletedata.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="basicStack" />
+		</action>
+		
+		<action name="beforecleardata"
+			class="OLink.bpm.core.dynaform.form.action.FormAction"
+			method="doEdit">
+			<result name="success" type="dispatcher">
+				deletedata.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				deletedata.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="basicStack" />
+		</action>
+		
+		<action name="checkout" class="OLink.bpm.core.dynaform.form.action.FormAction"
+		method="doCheckout">
+			<result name="success" type="dispatcher">content.jsp</result>
+			<result name="input" type="dispatcher">content.jsp</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="basicStack" />
+		</action>
+		
+		<action name="checkin" class="OLink.bpm.core.dynaform.form.action.FormAction"
+		method="doCheckin">
+			<result name="success" type="dispatcher">content.jsp</result>
+			<result name="input" type="dispatcher">content.jsp</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="basicStack" />
+		</action>
+		
+	</package>
+
+
+</xwork>

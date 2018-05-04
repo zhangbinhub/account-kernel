@@ -1,0 +1,20 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+<package name="usersetup" extends="eWAP-default"
+		namespace="/core/usersetup">
+		
+		<action name="saveRole"
+				class="OLink.bpm.core.usersetup.action.UserSetupAction" method="doSave">
+			<result name="input" type="dispatcher">
+				content1.jsp
+			</result>
+			<result name="success" type="dispatcher">
+				content1.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="validationWorkflowStack"/>
+			
+		</action>
+	</package>
+	
+</xwork>

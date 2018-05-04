@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="OLink.bpm.core.dynaform.form.ejb.Form" table="T_DYNAFORM_FORM"
+		   dynamic-update="true">
+
+		<id name="id" column="ID" type="java.lang.String" length="100">
+			<generator class="assigned">
+				<!--
+					To add non XDoclet generator parameters, create a file named
+					hibernate-generator-params-Form.xml containing the additional
+					parameters and place it in your merge dir.
+				-->
+			</generator>
+		</id>
+
+		<property name="applicationid" type="java.lang.String"
+			update="true" insert="true" column="APPLICATIONID" />
+
+		<property name="sortId" type="java.lang.String" update="true"
+			insert="true" column="SORTID" />
+		<property name="activityXML" type="text" update="true"
+			insert="true" column="ACTIVITYXML" />
+
+		<property name="relationText" type="text" update="true"
+			insert="true" column="RELATIONTEXT" />
+
+		<property name="mappingStr" type="text" update="true" insert="true"
+			column="MAPPINGSTR" />
+
+		<property name="isopenablescript" type="text" update="true"
+			insert="true" column="ISOPENABLESCRIPT" />
+
+		<property name="iseditablescript" type="text" update="true"
+			insert="true" column="ISEDITABLESCRIPT" />
+
+		<property name="version" type="int" update="true" insert="true"
+			column="VERSIONS" />
+
+		<many-to-one name="module"
+					 class="OLink.bpm.core.deploy.module.ejb.ModuleVO" cascade="none"
+					 outer-join="auto" update="true" insert="true" column="MODULE" />
+
+		<property name="name" type="java.lang.String" update="true"
+			insert="true" column="NAME" />
+
+		<property name="relationName" type="java.lang.String" update="true"
+			insert="true" column="RELATIONNAME" />
+
+		<property name="type" type="int" update="true" insert="true"
+			column="TYPE" />
+
+		<property name="templatecontext" type="text" update="true"
+			insert="true" length="16777216" column="TEMPLATECONTEXT" />
+
+		<property name="discription" type="text" update="true"
+			insert="true" column="DISCRIPTION" />
+
+		<many-to-one name="lastmodifier" class="OLink.bpm.core.user.ejb.UserVO"
+			cascade="none" outer-join="auto" update="true" insert="true" column="LASTMODIFIER" />
+
+		<property name="lastmodifytime" type="java.util.Date" update="true"
+			insert="true" column="LASTMODIFYTIME" />
+
+		<many-to-one name="style"
+			class="OLink.bpm.core.style.repository.ejb.StyleRepositoryVO"
+			cascade="none" outer-join="auto" update="true" insert="true" lazy="false"
+			column="STYLE" />
+
+		<property name="showLog" type="boolean" update="true" insert="true"
+			column="SHOWLOG" />
+
+		<property name="onSaveStartFlow" type="boolean" update="true"
+			insert="true" column="ONSAVESTARTFLOW" />
+
+		<property name="documentSummaryXML" type="text" update="true"
+			insert="true" column="DOC_SUMMARY_XML" />
+		<!--
+			<many-to-one name="summaryCfg"
+			class="SummaryCfgVO"
+			cascade="all" outer-join="true" update="true" insert="true"
+			lazy="false" column="SUMMARY_CFG" />
+		-->
+		<set name="summaryCfg" lazy="false" inverse="true" cascade="all"
+			order-by="id">
+			<key column="FORMID" />
+			<one-to-many class="OLink.bpm.core.dynaform.summary.ejb.SummaryCfgVO"
+				not-found="ignore" />
+		</set>
+
+
+		<property name="checkout" type="boolean" update="true"
+			insert="true">
+			<column name="CHECKOUT" default="0" />
+		</property>
+
+		<property name="checkoutHandler" type="java.lang.String"
+			update="true" insert="true" column="CHECKOUTHANDLER" />
+		<!--
+			To add non XDoclet property mappings, create a file named
+			hibernate-properties-Form.xml containing the additional properties
+			and place it in your merge dir.
+		-->
+
+		<joined-subclass name="OLink.bpm.core.page.ejb.Page"
+			table="T_PAGE" dynamic-update="true" dynamic-insert="true">
+			<key column="ID" />
+			<property name="defHomePage" type="boolean" update="true"
+				insert="true" column="DEFHOMEPAGE" />
+			<property name="roles" type="text" update="true" insert="true"
+				column="ROLES" />
+			<property name="roleNames" type="text" update="true" insert="true"
+				column="ROLENAMES" />
+
+		</joined-subclass>
+
+		<joined-subclass name="OLink.bpm.core.dynaform.component.ejb.Component"
+			table="T_COMPONENT" dynamic-insert="true">
+			<key column="ID" />
+			<property name="tagName" type="java.lang.String" update="true"
+				insert="true" column="TAGNAME" />
+
+		</joined-subclass>
+
+	</class>
+
+</hibernate-mapping>

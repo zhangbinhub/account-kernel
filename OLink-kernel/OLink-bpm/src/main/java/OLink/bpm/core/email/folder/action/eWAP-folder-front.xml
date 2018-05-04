@@ -1,0 +1,56 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<package name="eWAP-folder-front" extends="eWAP-default"
+		namespace="/portal/email/folder">
+
+		<action name="save"
+			class="OLink.bpm.core.email.folder.action.EmailFolderAction"
+			method="doSave">
+			<interceptor-ref name="defaultStack">
+			    <param name="workflow.excludeMethods">default</param>
+			</interceptor-ref>
+		</action>
+		
+		<action name="list"
+			class="OLink.bpm.core.email.folder.action.EmailFolderAction"
+			method="doList">
+			 <result name="input" type="OBPMdispatcher">
+				/portal/share/email/folder.jsp
+			</result>
+			<result name="success" type="OBPMdispatcher">
+				/portal/share/email/folder.jsp
+			</result>
+			<interceptor-ref name="defaultStack">
+			    <param name="workflow.excludeMethods">default</param>
+			</interceptor-ref>
+		</action>
+		
+		<action name="delete"
+			class="OLink.bpm.core.email.folder.action.EmailFolderAction"
+			method="doDelete">
+			<interceptor-ref name="params" />
+			<interceptor-ref name="chain" />
+			<result name="success" type="chain">list</result>
+			<result name="input" type="chain">list</result>
+		</action>
+		
+		<action name="view"
+			class="OLink.bpm.core.email.folder.action.EmailFolderAction"
+			method="doView">
+			 <result name="input" type="OBPMdispatcher">
+				/portal/share/email/folder_add.jsp
+			</result>
+			<result name="success" type="OBPMdispatcher">
+				/portal/share/email/folder_add.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="chain" />
+		</action>
+		
+		<action name="folderHtml" class="OLink.bpm.core.email.folder.action.EmailFolderAction" method="doPersonalFolderHtml">
+			<interceptor-ref name="params" />
+			<interceptor-ref name="chain" />
+		</action>
+		
+	</package>
+</xwork>

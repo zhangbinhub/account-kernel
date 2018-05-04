@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="OLink.bpm.core.report.dataprepare.ejb.DataPrepare"
+        table="T_DATAPREPARE"
+    >
+
+        <id
+            name="id"
+            column="ID"
+            type="java.lang.String"
+            length="100"
+        >
+            <generator class="assigned">
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-DataPrepare.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <set
+            name="sqlSentences"
+            table="T_SQLSENTENCE"
+            lazy="false"
+            cascade="delete"
+            sort="unsorted"
+        >
+
+            <key
+                column="DATAPREPARE_ID"
+            >
+            </key>
+
+            <one-to-many
+                  class="OLink.bpm.core.report.dataprepare.ejb.SqlSentence"
+            />
+
+        </set>
+
+        <many-to-one
+            name="dataSource"
+            class="OLink.bpm.core.dynaform.dts.datasource.ejb.DataSource"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            column="DATASOURCE_ID"
+        />
+
+        <many-to-one
+            name="module"
+            class="OLink.bpm.core.deploy.module.ejb.ModuleVO"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            column="MODULE"
+        />
+
+        <property
+            name="name"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="NAME"
+        />
+
+        <property
+            name="clearDataSql"
+            type="text"
+            update="true"
+            insert="true"
+            column="CLEARDATASQL"
+        />
+
+        <property
+            name="sortId"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="SORTID"
+        />
+
+        <property
+            name="applicationid"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="APPLICATIONID"
+        />
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-DataPrepare.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

@@ -1,0 +1,142 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<include file="webwork-default.xml" />
+	<package name="links" extends="eWAP-default"
+		namespace="/core/links">
+		<action name="edit"
+			class="OLink.bpm.core.links.action.LinkAction"
+			method="doEdit">
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>		
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="edit2"
+			class="OLink.bpm.core.links.action.LinkAction"
+			method="doEdit">
+			<result name="success" type="dispatcher">
+				content2.jsp
+			</result>		
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="new"
+			class="OLink.bpm.core.links.action.LinkAction"
+			method="doNew">
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="new2"
+			class="OLink.bpm.core.links.action.LinkAction"
+			method="doNew">
+			<result name="success" type="dispatcher">
+				content2.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		<action name="list"
+			class="OLink.bpm.core.links.action.LinkAction"
+			method="doList">
+			<result name="success" type="dispatcher">
+				list.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				list.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="chain" />
+		</action>
+		<action name="selectlink"
+			class="OLink.bpm.core.links.action.LinkAction"
+			method="doList">
+			<result name="success" type="dispatcher">
+				selectlink.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				selectlink.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="chain" />
+		</action>
+		<action name="save"
+			class="OLink.bpm.core.links.action.LinkAction"
+			method="doSave">
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="validationWorkflowStack"/>
+			<interceptor-ref name="params" />
+		</action>
+		<action name="saveAndNew"
+			class="OLink.bpm.core.links.action.LinkAction"
+			method="doSaveAndNew">
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="validationWorkflowStack"/>
+			<interceptor-ref name="params" />
+		</action>
+		
+			<action name="save2"
+			class="OLink.bpm.core.links.action.LinkAction"
+			method="doSave">
+			<result name="success" type="dispatcher">
+				content2.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				content2.jsp
+			</result>
+			<interceptor-ref name="validationWorkflowStack"/>
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="delete"
+			class="OLink.bpm.core.links.action.LinkAction"
+			method="doDelete">
+			<result name="success" type="chain">
+				list
+			</result>
+			<result name="input" type="chain">
+				list
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="chain" />
+		</action>
+		
+		<action name="deleteByselectList"
+			class="OLink.bpm.core.links.action.LinkAction"
+			method="doDelete">
+			<result name="success" type="chain">
+				selectlink
+			</result>
+			<result name="input" type="chain">
+				selectlink
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="chain" />
+		</action>
+		<action name="saveAndNew"
+			class="OLink.bpm.core.links.action.LinkAction"
+			method="doSaveAndNew">
+			<result name="input" type="dispatcher">
+				content.jsp
+			</result>
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<!-- interceptor-ref name="params" / -->
+			<interceptor-ref name="validationWorkflowStack"/>
+		
+		</action>
+	</package>
+</xwork>

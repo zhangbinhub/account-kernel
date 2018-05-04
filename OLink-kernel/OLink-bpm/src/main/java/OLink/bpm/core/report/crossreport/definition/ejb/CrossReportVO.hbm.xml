@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="OLink.bpm.core.report.crossreport.definition.ejb.CrossReportVO"
+		table="T_CROSSREPORT" lazy="false" batch-size="10" dynamic-update="true">
+
+		<id name="id" column="ID" type="java.lang.String" length="100">
+			<generator class="assigned">
+			</generator>
+		</id>
+		
+		<property name="formCondition" type="java.lang.String" update="true" insert="true" column="FORMCONDITION" />
+			
+		<property name="qtype" type="java.lang.String" update="true" insert="true" column="QTYPE" />
+			
+		<property name="form" type="java.lang.String" update="true" insert="true" column="FORM" />
+		
+		 <property  name="sql"  type="text" update="true" insert="true" column="SQLSTR"/>
+        
+        <property  name="dql"  type="text" update="true" insert="true" column="DQLSTR"/>
+
+		<property name="name" type="java.lang.String" update="true" insert="true" column="NAME" />
+
+		<property name="columns" type="java.lang.String" update="true"
+			insert="true" column="COLUMNSTR" />
+
+		<property name="rows" type="java.lang.String" update="true"
+			insert="true" column="ROWSTR" />
+
+		<property name="filters" type="java.lang.String" update="true"
+			insert="true" column="FILTERSTR" />
+
+		<property name="datas" type="java.lang.String" update="true"
+			insert="true" column="DATASTR" />
+
+		<property name="module" type="java.lang.String" update="true"
+			insert="true" column="MODULE" />
+
+		<property name="calculationMethod" type="java.lang.String"
+			update="true" insert="true" column="CALCULATIONMETHOD" />
+
+		<property name="type" type="java.lang.String" update="true"
+			insert="true" column="TYPE" />
+
+		<property name="view" type="java.lang.String" update="true"
+			insert="true" column="VIEWNAME" />
+
+		<property name="reportTitle" type="java.lang.String" update="true"
+			insert="true" column="REPORTTITLE" />
+
+		<property name="note" type="text" update="true" insert="true"
+			column="NOTE" />
+
+		<property name="applicationid" type="java.lang.String"
+			update="true" insert="true" column="APPLICATIONID" />
+
+		<property name="domainid" type="java.lang.String" update="true"
+			insert="true" column="DOMAINID" />
+
+
+		<property name="displayRow" type="boolean" update="true"
+			insert="true" column="ISDISPLAYROW" />
+
+
+		<property name="displayCol" type="boolean" update="true"
+			insert="true" column="ISDISPLAYCOL" />
+
+		<property name="rowCalMethod" type="java.lang.String" update="true"
+			insert="true" column="ROWCALMETHOD" />
+
+		<property name="colCalMethod" type="java.lang.String" update="true"
+			insert="true" column="COLCALMETHOD" />
+
+		<property name="json" type="text" update="true" insert="true"
+			column="JSON" />
+
+		<property name="userid" type="java.lang.String" update="true"
+			insert="true" column="USERID" />
+			
+		<property name="checkout" 
+			type="boolean" 
+			update="true" insert="true">
+			<column name="CHECKOUT" 
+				default="0"
+			/>
+		</property>
+		
+		<property name="checkoutHandler" type="java.lang.String" update="true"
+			insert="true" column="CHECKOUTHANDLER" />
+
+	</class>
+
+</hibernate-mapping>

@@ -1,0 +1,33 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<include file="webwork-default.xml" />
+	<package name="eWAP-reminder-front" extends="eWAP-default"
+		namespace="/portal/homepage/reminder">
+		
+		<action name="ajaxRemindList"
+			class="OLink.bpm.core.homepage.action.ReminderAction"
+			method="doRemindList">
+			<result name="success" type="dispatcher">
+				list.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				list.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="chain" />
+		</action>		
+		
+		<action name="addReminderList" class="OLink.bpm.core.homepage.action.ReminderAction"
+			method="doAddReminder">
+			<result name="success" type="dispatcher">
+				/portal/share/user/addReminderList.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				/portal/share/user/addReminderList.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="chain" />
+		</action>
+		
+	</package>
+</xwork>

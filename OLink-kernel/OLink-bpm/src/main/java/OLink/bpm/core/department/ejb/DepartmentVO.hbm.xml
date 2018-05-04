@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="OLink.bpm.core.department.ejb.DepartmentVO"
+		table="T_DEPARTMENT" lazy="false" batch-size="10">
+
+		<id name="id" column="ID" type="java.lang.String" length="100">
+			<generator class="assigned">
+				<!--  
+					To add non XDoclet generator parameters, create a file named 
+					hibernate-generator-params-DepartmentVO.xml 
+					containing the additional parameters and place it in your merge dir. 
+				-->
+			</generator>
+		</id>
+
+		<property name="engname" type="java.lang.String" update="true"
+			insert="true" column="ENGNAME" />
+
+		<property name="name" type="java.lang.String" update="true"
+			insert="true" column="NAME" />
+
+		<many-to-one name="superior"
+					 class="OLink.bpm.core.department.ejb.DepartmentVO" cascade="none"
+					 outer-join="auto" update="true" insert="true" column="SUPERIOR" not-found="ignore"/>
+
+		<many-to-one name="domain"
+					 class="OLink.bpm.core.domain.ejb.DomainVO" cascade="none"
+					 outer-join="auto" update="true" insert="true" column="DOMAIN_ID" not-found="ignore"/>
+
+		<!--  
+		<set name="userDepartmentSets" table="T_USER_DEPARTMENT_SET"
+			lazy="true" inverse="true" cascade="all" sort="unsorted">
+			<key column="DEPARTMENTID"></key>
+			<one-to-many
+				class="UserDepartmentSet" />
+		</set>
+		-->
+
+		<!--  
+			<set
+            name="users"
+            table="T_USER_DEPARTMENT_SET"
+            lazy="false"
+			inverse="true"
+            cascade="none"
+            sort="unsorted"
+        >
+
+            <key
+                column="DEPARTMENTID"
+            >
+            </key>
+
+            <many-to-many
+                class="UserVO"
+                column="USERID"
+                outer-join="auto"
+             />
+
+        </set>
+		-->
+
+		<property name="level" type="int" update="true" insert="true"
+			column="LEVELS" />
+			
+			
+		<property name="indexCode" type="java.lang.String" length="1000" update="true"
+			insert="true" column="INDEXCODE" />
+			
+		<property name="code" type="java.lang.String" update="true"
+			insert="true" column="CODE" />
+
+		<property name="sortId" type="java.lang.String" update="true"
+			insert="true" column="SORTID" />
+
+		<property name="domainid" type="java.lang.String" update="true"
+			insert="true" column="DOMAINID" />
+
+		<!--
+			To add non XDoclet property mappings, create a file named
+			hibernate-properties-DepartmentVO.xml
+			containing the additional properties and place it in your merge dir.
+		-->
+
+		
+		
+		<property name="field1" type="java.lang.String" column="FIELD1" />
+		
+		<property name="field2" type="java.lang.String" column="FIELD2" />
+		
+		<property name="field3" type="java.lang.String" column="FIELD3" />
+		
+		<property name="field4" type="java.lang.String" column="FIELD4" />
+		
+		<property name="field5" type="java.lang.String" column="FIELD5" />
+		
+		<property name="field6" type="java.lang.String" column="FIELD6" />
+		
+		<property name="field7" type="java.lang.String" column="FIELD7" />
+		
+		<property name="field8" type="java.lang.String" column="FIELD8" />
+		
+		<property name="field9" type="java.lang.String" column="FIELD9"/>
+		
+        <property name="field10" type="java.lang.String" column="FIELD10"/>
+        
+        <property name="field11" type="text" column="FIELD11"/>
+        
+        <property name="field12" type="text" column="FIELD12"/>
+	</class>
+
+</hibernate-mapping>

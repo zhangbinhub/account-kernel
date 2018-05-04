@@ -1,0 +1,182 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+<!-- domain package -->
+	<package name="domain" extends="eWAP-default"
+		namespace="/core/domain">
+
+	   <action name="displayView"
+			class="OLink.bpm.core.domain.action.DomainAction"
+			method="doDisplayView">
+			<result name="success" type="dispatcher">
+				domain.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="new"
+			class="OLink.bpm.core.domain.action.DomainAction"
+			method="doNew">
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="defaultStack">
+			    <param name="workflow.excludeMethods">default</param>
+			</interceptor-ref>
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="edit"
+			class="OLink.bpm.core.domain.action.DomainAction"
+			method="doEdit">
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="basicInfo"
+			class="OLink.bpm.core.domain.action.DomainAction"
+			method="doEdit">
+			<result name="success" type="dispatcher">
+				basicinfo.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>		
+		
+		<action name="saveBasic"
+			class="OLink.bpm.core.domain.action.DomainAction"
+			method="doSave">
+			<result name="input" type="dispatcher">
+				basicinfo.jsp
+			</result>
+			<result name="success" type="dispatcher">
+				basicinfo.jsp
+			</result>
+			<interceptor-ref name="defaultStack">
+			    <param name="workflow.excludeMethods">default</param>
+			</interceptor-ref>
+		
+		</action>
+		
+		<action name="save"
+			class="OLink.bpm.core.domain.action.DomainAction"
+			method="doSave">
+			<result name="input" type="dispatcher">
+				content.jsp
+			</result>
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="defaultStack">
+			    <param name="workflow.excludeMethods">default</param>
+			</interceptor-ref>
+		
+		</action>
+		
+		<action name="delete"
+			class="OLink.bpm.core.domain.action.DomainAction"
+			method="doDelete">
+			<interceptor-ref name="params" />
+			<interceptor-ref name="chain" />
+			<result name="success" type="chain">list</result>
+			<result name="input" type="chain">list</result>
+		</action>
+		
+		<action name="list"
+			class="OLink.bpm.core.domain.action.DomainAction"
+			method="doList">
+			<interceptor-ref name="params" />
+			<interceptor-ref name="chain" />
+			<result name="success" type="dispatcher">list.jsp</result>
+			<result name="input" type="dispatcher">list.jsp</result>
+		</action>
+		
+		<action name="addApp"
+			class="OLink.bpm.core.deploy.application.action.ApplicationAction"
+			method="doAddApp">
+			<result name="success" type="dispatcher">listallapps.jsp</result>
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="addAdmin"
+			class="OLink.bpm.core.superuser.action.SuperUserAction"
+			method="doAddAdmin">
+			<result name="success" type="dispatcher">listallusers.jsp</result>
+			<interceptor-ref name="params" />
+		</action>		
+		
+		<action name="removeApp"
+			class="OLink.bpm.core.domain.action.DomainAction"
+			method="doRemoveApp">
+			<interceptor-ref name="defaultStack" />
+			<result name="input" type="dispatcher">
+				holdapplist.jsp
+			</result>
+			<result name="success" type="chain">holdApp</result>
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="removeAdmin"
+			class="OLink.bpm.core.domain.action.DomainAction"
+			method="doRemoveAdmin">
+			<interceptor-ref name="params" />
+			<interceptor-ref name="chain" />
+			<result name="input" type="dispatcher">
+				holdadminlist.jsp
+			</result>
+			<result name="success" type="chain">holdAdmin</result>
+		</action>
+		
+		<action name="holdApp"
+			class="OLink.bpm.core.deploy.application.action.ApplicationAction"
+			method="listAppsByDomain">
+			<result name="success" type="dispatcher">holdapplist.jsp</result>
+			<result name="input" type="dispatcher">holdapplist.jsp</result>
+			<interceptor-ref name="params" />
+		</action>	
+		
+		<action name="confirm"
+			class="OLink.bpm.core.domain.action.DomainAction"
+			method="confirm">
+			<interceptor-ref name="defaultStack" />
+			<result name="input" type="dispatcher">
+				listallapps.jsp
+			</result>
+			<result name="success" type="dispatcher">exit.jsp</result>
+			<interceptor-ref name="params" />
+		</action>	
+		<action name="confirmAdmin"
+			class="OLink.bpm.core.domain.action.DomainAction"
+			method="confirmAdmin">
+			<interceptor-ref name="defaultStack" />
+			<result name="input" type="dispatcher">
+				listallusers.jsp
+			</result>
+			<result name="success" type="dispatcher">exit.jsp</result>
+			<interceptor-ref name="params" />
+		</action>	
+		
+		
+		<!-- action name="holdAdmin"
+			class="DomainAction" method="holdAdmin">
+			<result name="success" type="dispatcher">holdadminlist.jsp</result>
+			<interceptor-ref name="params" />
+		</action-->	
+		<action name="holdAdmin"
+				class="OLink.bpm.core.superuser.action.SuperUserAction" method="doListByDomain">
+			<result name="success" type="dispatcher">holdadminlist.jsp</result>
+			<result name="input" type="dispatcher">holdadminlist.jsp</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="chain" />
+		</action>
+		
+		<action name="findManager"
+			class="OLink.bpm.core.domain.action.DomainAction"
+			method="findManager">
+			<interceptor-ref name="defaultStack" />
+			<result name="success" type="dispatcher">list.jsp</result>
+			<result name="input" type="dispatcher">list.jsp</result>
+			<interceptor-ref name="params" />
+		</action>
+	</package>
+</xwork>

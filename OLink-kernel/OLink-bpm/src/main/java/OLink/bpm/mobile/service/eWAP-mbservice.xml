@@ -1,0 +1,44 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<package name="mbservice" extends="eWAP-default"
+		namespace="/mobile/service">
+		
+		<action name="action"
+			class="OLink.bpm.mobile.service.MbServiceAction"
+			method="doAction">
+			<result name="success" type="dispatcher">/mobile/toXml.jsp</result>
+			<result name="viewDocument" type="dispatcher">/mobile/toXml.jsp</result>
+			<result name="viewList" type="dispatcher">/mobile/view/displayView.action</result>
+			<result name="error" type="dispatcher">/mobile/error.jsp</result>
+			<result name="input" type="dispatcher">/mobile/error.jsp</result>
+		</action>
+
+		<action name="refresh"
+			class="OLink.bpm.mobile.service.MbServiceAction"
+			method="doRefresh">
+			<result name="success" type="dispatcher">/mobile/toXml.jsp</result>
+			<result name="refreshDocument" type="dispatcher">/mobile/toXml.jsp</result>
+			<result name="error" type="dispatcher">/mobile/error.jsp</result>
+			<result name="input" type="dispatcher">/mobile/error.jsp</result>
+		</action>
+		
+		<action name="showFlowHis"
+			class="OLink.bpm.mobile.service.MbServiceAction"
+			method="doShowFlowHis">
+			<result name="success" type="dispatcher">/mobile/toXml.jsp</result>
+			<result name="viewDocument" type="dispatcher">/mobile/toXml.jsp</result>
+			<result name="error" type="dispatcher">/mobile/error.jsp</result>
+			<result name="input" type="dispatcher">/mobile/error.jsp</result>
+		</action>
+		
+		<action name="newDocument"
+			class="OLink.bpm.mobile.service.MbServiceAction"
+			method="doNewDocument">
+			<result name="success" type="dispatcher">/mobile/toXml.jsp</result>
+			<result name="error" type="dispatcher">/mobile/error.jsp</result>
+			<result name="input" type="dispatcher">/mobile/error.jsp</result>
+		</action>
+		
+	</package>
+
+</xwork>

@@ -1,0 +1,33 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<package name="dservice" extends="eWAP-default"
+		namespace="/desktop/service">
+		
+		<action name="action"
+			class="OLink.bpm.desktop.service.DServiceAction"
+			method="doAction">
+			<result name="viewDocument" type="dispatcher">/desktop/xml.jsp</result>
+			<result name="viewList" type="dispatcher">/desktop/view/displayView.action</result>
+			<result name="error" type="dispatcher">/desktop/error.jsp</result>
+			<result name="input" type="dispatcher">/desktop/error.jsp</result>
+		</action>
+
+		<action name="refresh"
+			class="OLink.bpm.desktop.service.DServiceAction"
+			method="doRefresh">
+			<result name="refreshDocument" type="dispatcher">/desktop/xml.jsp</result>
+			<result name="error" type="dispatcher">/desktop/error.jsp</result>
+			<result name="input" type="dispatcher">/desktop/error.jsp</result>
+		</action>
+		
+		<action name="showFlowHis"
+			class="OLink.bpm.desktop.service.DServiceAction"
+			method="doShowFlowHis">
+			<result name="viewDocument" type="dispatcher">/desktop/xml.jsp</result>
+			<result name="error" type="dispatcher">/desktop/error.jsp</result>
+			<result name="input" type="dispatcher">/desktop/error.jsp</result>
+		</action>
+		
+	</package>
+
+</xwork>

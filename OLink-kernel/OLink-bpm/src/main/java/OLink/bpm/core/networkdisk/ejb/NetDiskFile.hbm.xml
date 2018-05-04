@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="OLink.bpm.core.networkdisk.ejb.NetDiskFile"
+        table="T_NETDISKFILE"
+    >
+
+        <id
+            name="id"
+            column="ID"
+            type="java.lang.String"
+            length="100"
+        >
+            <generator class="assigned">
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-RemoteServerVO.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+        
+        <property
+            name="name"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="NAME"
+        />
+
+        <property
+            name="type"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="TYPE"
+        />
+
+        
+        <property
+            name="size"
+            type="long"
+            update="true"
+            insert="true"
+            column="FILESIZE"
+        />
+        
+        <property
+            name="modifyTime"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="MODIFYTIME"
+       />
+       
+       <property
+            name="shareTime"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="SHARETIME"
+       />
+       
+       <property
+            name="userid"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="USERID"
+       />
+       
+       <property
+            name="folderPath"
+            type="text"
+            update="true"
+            insert="true"
+            column="FOLDERPATH"
+       />
+       
+       <property
+            name="folderWebPath"
+            type="java.lang.String"
+            length="4000"
+            update="true"
+            insert="true"
+            column="FOLDERWEBPATH"
+       />
+       
+       <many-to-one
+            name="pemission"
+            class="OLink.bpm.core.networkdisk.ejb.NetDiskPemission"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            column="PEMISSION"
+        />
+    </class>
+
+</hibernate-mapping>

@@ -1,0 +1,132 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+<!-- domain package -->
+	<package name="eWAP-email-front" extends="eWAP-default"
+		namespace="/portal/email">
+
+		<action name="list"
+			class="OLink.bpm.core.email.email.action.EmailAction"
+			method="doList">
+			<result name="input" type="OBPMdispatcher">
+				/portal/share/email/list.jsp
+			</result>
+			<result name="success" type="OBPMdispatcher">
+				/portal/share/email/list.jsp
+			</result>
+			<result name="main" type="OBPMdispatcher">
+				/portal/share/email/main.jsp
+			</result>
+			<interceptor-ref name="defaultStack">
+			    <param name="workflow.excludeMethods">default</param>
+			</interceptor-ref>
+		</action>
+		
+		<action name="save"
+			class="OLink.bpm.core.email.email.action.EmailAction"
+			method="doSave">
+			<result name="input" type="OBPMdispatcher">
+				/portal/share/email/input.jsp
+			</result>
+			<result name="success" type="OBPMdispatcher">
+				/portal/share/email/send_msg.jsp
+			</result>
+			<result name="error" type="OBPMdispatcher">
+				/portal/share/email/error.jsp
+			</result>
+			<interceptor-ref name="defaultStack">
+			    <param name="workflow.excludeMethods">default</param>
+			</interceptor-ref>
+		</action>
+		
+		<action name="delete"
+			class="OLink.bpm.core.email.email.action.EmailAction"
+			method="doDelete">
+			<interceptor-ref name="params" />
+			<interceptor-ref name="chain" />
+			<result name="success" type="chain">list</result>
+			<result name="input" type="chain">list</result>
+		</action>
+		
+		<action name="torecy"
+			class="OLink.bpm.core.email.email.action.EmailAction"
+			method="doToRecy">
+			<interceptor-ref name="params" />
+			<interceptor-ref name="chain" />
+			<result name="success" type="chain">list</result>
+			<result name="input" type="chain">list</result>
+		</action>
+		
+		<action name="getEmailContent"
+			class="OLink.bpm.core.email.email.action.EmailAction"
+			method="doGetEmailContent">
+			<result name="input" type="OBPMdispatcher">
+				/portal/share/email/email_content.jsp
+			</result>
+			<result name="success" type="OBPMdispatcher">
+				/portal/share/email/email_content.jsp
+			</result>
+			<result name="errror" type="OBPMdispatcher">
+				/portal/share/email/email_content.jsp
+			</result>
+			<interceptor-ref name="defaultStack">
+			    <param name="workflow.excludeMethods">default</param>
+			</interceptor-ref>
+		</action>
+		 
+		 <action name="view"
+				 class="OLink.bpm.core.email.email.action.EmailAction" method="doView">
+			<result name="input" type="OBPMdispatcher">
+				/portal/share/email/content.jsp
+			</result>
+			<result name="success" type="OBPMdispatcher">
+				/portal/share/email/content.jsp
+			</result>
+			<result name="error" type="OBPMdispatcher">
+				/portal/share/email/error.jsp
+			</result>
+			<result name="drafts" type="OBPMdispatcher">
+				/portal/share/email/input.jsp
+			</result>
+			<interceptor-ref name="defaultStack">
+			    <param name="workflow.excludeMethods">default</param>
+			</interceptor-ref>
+		</action>
+		
+		<action name="new"
+				class="OLink.bpm.core.email.email.action.EmailAction" method="doNew">
+			<result name="input" type="OBPMdispatcher">
+				/portal/share/email/input.jsp
+			</result>
+			<result name="success" type="OBPMdispatcher">
+				/portal/share/email/input.jsp
+			</result>
+			<result name="errror" type="OBPMdispatcher">
+				/portal/share/email/input.jsp
+			</result>
+			<interceptor-ref name="defaultStack">
+			    <param name="workflow.excludeMethods">default</param>
+			</interceptor-ref>
+		</action>
+		
+		<action name="moveto"
+				class="OLink.bpm.core.email.email.action.EmailAction" method="doMoveTo">
+			<result name="success" type="chain">list</result>
+			<result name="input" type="chain">list</result>
+			<result name="error" type="chain">list</result>
+			<interceptor-ref name="defaultStack">
+			    <param name="workflow.excludeMethods">default</param>
+			</interceptor-ref>
+		</action>
+		
+		<action name="mark"
+				class="OLink.bpm.core.email.email.action.EmailAction" method="doMark">
+			<result name="success" type="chain">list</result>
+			<result name="input" type="chain">list</result>
+			<result name="error" type="chain">list</result>
+			<interceptor-ref name="defaultStack">
+			    <param name="workflow.excludeMethods">default</param>
+			</interceptor-ref>
+		</action>
+		
+	</package>
+</xwork>

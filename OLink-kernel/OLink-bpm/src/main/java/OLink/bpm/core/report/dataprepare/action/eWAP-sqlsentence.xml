@@ -1,0 +1,61 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<!-- document package -->
+	<package name="sqlsentence" extends="eWAP-default"
+		namespace="/core/report/dataprepare/sqlsentence">
+
+		<action name="view" class="OLink.bpm.core.report.dataprepare.action.SqlSentenceAction"
+			method="doView">
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+
+		<action name="new" class="OLink.bpm.core.report.dataprepare.action.SqlSentenceAction"
+			method="doNew">
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+
+		<action name="save" class="OLink.bpm.core.report.dataprepare.action.SqlSentenceAction"
+			method="doSave">
+      		<result name="input" type="dispatcher">
+				content.jsp
+			</result>
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="validationWorkflowStack"/>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+
+		<action name="edit" class="OLink.bpm.core.report.dataprepare.action.SqlSentenceAction"
+			method="doView">
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+
+		<action name="list" class="OLink.bpm.core.report.dataprepare.action.SqlSentenceAction"
+			method="doList">
+			<result name="success" type="dispatcher">list.jsp</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+
+		<action name="delete" class="OLink.bpm.core.report.dataprepare.action.SqlSentenceAction"
+		method="doDelete">
+			<result name="success" type="dispatcher">
+				list.action
+			</result>
+		</action>
+	</package>
+</xwork>

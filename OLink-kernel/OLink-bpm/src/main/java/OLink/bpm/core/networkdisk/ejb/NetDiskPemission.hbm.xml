@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="OLink.bpm.core.networkdisk.ejb.NetDiskPemission"
+        table="T_NETDISKPEMISSION"
+    >
+
+        <id
+            name="id"
+            column="ID"
+            type="java.lang.String"
+            length="100"
+        >
+            <generator class="assigned">
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-RemoteServerVO.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+        
+        <property
+            name="userid"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="USERID"
+        />
+        
+         <property
+            name="name"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="NAME"
+        />
+        
+        
+        <property
+            name="type"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="TYPE"
+        />
+        
+        <property
+            name="selectObject"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="SELECTOBJECT"
+        />
+        
+        <property
+            name="operate"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="OPERATE"
+        />
+        
+        <many-to-one
+            name="group"
+            class="OLink.bpm.core.networkdisk.ejb.NetDiskGroup"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            column="USERGROUP"
+        />
+        
+        <many-to-one
+            name="department"
+            class="OLink.bpm.core.department.ejb.DepartmentVO"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            column="DEPARTMENT"
+        />
+        
+        <many-to-one
+            name="role"
+            class="OLink.bpm.core.role.ejb.RoleVO"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            column="ROLE"
+        />
+        
+        <property
+            name="users"
+            type="text"
+            update="true"
+            insert="true"
+            column="USERS"
+        />
+       
+    </class>
+
+</hibernate-mapping>

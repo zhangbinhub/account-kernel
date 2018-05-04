@@ -1,0 +1,23 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<package name="portal-application-front" extends="eWAP-default"
+		namespace="/portal/application">
+		<!--
+			action name="viewapps"
+			class="ApplicationAction"
+			method="listAppsByDomain"> <result name="success"
+			type="dispatcher">list-apps.jsp</result> <interceptor-ref
+			name="params" /> </action
+		-->
+
+		<action name="change"
+			class="OLink.bpm.core.deploy.application.action.ApplicationRunTimeAction"
+			method="doChange">
+			<result name="success" type="redirect">
+				/portal/share/success.jsp?application=${id}
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+	</package>
+
+</xwork>

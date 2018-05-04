@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="OLink.bpm.core.email.attachment.ejb.Attachment"
+        table="T_EMAIL_ATTACHMENT"
+        lazy="false"
+        batch-size="10"
+    >
+
+        <id
+            name="id"
+            column="ID"
+            type="java.lang.String"
+            length="100"
+        >
+            <generator class="assigned">
+            </generator>
+        </id>
+
+        <many-to-one
+            name="emailBody"
+            class="OLink.bpm.core.email.email.ejb.EmailBody"
+            cascade="none"
+            update="true"
+            insert="true"
+            outer-join="false"
+            column="EMAILBODY_ID"
+        />
+
+        <property
+            name="fileName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="FILENAME"
+        />
+        
+        <property
+            name="realFileName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="REALFILENAME"
+        />
+
+        <property
+            name="fileText"
+            type="byte[]"
+            update="true"
+            insert="true"
+            column="FILETEXT"
+        />
+
+        <property
+            name="path"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="PATH"
+        />
+
+        <property
+            name="sortId"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="SORTID"
+        />
+        
+        <property
+            name="createDate"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="CREATDATE"
+        />
+        
+        <property
+            name="size"
+            type="long"
+            update="true"
+            insert="true"
+            column="FILESIZE"
+        />
+        
+        <property
+            name="emailid"
+            type="string"
+            update="true"
+            insert="true"
+            column="EMAILID"
+        />
+
+    </class>
+
+</hibernate-mapping>

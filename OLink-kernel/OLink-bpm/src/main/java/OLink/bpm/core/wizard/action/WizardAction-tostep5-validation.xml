@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE validators PUBLIC
+  		"-//OpenSymphony Group//XWork Validator 1.0//EN" 
+  		"http://www.opensymphony.com/xwork/xwork-validator-1.0.2.dtd">
+
+<validators>
+	<field name="content.r_description">
+		<field-validator type="requiredstring">
+			<message>{*[page.description.notexist]*}!</message>
+		</field-validator>	
+	</field>
+	<field name="content.r_orderno">
+		<field-validator type="int">
+			<param name="min">0</param>
+       		<param name="max">65535</param>
+			<message>{*[page.user.number.legal]*}!</message>
+		</field-validator>	
+	</field>
+</validators>
+

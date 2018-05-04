@@ -1,0 +1,25 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<package name="activity-front" extends="eWAP-default"
+		namespace="/portal/dynaform/activity">
+		
+		<action name="action"
+			class="OLink.bpm.core.dynaform.activity.action.ActivityRunTimeAction"
+			method="doAction">
+			<result name="success" type="OBPMdispatcher">
+				/portal/share/dynaform/activity/action.jsp
+			</result>
+		</action>
+		
+		<action name="after"
+			class="OLink.bpm.core.dynaform.activity.action.ActivityRunTimeAction"
+			method="doAfter">
+			<result name="success" type="OBPMdispatcher">
+				/portal/share/dynaform/activity/after.jsp
+			</result>
+			<interceptor-ref name="chain" />
+		</action>
+	</package>
+
+
+</xwork>

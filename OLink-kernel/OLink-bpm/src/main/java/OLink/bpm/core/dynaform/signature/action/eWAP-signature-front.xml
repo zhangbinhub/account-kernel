@@ -1,0 +1,18 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<package name="eWAP-signature-front" extends="eWAP-default" namespace="/portal/dynaform/mysignature">
+
+		<action name="doCommand"
+			    class="OLink.bpm.core.dynaform.signature.action.SignatureAction"
+			    method="doCommand">
+		</action>
+		<action name="getDocument"
+			    class="OLink.bpm.core.dynaform.signature.action.SignatureAction"
+			    method="getDocument">
+		</action>
+		<action name="getBatchDocument"
+			    class="OLink.bpm.core.dynaform.signature.action.SignatureAction"
+			    method="getBatchDocument">
+		</action>
+	</package>
+</xwork>

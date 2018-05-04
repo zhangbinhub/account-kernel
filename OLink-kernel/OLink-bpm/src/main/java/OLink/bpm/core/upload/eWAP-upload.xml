@@ -1,0 +1,43 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+
+	<!-- workflow FlogLog package -->
+	<package name="upload" extends="eWAP-default"
+		namespace="/core/upload">
+
+		<action name="getPercs"
+				class="OLink.bpm.core.upload.UploadAction" method="getPercs">
+			<result name="success" type="dispatcher">upload.jsp</result>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="clearPerc"
+				class="OLink.bpm.core.upload.UploadAction" method="clearPerc">
+			<result name="success" type="dispatcher">upload.jsp</result>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="upload"
+			class="OLink.bpm.core.upload.UploadAction">
+			<result name="success" type="dispatcher">upload.jsp</result>
+			<result name="input" type="dispatcher">upload.jsp</result>
+			<interceptor-ref name="defaultStack" />
+		</action>
+
+		<action name="uploadimage"
+			class="OLink.bpm.core.upload.UploadAction">
+			<result name="success" type="dispatcher">
+				successImage.jsp
+			</result>
+			<interceptor-ref name="defaultStack" />
+		</action>
+
+		<action name="delete" class="OLink.bpm.core.upload.UploadAction"
+			method="doDelete">
+			<result name="success" type="dispatcher">
+				success.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+	</package>
+</xwork>

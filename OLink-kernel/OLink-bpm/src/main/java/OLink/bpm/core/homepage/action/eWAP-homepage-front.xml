@@ -1,0 +1,31 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<include file="webwork-default.xml" />
+	<package name="eWAP-homepage-front" extends="eWAP-default"
+		namespace="/portal/homepage">
+		<action name="ajaxPageList"	class="OLink.bpm.core.user.action.UserDefinedAction"
+			method="doPageList">
+			<result name="success" type="dispatcher">
+				list.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				list.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="chain" />
+		</action>
+		
+		<action name="selectTemplate" class="OLink.bpm.core.user.action.UserDefinedAction"
+			method="doSelectTemplate">
+			<result name="success" type="OBPMdispatcher">
+				/portal/share/user/selectTemplate.jsp
+			</result>
+			<result name="input" type="OBPMdispatcher">
+				/portal/share/user/selectTemplate.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="chain" />
+		</action>
+	</package>
+	
+</xwork>

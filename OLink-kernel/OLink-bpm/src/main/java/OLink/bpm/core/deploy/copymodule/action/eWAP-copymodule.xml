@@ -1,0 +1,123 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<!-- copymodule package -->
+	<package name="deploy_copymodule" extends="eWAP-default"
+		namespace="/core/deploy/copymodule">
+
+		<action name="tostart"
+				class="OLink.bpm.core.deploy.copymodule.action.CopyModuleAction" method="doStart">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="scope">
+				<param name="key">copymodule</param>
+				<param name="type">start</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="success">choosemodule.jsp</result>
+			<result name="input">choosemodule.jsp</result>
+		</action>
+		
+		<action name="toStep2" class="OLink.bpm.core.deploy.copymodule.action.CopyModuleAction" method="doCopyModule">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="scope">
+				<param name="key">copymodule</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<result name="success">copyform.jsp</result>
+			<result name="input">
+				copyform.jsp
+			</result>
+		</action>
+		<action name="copyform" class="OLink.bpm.core.deploy.copymodule.action.CopyModuleAction" method="doCopyForm">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="scope">
+				<param name="key">copymodule</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<result name="success">copyformsuccess.jsp</result>
+			<result name="input">copyform.jsp</result>
+			
+		</action>
+	
+		<action name="cancel" class="OLink.bpm.core.deploy.copymodule.action.CopyModuleAction" method="doCancel">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="scope">
+				<param name="key">copymodule</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<result name="success">/core/deploy/module/displayFormAndView.jsp</result>
+			<!--  
+			<result name="success" type="chain">
+				<param name="actionName">edit</param>
+				<param name="namespace">/core/deploy/application</param>
+			</result>
+			-->
+		</action>
+		
+		<action name="copyformafter" class="OLink.bpm.core.deploy.copymodule.action.CopyModuleAction" method="doCopyFormAfter">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="scope">
+				<param name="key">copymodule</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<result name="success">copyview.jsp</result>
+		</action>
+		
+		<action name="copyview" class="OLink.bpm.core.deploy.copymodule.action.CopyModuleAction" method="doCopyView">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="scope">
+				<param name="key">copymodule</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<result name="success">copyviewsuccess.jsp</result>
+			<result name="input">copyview.jsp</result>
+		</action>
+	
+		<action name="copyviewafter" class="OLink.bpm.core.deploy.copymodule.action.CopyModuleAction" method="doCopyViewAfter">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="scope">
+				<param name="key">copymodule</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<result name="success">copyflow.jsp</result>
+			<result name="input">copyflow.jsp</result>
+		</action>
+		<action name="copyflow" class="OLink.bpm.core.deploy.copymodule.action.CopyModuleAction" method="doCopyFlow">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="scope">
+				<param name="key">copymodule</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<result name="success">copyflowsuccess.jsp</result>
+			<result name="input">copyflow.jsp</result>
+		</action>
+		<action name="copyflowsuccess" class="OLink.bpm.core.deploy.copymodule.action.CopyModuleAction" method="doCopyFlow">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="scope">
+				<param name="key">copymodule</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<result name="success">copyflowsuccess.jsp</result>
+			<result name="input">copyflowsuccess.jsp</result>
+		</action>
+		<action name="copyall" class="OLink.bpm.core.deploy.copymodule.action.CopyModuleAction" method="doCopyModuleAll">
+			<interceptor-ref name="params" />
+			<interceptor-ref name="scope">
+				<param name="key">copymodule</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<result name="success" type="redirect">
+					/core/deploy/application/frames.jsp?id=${application}&amp;refresh=rightFrame
+			</result>
+		</action>
+		<action name="replaceAll" class="OLink.bpm.core.deploy.copymodule.action.CopyModuleAction" method="replaceAll">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="scope">
+				<param name="key">copymodule</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<result name="success">copysuccess.jsp</result>
+			<result name="input">copysuccess.jsp</result>
+		</action>
+	</package>
+</xwork>

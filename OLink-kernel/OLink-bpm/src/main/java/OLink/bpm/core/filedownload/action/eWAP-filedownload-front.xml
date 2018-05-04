@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE xwork PUBLIC
+	"-//OpenSymphony Group//XWork 1.1.1//EN"
+	"http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+
+<xwork>
+	<package name="filedownload" extends="eWAP-default" namespace="/portal/filedownload">
+        <action name="download" class="OLink.bpm.core.filedownload.action.FileDownloadAction" method="doDownload">
+			<result name="success" type="dispatcher">success.jsp</result>
+			<result name="input" type="dispatcher">success.jsp</result>
+			<interceptor-ref name="params" />
+		</action>
+    </package>
+</xwork>
+
+

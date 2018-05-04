@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="OLink.bpm.core.role.ejb.RoleVO" table="T_ROLE"
+		   lazy="false" batch-size="10">
+
+		<id name="id" column="ID" type="java.lang.String" length="100">
+			<generator class="assigned">
+				<!--  
+					To add non XDoclet generator parameters, create a file named 
+					hibernate-generator-params-RoleVO.xml 
+					containing the additional parameters and place it in your merge dir. 
+				-->
+			</generator>
+		</id>
+
+		<property name="engname" type="java.lang.String" update="true"
+			insert="true" column="ENGNAME" />
+
+		<property name="name" type="java.lang.String" update="true"
+			insert="true" column="NAME" />
+			
+		<property name="roleNo" type="java.lang.String" update="true"
+		    insert="true" column="ROLENO" />
+
+		<!--  
+			<set name="users" table="T_USER_ROLE_SET" lazy="false"
+			inverse="true" cascade="none" sort="unsorted">
+			
+			<key column="ROLEID"></key>
+			
+			<many-to-many class="UserVO"
+			column="USERID" outer-join="auto" />
+			
+			</set>
+		-->
+
+		<set name="permission" table="T_PERMISSION" lazy="false"
+			cascade="delete" sort="unsorted">
+
+			<key column="ROLE_ID"></key>
+
+			<one-to-many
+				class="OLink.bpm.core.permission.ejb.PermissionVO" />
+
+		</set>
+
+		<property name="sortId" type="java.lang.String" update="true"
+			insert="true" column="SORTID" />
+
+		<property name="applicationid" type="java.lang.String"
+			update="true" insert="true" column="APPLICATIONID" />
+		<!--	
+		<property name="isWorkManager" type="java.lang.String" 
+			update="true" insert="true" column="ISWORKMANAGER" />
+		
+			To add non XDoclet property mappings, create a file named
+			hibernate-properties-RoleVO.xml
+			containing the additional properties and place it in your merge dir.
+		-->
+
+	</class>
+
+</hibernate-mapping>

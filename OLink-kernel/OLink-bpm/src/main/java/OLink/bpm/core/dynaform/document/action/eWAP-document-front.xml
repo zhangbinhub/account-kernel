@@ -1,0 +1,433 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<!-- document package -->
+	<package name="document-front" extends="eWAP-default"
+		namespace="/portal/dynaform/document">
+
+		<interceptors>
+			<interceptor-stack name="defaultStack">
+                <interceptor-ref name="exception"/>
+                <interceptor-ref name="alias"/>
+                <interceptor-ref name="servlet-config"/>
+                <interceptor-ref name="i18n"/>
+                <interceptor-ref name="chain"/>
+                <interceptor-ref name="model-driven"/>
+                <interceptor-ref name="fileUpload"/>
+                <interceptor-ref name="static-params"/>
+                <interceptor-ref name="params"/>
+                <!-- 更换prepare顺序 -->
+                <interceptor-ref name="prepare"/>
+                <interceptor-ref name="conversionError"/>
+                <interceptor-ref name="validation">
+                    <param name="excludeMethods">input,back,cancel,browse</param>
+                </interceptor-ref>
+                <interceptor-ref name="workflow">
+                    <param name="excludeMethods">input,back,cancel,browse</param>
+                </interceptor-ref>
+            </interceptor-stack>
+		
+			<interceptor-stack name="basicStack">
+				<interceptor-ref name="exception" />
+				<interceptor-ref name="alias" />
+				<interceptor-ref name="servlet-config" />
+				<interceptor-ref name="prepare" />
+				<interceptor-ref name="i18n" />
+				<interceptor-ref name="chain" />
+				<interceptor-ref name="model-driven" />
+				<interceptor-ref name="fileUpload" />
+				<interceptor-ref name="static-params" />
+				<interceptor-ref name="params" />
+				<interceptor-ref name="conversionError" />
+			</interceptor-stack>
+
+
+			<interceptor-stack name="validationWorkflowStack">
+				<interceptor-ref name="basicStack" />
+				<interceptor-ref name="validation">
+					<param name="excludeMethods">input,back,cancel,browse</param>
+				</interceptor-ref>
+				<interceptor-ref name="workflow">
+					<param name="excludeMethods">input,back,cancel,browse</param>
+				</interceptor-ref>
+
+			</interceptor-stack>
+		</interceptors>
+
+		<action name="view"
+			class="OLink.bpm.core.dynaform.document.action.DocumentAction"
+			method="doView">
+			<result name="success" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/document/content.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		<action name="view-nogray"
+			class="OLink.bpm.core.dynaform.document.action.DocumentAction"
+			method="doView">
+			<result name="success" type="OBPMdispatcher">
+				/portal/share/dynaform/document/content.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		<action name="moreDoc"
+				class="OLink.bpm.core.dynaform.pending.action.PendingAction" method="doList">
+			<result name="success" type="OBPMdispatcher">
+				/portal/share/dynaform/pending/list-showDiv.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="new"
+			class="OLink.bpm.core.dynaform.document.action.DocumentAction"
+			method="doNew">
+			<result name="success" type="OBPMdispatcher">
+				/portal/dynaform/activity/after.action
+			</result>
+			<result name="input" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/document/content.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="back"
+			class="OLink.bpm.core.dynaform.document.action.DocumentAction"
+			method="doBack">
+			<result name="success" type="OBPMdispatcher">
+				/portal/dynaform/activity/after.action
+			</result>
+			<result name="input" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/document/content.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="nothing"
+			class="OLink.bpm.core.dynaform.document.action.DocumentAction"
+			method="doNothing">
+			<result name="success" type="OBPMdispatcher">
+				/portal/dynaform/activity/after.action
+			</result>
+			<result name="input" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/document/content.jsp
+			</result>
+			<interceptor-ref name="defaultStack" />
+		</action>
+
+		<action name="save"
+			class="OLink.bpm.core.dynaform.document.action.DocumentAction"
+			method="doSave">
+			<result name="success" type="OBPMdispatcher">
+				/portal/dynaform/activity/after.action
+			</result>
+			<result name="input" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/document/content.jsp
+			</result>
+			<interceptor-ref name="defaultStack" />
+		</action>
+
+		<action name="edit"
+			class="OLink.bpm.core.dynaform.document.action.DocumentAction"
+			method="doView">
+			<result name="success" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/document/content.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="delete"
+			class="OLink.bpm.core.dynaform.document.action.DocumentAction"
+			method="doDelete">
+			<result name="success" type="OBPMdispatcher">
+				/portal/dynaform/activity/after.action
+			</result>
+			<result name="input" type="OBPMdispatcher">/portal/dynaform/activity/after.action
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="deleteMap"
+			class="OLink.bpm.core.dynaform.document.action.DocumentAction"
+			method="doDeleteMap">
+			<result name="success" type="OBPMdispatcher">
+				/portal/dynaform/view/dialogView.action
+			</result>
+			<result name="input" type="OBPMdispatcher">
+				/portal/dynaform/view/dialogView.action
+		    </result>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="deleteAll"
+			class="OLink.bpm.core.dynaform.document.action.DocumentAction"
+			method="doDeleteAll">
+			<result name="success" type="OBPMdispatcher">
+				/portal/dynaform/activity/after.action
+			</result>
+			<result name="input" type="OBPMdispatcher">/portal/dynaform/activity/after.action
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="print"
+			class="OLink.bpm.core.dynaform.document.action.DocumentAction"
+			method="doPrint">
+			<result name="success" type="OBPMdispatcher">
+				/portal/dynaform/activity/after.action
+			</result>
+			<result name="input" type="OBPMdispatcher">
+				/portal/share/dynaform/document/print.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="printview"
+			class="OLink.bpm.core.dynaform.document.action.DocumentAction"
+			method="doPrint">
+			<result name="success" type="OBPMdispatcher">
+				/portal/dynaform/activity/after.action
+			</result>
+			<result name="input" type="OBPMdispatcher">
+				/portal/share/dynaform/view/printview.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="select"
+			class="OLink.bpm.core.dynaform.document.action.DocumentAction"
+			method="doSelect">
+			<result name="success" type="OBPMdispatcher">
+				/portal/share/dynaform/document/selectfield.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="startWorkFlow"
+			class="OLink.bpm.core.dynaform.document.action.DocumentAction"
+			method="doStartWorkFlow">
+			<result name="success" type="OBPMdispatcher">
+				/portal/dynaform/activity/after.action
+			</result>
+
+			<result name="input" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/document/content.jsp
+			</result>
+			<interceptor-ref name="defaultStack" />
+		</action>
+
+
+		<action name="saveStartWorkFlow"
+			class="OLink.bpm.core.dynaform.document.action.DocumentAction"
+			method="doSaveStartWorkFlow">
+			<result name="success" type="OBPMdispatcher">
+				/portal/dynaform/activity/after.action
+			</result>
+			<result name="input" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/document/content.jsp
+			</result>
+			<interceptor-ref name="defaultStack" />
+		</action>
+
+		<action name="flow"
+				class="OLink.bpm.core.workflow.engine.StateMachineAction" method="doFlow">
+			<result name="success" type="OBPMdispatcher">
+				/portal/dynaform/activity/after.action
+			</result>
+			<result name="input" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/document/content.jsp
+			</result>
+			<result name="invalid.token" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/document/content.jsp
+			</result>
+
+			<interceptor-ref name="defaultStack" />
+		</action>
+
+		<action name="retracement"
+				class="OLink.bpm.core.workflow.engine.StateMachineAction" method="doRetracement">
+			<result name="success" type="OBPMdispatcher">
+				/portal/dynaform/activity/after.action
+			</result>
+			<result name="input" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/document/content.jsp
+			</result>
+			<result name="invalid.token" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/document/content.jsp
+			</result>
+
+		</action>
+
+		<action name="viewFlow"
+				class="OLink.bpm.core.workflow.engine.StateMachineAction" method="doViewFlow">
+			<result name="success" type="OBPMdispatcher">
+				/portal/share/workflow/runtime/flowview.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="savenewwithold"
+			class="OLink.bpm.core.dynaform.document.action.DocumentAction"
+			method="doSaveNewWithOld">
+			<result name="success" type="chain">
+				<param name="namespace">/portal/dynaform/activity</param>
+				<param name="actionName">after</param>
+			</result>
+			<result name="input" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/document/content.jsp
+			</result>
+
+			<interceptor-ref name="defaultStack" />
+		</action>
+
+		<action name="savenewwithoutold"
+			class="OLink.bpm.core.dynaform.document.action.DocumentAction"
+			method="doSaveNewWithOutOld">
+			<result name="success" type="chain">
+				<param name="namespace">/portal/dynaform/activity</param>
+				<param name="actionName">after</param>
+			</result>
+			<result name="input" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/document/content.jsp
+			</result>
+
+			<interceptor-ref name="defaultStack" />
+		</action>
+
+		<action name="savewithoutvalidate"
+			class="OLink.bpm.core.dynaform.document.action.DocumentAction"
+			method="doSaveWithOutValidate">
+			<result name="success" type="OBPMdispatcher">
+				/portal/dynaform/activity/after.action
+			</result>
+			<result name="input" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/document/content.jsp
+			</result>
+			<interceptor-ref name="basicStack" />
+		</action>
+
+		<action name="saveclose"
+			class="OLink.bpm.core.dynaform.document.action.DocumentAction"
+			method="doSaveClose">
+			<result name="success" type="OBPMdispatcher">
+				/portal/dynaform/activity/after.action
+			</result>
+			<result name="input" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/document/content.jsp
+			</result>
+
+			<interceptor-ref name="defaultStack" />
+		</action>
+
+		<action name="saveback"
+			class="OLink.bpm.core.dynaform.document.action.DocumentAction"
+			method="doSaveBack">
+			<result name="success" type="OBPMdispatcher">
+				/portal/dynaform/activity/after.action
+			</result>
+			<result name="input" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/document/content.jsp
+			</result>
+
+			<interceptor-ref name="defaultStack" />
+		</action>
+
+		<action name="battchapprove"
+			class="OLink.bpm.core.dynaform.document.action.DocumentAction"
+			method="doBattchApprove">
+			<result name="success" type="OBPMdispatcher">
+				/portal/dynaform/activity/after.action
+			</result>
+
+			<result name="input" type="chain">
+				<param name="namespace">/portal/dynaform/view</param>
+				<param name="actionName">displayView</param>
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="preview"
+			class="OLink.bpm.core.dynaform.document.action.DocumentAction"
+			method="doPreview">
+			<result name="success" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/document/preview.jsp
+			</result>
+			<result name="input" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/document/preview.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="saveandcopy"
+			class="OLink.bpm.core.dynaform.document.action.DocumentAction"
+			method="doSaveAndCopy">
+			<result name="success" type="OBPMdispatcher">
+				/portal/dynaform/activity/after.action
+			</result>
+			<result name="input" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/document/content.jsp
+			</result>
+			<interceptor-ref name="defaultStack" />
+		</action>
+
+		<action name="pendinglist"
+				class="OLink.bpm.core.dynaform.pending.action.PendingAction" method="doList">
+			<result name="success" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/pending/list.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		<action name="pendinglist-nogray"
+				class="OLink.bpm.core.dynaform.pending.action.PendingAction" method="doList">
+			<result name="success" type="OBPMdispatcher">
+				/portal/share/dynaform/pending/list.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		<action name="pendinglist-fresh"
+			class="OLink.bpm.core.dynaform.pending.action.PendingAction"
+			method="doList">
+			<result name="success" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/pending/list.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		<action name="newword"
+			class="OLink.bpm.core.dynaform.document.action.DocumentAction"
+			method="doNewWord">
+			<result name="success" type="OBPMdispatcher">
+				/portal/share/dynaform/form/wordfield/content.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="editSec"
+			class="OLink.bpm.core.dynaform.document.action.DocumentAction"
+			method="doSecEdit">
+			<result name="success" type="OBPMdispatcher">
+				/portal/share/dynaform/form/wordfield/secEdit.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="dostart"
+			class="OLink.bpm.core.dynaform.document.action.DocumentAction"
+			method="doStart">
+			<result name="success" type="OBPMdispatcher">
+				/portal/share/dynaform/form/wordfield/wordEditor.jsp
+			</result>
+			<interceptor-ref name="defaultStack" />
+		</action>
+		
+		<action name="changeAuditor"
+			class="OLink.bpm.core.dynaform.document.action.DocumentAction"
+			method="doChangeAuditor">
+			<result name="success" type="OBPMdispatcher">
+				/portal/dynaform/activity/after.action
+			</result>
+			<result name="input" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/document/content.jsp
+			</result>
+			<interceptor-ref name="basicStack" />
+		</action>
+
+	</package>
+</xwork>

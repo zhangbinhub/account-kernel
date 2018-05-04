@@ -1,0 +1,166 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<package name="mblogin" extends="eWAP-default" namespace="/mobile">
+		<action name="login"
+			class="OLink.bpm.mobile.login.MbLoginAction"
+			method="doLogin">
+			<result name="success" type="dispatcher">
+				toXml.jsp
+			</result>
+			<result name="error" type="dispatcher">
+				error.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				error.jsp
+			</result>
+		   	<interceptor-ref name="validationWorkflowStack"/>
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="login2"
+			class="OLink.bpm.mobile.login.MbLoginAction"
+			method="doLogin2">
+			<result name="success" type="dispatcher">
+				toXml.jsp
+			</result>
+			<result name="error" type="dispatcher">
+				error.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				error.jsp
+			</result>
+		   	<interceptor-ref name="validationWorkflowStack"/>
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="searchResource"
+			class="OLink.bpm.mobile.login.MbLoginAction"
+			method="doSearchResource">
+			<result name="success" type="dispatcher">
+				toXml.jsp
+			</result>
+			<result name="error" type="dispatcher">
+				error.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				error.jsp
+			</result>
+		   	<interceptor-ref name="validationWorkflowStack"/>
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="getmenu"
+			class="OLink.bpm.mobile.login.MbLoginAction"
+			method="doGetMenu">
+			<result name="success" type="dispatcher">
+				toXml.jsp
+			</result>
+			<result name="error" type="dispatcher">
+				error.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				error.jsp
+			</result>
+		   	<interceptor-ref name="validationWorkflowStack"/>
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="getPending"
+			class="OLink.bpm.mobile.login.MbLoginAction"
+			method="doGetPending">
+			<result name="success" type="dispatcher">
+				toXml.jsp
+			</result>
+			<result name="error" type="dispatcher">
+				error.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				error.jsp
+			</result>
+		   	<interceptor-ref name="validationWorkflowStack"/>
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="refreshResource"
+			class="OLink.bpm.mobile.login.MbLoginAction"
+			method="doRefresh">
+			<result name="success" type="dispatcher">
+				toXml.jsp
+			</result>
+			<result name="error" type="dispatcher">
+				error.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				error.jsp
+			</result>
+		   	<interceptor-ref name="validationWorkflowStack"/>
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="homepage"
+			class="OLink.bpm.mobile.login.MbLoginAction"
+			method="doHomePage">
+			<result name="success" type="dispatcher">
+				toXml.jsp
+			</result>
+			<result name="error" type="dispatcher">
+				error.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				error.jsp
+			</result>
+		   	<interceptor-ref name="validationWorkflowStack"/>
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="acquireApps"
+			class="OLink.bpm.mobile.login.MbLoginAction"
+			method="doAcquireApps">
+			<result name="success" type="dispatcher">
+				toXml.jsp
+			</result>
+			<result name="error" type="dispatcher">
+				error.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				error.jsp
+			</result>
+		   	<interceptor-ref name="validationWorkflowStack"/>
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="changeApp"
+			class="OLink.bpm.mobile.login.MbLoginAction"
+			method="doChange">
+			<result name="success" type="dispatcher">
+				toXml.jsp
+			</result>
+			<result name="error" type="dispatcher">
+				error.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				error.jsp
+			</result>
+		   	<interceptor-ref name="validationWorkflowStack"/>
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="logout"
+			class="OLink.bpm.mobile.login.MbLoginAction"
+			method="doLogout">
+		   	<interceptor-ref name="validationWorkflowStack"/>
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="changeApplication"
+			class="OLink.bpm.mobile.login.MbLoginAction"
+			method="doChangeApplication">
+			<result name="success" type="dispatcher">toXml.jsp</result>
+		   	<interceptor-ref name="validationWorkflowStack"/>
+			<interceptor-ref name="params" />
+		</action>
+		
+	</package>
+
+	
+</xwork>

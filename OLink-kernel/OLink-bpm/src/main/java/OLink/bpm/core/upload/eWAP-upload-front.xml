@@ -1,0 +1,48 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+
+	<!-- workflow FlogLog package -->
+	<package name="upload-front" extends="eWAP-default"
+		namespace="/portal/upload">
+
+		<action name="delete" class="OLink.bpm.core.upload.UploadAction"
+			method="doDelete">
+			<result name="success" type="OBPMdispatcher">
+				success.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="uploadfile" class="OLink.bpm.core.upload.UploadAction" method="doUploadFile">
+			<result name="success" type="OBPMdispatcher">/portal/share/dynaform/form/wordfield/upload.jsp</result>
+			<result name="input" type="OBPMdispatcher">/portal/share/dynaform/form/wordfield/upload.jsp</result>
+			<result name="saveSignSuccess" type="OBPMdispatcher">/portal/share/dynaform/form/wordfield/secSaveSuccess.jsp</result>
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="uploadword"
+				class="OLink.bpm.core.upload.UploadAction" method="dosaveWord">
+			<result name="success" type="OBPMdispatcher">
+				/portal/share/dynaform/form/wordfield/wordEditor.jsp
+			</result>
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="deleteOne" class="OLink.bpm.core.upload.UploadAction"
+			method="doDeleteOne">
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="fileInfor" class="OLink.bpm.core.upload.UploadAction"
+			method="doFileInfor">
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="deleteToDataBaseFile" class="OLink.bpm.core.upload.UploadAction"
+			method="deleteToDataBaseFile">
+			<interceptor-ref name="params" />
+		</action>
+	</package>
+</xwork>

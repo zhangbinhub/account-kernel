@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="OLink.bpm.core.email.email.ejb.EmailUser"
+        table="T_EMAIL_USER"
+        lazy="false"
+        batch-size="10"
+    >
+
+        <id
+            name="id"
+            column="ID"
+            type="java.lang.String"
+            length="100"
+        >
+            <generator class="assigned">
+            </generator>
+        </id>
+        
+        <property
+            name="name"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="NAME"
+        />
+        
+        <property
+            name="account"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="ACCOUNT"
+        />
+        
+        <property
+            name="password"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="PASSWORD"
+        />
+        
+        <property
+            name="ownerid"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="OWNERID"
+        />
+        
+        <property
+            name="createDate"
+            type="java.util.Date"
+            update="false"
+            insert="true"
+            column="CREATEDATE"
+        />
+        
+        <property
+            name="domainid"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="DOMAINID"
+        />
+
+    </class>
+
+</hibernate-mapping>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="OLink.bpm.core.email.email.ejb.Email"
+        table="T_EMAIL"
+        lazy="false"
+        batch-size="10"
+    >
+
+        <id
+            name="id"
+            column="ID"
+            type="java.lang.String"
+            length="100"
+        >
+            <generator class="assigned">
+            </generator>
+        </id>
+
+        <property
+            name="read"
+            type="boolean"
+            update="true"
+            insert="true"
+            column="ISREAD"
+        />
+        
+        <property
+            name="reply"
+            type="java.lang.Boolean"
+            update="true"
+            insert="true"
+            column="ISREPLY"
+        />
+        
+        <property
+            name="forward"
+            type="java.lang.Boolean"
+            update="true"
+            insert="true"
+            column="ISFORWARD"
+        />
+   
+        <many-to-one 
+        	name="emailFolder" 
+        	insert="true" 
+        	update="true" 
+        	not-null="true">
+			<column name="EMAILFOLDERID"></column>
+		</many-to-one>
+        
+        <property
+            name="readDate"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="READDATE"
+        />
+        
+        <property
+            name="emailId"
+            type="java.lang.Long"
+            update="false"
+            insert="true"
+            column="EMAILID"
+            length="100"
+        />
+
+        <many-to-one 
+        	name="emailBody" 
+        	insert="true" 
+        	update="false" 
+        	not-null="true">
+			<column name="EMAINL_BODY_ID"></column>
+		</many-to-one>
+		
+		<many-to-one 
+        	name="emailUser" 
+        	insert="true" 
+        	update="false" 
+        	not-null="true">
+			<column name="EMAINL_USER_ID"></column>
+		</many-to-one>
+
+    </class>
+
+</hibernate-mapping>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="OLink.bpm.core.workflow.storage.definition.ejb.BillDefiVO"
+		table="T_BILLDEFI"
+		dynamic-update="true">
+
+		<id name="id" column="ID" type="java.lang.String" length="100">
+			<generator class="assigned">
+				<!--
+					To add non XDoclet generator parameters, create a file named
+					hibernate-generator-params-BillDefiVO.xml containing the additional
+					parameters and place it in your merge dir.
+				-->
+			</generator>
+		</id>
+
+		<many-to-one name="module"
+					 class="OLink.bpm.core.deploy.module.ejb.ModuleVO" cascade="none"
+					 outer-join="auto" update="true" insert="true" column="MODULE" />
+
+		<property name="authorname" type="java.lang.String" update="true"
+			insert="true" column="AUTHORNAME" />
+
+		<property name="authorno" type="java.lang.String" update="true"
+			insert="true" column="AUTHORNO" />
+
+		<property name="flow" type="text" update="true" insert="true"
+			column="FLOW" length="100000" />
+
+		<property name="lastmodify" type="java.util.Date" update="true"
+			insert="true" column="LASTMODIFY" />
+
+		<property name="subject" type="java.lang.String" update="true"
+			insert="true" column="SUBJECT" />
+
+		<property name="owner" type="java.lang.String" update="true"
+			insert="true" column="OWNER" />
+
+		<property name="type" type="java.lang.String" update="true"
+			insert="true" column="TYPE" />
+
+		<property name="sortId" type="java.lang.String" update="true"
+			insert="true" column="SORTID" />
+
+		<property name="applicationid" type="java.lang.String"
+			update="true" insert="true" column="APPLICATIONID" />
+		<property name="checkout" 
+			type="boolean" 
+			update="true" insert="true">
+			<column name="CHECKOUT" 
+				default="0"
+			/>
+		</property>
+		
+		<property name="checkoutHandler" type="java.lang.String" update="true"
+			insert="true" column="CHECKOUTHANDLER" />
+
+		<!--
+			To add non XDoclet property mappings, create a file named
+			hibernate-properties-BillDefiVO.xml containing the additional
+			properties and place it in your merge dir.
+		-->
+
+	</class>
+
+</hibernate-mapping>

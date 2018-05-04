@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="OLink.bpm.core.user.ejb.UserDefined" table="T_USER_Defined">
+
+		<id name="id" column="ID" type="java.lang.String" length="100">
+			<generator class="uuid">
+				<!--
+					To add non XDoclet generator parameters, create a file named
+					hibernate-generator-params-DepartmentVO.xml containing the
+					additional parameters and place it in your merge dir.
+				-->
+			</generator>
+		</id>
+
+		<property name="applicationid" type="java.lang.String" update="true"
+			insert="true" column="APPLICATIONID" />
+
+		<property name="userId" type="java.lang.String" update="true"
+			insert="true" column="USERID" />
+			
+		<property name="templateStyle" type="text" update="true"
+			insert="true" column="TEMPLATESTYLE" />
+			
+		<property name="templateElement" type="text" update="true"
+			insert="true" column="TEMPLATEELEMENT" />
+			
+		<property name="name" type="java.lang.String" update="true"
+			insert="true" column="NAME" />
+			
+		<property name="type" type="java.lang.String" update="true"
+			insert="true" column="TYPE" />
+			
+		<property name="displayTo" type="java.lang.String" update="true"
+			insert="true" column="DISPLAYTO" />
+			
+		<property name="roleIds" type="text" update="true"
+			insert="true" column="ROLEIDS" />
+			
+		<property name="roleNames" type="text" update="true"
+			insert="true" column="ROLENAMES" />
+			
+		<property name="creator" type="java.lang.String" update="true"
+			insert="true" column="CREATOR" />
+			
+		<property name="defineMode" type="java.lang.Integer" update="true"
+			insert="true" column="DEFINEMODE" />
+
+		<property name="templateContext" type="text" update="true"
+			insert="true" column="TEMPLATECONTEXT" />
+		
+		<property name="published" type="boolean" update="true"
+			insert="true" column="PUBLISHED" />
+		
+		<property name="usedDefined" type="java.lang.Integer" update="true"
+			insert="true" column="USEDDEFINED" />
+
+		<many-to-one 
+			name="style"
+			class="OLink.bpm.core.style.repository.ejb.StyleRepositoryVO"
+			cascade="none"
+			outer-join="auto"
+			update="true"
+			insert="true"
+			lazy="false"
+			column="STYLE" 
+		/>
+		
+		<set 
+			name="summaryCfgs"
+			lazy="false"
+			inverse="true" 
+			cascade="save-update"
+			order-by = "id" >
+			<key column="HOMEPAGE"/>
+			<one-to-many class="OLink.bpm.core.dynaform.summary.ejb.SummaryCfgVO" />
+		</set>
+	</class>
+</hibernate-mapping>

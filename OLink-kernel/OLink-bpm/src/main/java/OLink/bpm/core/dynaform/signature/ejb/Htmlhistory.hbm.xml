@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="OLink.bpm.core.dynaform.signature.ejb">
+	<class table="T_HTMLHISTORY" name="Htmlhistory">
+		<id
+            name="id"
+            column="ID"
+            type="java.lang.String"
+			length="100"
+        >
+            <generator class="assigned">
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-View.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+		<property name="DocumentID" column="DocumentID" type="java.lang.String"
+			length="50"></property>
+		<property name="SignatureID" column="SignatureID" type="java.lang.String"
+			length="50"></property>
+		<property name="SignatureName" column="SignatureName" type="java.lang.String"
+			length="50"></property>
+		<property name="SignatureUnit" column="SignatureUnit" type="java.lang.String"
+			length="50"></property>
+		<property name="SignatureUser" column="SignatureUser" type="java.lang.String"
+			length="50"></property>
+		<property name="KeySN" column="KeySN" type="java.lang.String"
+			length="50"></property>
+		<property name="SignatureSN" column="SignatureSN" type="java.lang.String"
+			length="200"></property>
+		<property name="SignatureGUID" column="SignatureGUID" type="java.lang.String"
+			length="50"></property>
+		<property name="IP" column="IP" type="java.lang.String"
+			length="50"></property>
+		<property name="LogType" column="LogType" type="java.lang.String"></property>
+		<property name="LogTime" column="LogTime" type="java.lang.String"></property>
+	</class>
+</hibernate-mapping>

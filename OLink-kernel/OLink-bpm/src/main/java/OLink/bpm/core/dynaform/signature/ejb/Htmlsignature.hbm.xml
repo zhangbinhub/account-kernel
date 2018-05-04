@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="OLink.bpm.core.dynaform.signature.ejb">
+	<class table="T_HTMLSIGNATURE" name="Htmlsignature">
+		<id name="SignatureID" column="SignatureID" type="java.lang.String" length="100">
+		</id>
+		<property name="DocumentID" column="DocumentID" type="java.lang.String"
+			length="254"></property>
+		<property name="FormID" column="FormID" type="java.lang.String"
+			length="254"></property>
+		<property name="Signature" column="Signature" type="text"></property>
+
+	</class>
+</hibernate-mapping>

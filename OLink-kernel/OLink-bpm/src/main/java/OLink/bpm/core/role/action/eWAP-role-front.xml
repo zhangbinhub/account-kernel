@@ -1,0 +1,159 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+<package name="role-front" extends="eWAP-default"
+		namespace="/portal/role">
+		<action name="getRolesList" class="OLink.bpm.core.role.action.RoleAction" method="doRolesList">
+			<interceptor-ref name="chain" />
+			<interceptor-ref name="basicStack" />
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+		
+		<action name="rolelist"
+				class="OLink.bpm.core.role.action.RoleAction" method="doList">
+			<result name="success" type="dispatcher">
+				/portal/share/role/userfront/selectlist.jsp
+			</result>
+			<result name="input" type="dispatcher">/portal/share/role/userfront/selectlist.jsp</result>
+		</action>
+		
+		<!-- 前台手动调整流程 -->
+		<action name="rolelist1"
+				class="OLink.bpm.core.role.action.RoleAction" method="doList">
+			<result name="success" type="dispatcher">
+				/portal/share/workflow/runtime/billflow/defi/selectlist.jsp
+			</result>
+			<result name="input" type="dispatcher">/portal/share/workflow/runtime/billflow/defi/selectlist.jsp</result>
+		</action>
+		
+		
+		<!-- superuser actions-->
+		<action name="new" class="OLink.bpm.core.role.action.RoleAction"
+			method="doNew">
+			<result name="success" type="dispatcher">
+				/portal/share/role/superfront/content.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		<action name="create" class="OLink.bpm.core.role.action.RoleAction"
+			method="doNew">
+			<result name="success" type="dispatcher">
+				/portal/share/role/superfront/content1.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		<action name="saveRole"
+				class="OLink.bpm.core.role.action.RoleAction" method="doSave">
+			<result name="input" type="dispatcher">
+				/portal/share/role/superfront/content1.jsp
+			</result>
+			<result name="success" type="dispatcher">
+				/portal/share/role/superfront/content1.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="validationWorkflowStack"/>
+		</action>
+		<action name="saveAndNew"
+				class="OLink.bpm.core.role.action.RoleAction" method="doSaveAndNew">
+			<result name="input" type="dispatcher">
+				/portal/share/role/superfront/content.jsp
+			</result>
+			<result name="success" type="dispatcher">
+				/portal/share/role/superfront/content.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="validationWorkflowStack"/>
+		</action>
+		<action name="saveAndNewRole"
+				class="OLink.bpm.core.role.action.RoleAction" method="doSaveAndNew">
+			<result name="input" type="dispatcher">
+				/portal/share/role/superfront/content1.jsp
+			</result>
+			<result name="success" type="dispatcher">
+				/portal/share/role/superfront/content1.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="validationWorkflowStack"/>
+		</action>
+		<action name="listRoles"
+				class="OLink.bpm.core.role.action.RoleAction" method="doList">
+			<interceptor-ref name="chain" />
+			<interceptor-ref name="basicStack" />
+			<result name="success" type="dispatcher">list.jsp</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+		<action name="deleteRole"
+				class="OLink.bpm.core.role.action.RoleAction" method="doDelete">
+			<interceptor-ref name="params" />
+			<interceptor-ref name="basicStack" />
+			<result name="success" type="chain">listRoles</result>
+			<result name="input" type="chain">listRoles</result>
+		</action>
+		<action name="editRole"
+				class="OLink.bpm.core.role.action.RoleAction" method="doEdit">
+			<result name="success" type="dispatcher">
+				/portal/share/role/superfront/content.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		<action name="edit"
+				class="OLink.bpm.core.role.action.RoleAction" method="doEdit">
+			<result name="success" type="dispatcher">
+				/portal/share/role/superfront/content.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		<action name="save"
+				class="OLink.bpm.core.role.action.RoleAction" method="doSave">
+			<result name="input" type="dispatcher">
+				/portal/share/role/superfront/content.jsp
+			</result>
+			<result name="success" type="dispatcher">
+				/portal/share/role/superfront/content.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="validationWorkflowStack"/>
+			
+		</action>
+		<action name="delete"
+				class="OLink.bpm.core.role.action.RoleAction" method="doDelete">
+			<interceptor-ref name="params" />
+			<interceptor-ref name="basicStack" />
+			<result name="success" type="chain">list</result>
+			<result name="input" type="chain">list</result>
+		</action>
+		<action name="list"
+				class="OLink.bpm.core.role.action.RoleAction" method="doList">
+			<interceptor-ref name="chain" />
+			<interceptor-ref name="basicStack" />
+			<result name="success" type="dispatcher">
+				/portal/share/role/superfront/list.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+		<action name="linkRole"
+				class="OLink.bpm.core.role.action.RoleAction" method="doList">
+			<interceptor-ref name="chain" />
+			<interceptor-ref name="basicStack" />
+			<result name="success" type="dispatcher">
+				/portal/share/role/superfront/linkroles.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+		<action name="superuserrolelist"
+				class="OLink.bpm.core.role.action.RoleAction" method="doList">
+			<result name="success" type="dispatcher">
+				/portal/share/role/superfront/selectlist.jsp
+			</result>
+		</action>
+		<action name="get-nodes" 
+			class="OLink.bpm.core.role.action.RoleAction"
+			method="getNodes">
+            <result name="success">get-nodes.jsp</result>
+        </action>
+	</package>
+	
+</xwork>

@@ -1,0 +1,85 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+<!-- domain package -->
+	<package name="printer" extends="eWAP-default"
+		namespace="/core/dynaform/printer">
+		
+		
+		
+		<interceptors>
+			<interceptor-stack name="basicStack">
+				<interceptor-ref name="params" />
+				<interceptor-ref name="prepare" />
+			</interceptor-stack>
+
+
+			<interceptor-stack name="validationWorkflowStack">
+				<interceptor-ref name="basicStack" />
+				<interceptor-ref name="validation" />
+				<interceptor-ref name="workflow" />
+			</interceptor-stack>
+		</interceptors>
+
+	<action name="save"
+		class="OLink.bpm.core.dynaform.printer.action.PrinterAction"
+		method="doSave">
+		<result name="success" type="dispatcher">content.jsp</result>
+		<result name="input" type="dispatcher">content.jsp</result>
+	</action>
+	<action name="list"
+			class="OLink.bpm.core.dynaform.printer.action.PrinterAction"
+			method="doList">
+			<result name="success" type="dispatcher">list.jsp</result>
+			<result name="input" type="dispatcher">list.jsp</result>
+		</action>
+		
+	<action name="new"
+			class="OLink.bpm.core.dynaform.printer.action.PrinterAction"
+			method="doNew">
+			<result name="success" type="dispatcher">content.jsp</result>
+			<interceptor-ref name="params" />
+		</action>
+		
+	<action name="edit"
+		class="OLink.bpm.core.dynaform.printer.action.PrinterAction"
+		method="doEdit">
+		<result name="success" type="dispatcher">content.jsp</result>
+	</action>
+	
+	<action name="delete"
+		class="OLink.bpm.core.dynaform.printer.action.PrinterAction"
+		method="doDelete">
+		<result name="success" type="chain">list</result>
+		<result name="input" type="chain">list</result>
+	</action>
+	
+	<action name="getFields"
+		class="OLink.bpm.core.dynaform.printer.action.PrinterAction"
+		method="doGetFields">
+		<result name="success" type="OBPMdispatcher" >result/getFields.jsp</result>
+		<interceptor-ref name="params" />
+	</action>
+	<action name="getSubViews"
+		class="OLink.bpm.core.dynaform.printer.action.PrinterAction"
+		method="doGetSubViews">
+		<result name="success" type="OBPMdispatcher" >result/getSubViews.jsp</result>
+		<interceptor-ref name="params" />
+	</action>
+		<action name="checkout" class="OLink.bpm.core.dynaform.printer.action.PrinterAction"
+		method="doCheckout">
+			<result name="success" type="dispatcher">content.jsp</result>
+			<result name="input" type="dispatcher">content.jsp</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="basicStack" />
+		</action>
+		
+		<action name="checkin" class="OLink.bpm.core.dynaform.printer.action.PrinterAction"
+		method="doCheckin">
+			<result name="success" type="dispatcher">content.jsp</result>
+			<result name="input" type="dispatcher">content.jsp</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="basicStack" />
+		</action>
+	
+	</package>
+</xwork>

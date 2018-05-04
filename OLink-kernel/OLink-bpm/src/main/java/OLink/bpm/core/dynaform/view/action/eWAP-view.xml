@@ -1,0 +1,151 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<package name="eWAP-view" extends="eWAP-default"
+		namespace="/core/dynaform/view">
+		<interceptors>
+			<interceptor-stack name="default">
+				<interceptor-ref name="params" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="defaultStack" />
+
+		<!-- view action configure -->
+		<action name="preView"
+			class="OLink.bpm.core.dynaform.view.action.ViewAction"
+			method="doPreView">
+			<result name="success" type="dispatcher">
+				/core/dynaform/view/preview.jsp
+			</result>
+			<result name="input" type="dispatcher">
+			    /core/dynaform/view/preview.jsp
+			</result>
+		</action>
+		
+		<action name="dialogView"
+			class="OLink.bpm.core.dynaform.view.action.ViewAction"
+			method="doPreDialogView">
+			<param name="isPreview">true</param>
+			<!-- Success Result -->
+			<result name="success" type="OBPMdispatcher">
+				preview/dialog/dialog_normal_preview.jsp
+			</result>
+			<result name="successSub" type="OBPMdispatcher">
+				preview/dialog/dialog_normal_preview.jsp
+			</result>
+			<result name="successCld" type="OBPMdispatcher">
+				preview/dialog/dialog_cld_preview.jsp
+			</result>
+			<result name="successTree" type="OBPMdispatcher">
+				preview/dialog/dialog_tree_preview.jsp
+			</result>
+			<result name="successGrid" type="OBPMdispatcher">
+				preview/subGrid_preview.jsp
+			</result>
+			<result name="successGantt" type="OBPMdispatcher">
+				preview/gantt_preview.jsp
+			</result>
+			<result name="successMap" type="OBPMdispatcher">
+				preview/map_preview.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				preview/detail.jsp
+			</result>
+		</action>
+		
+		<action name="displayView"
+			class="OLink.bpm.core.dynaform.view.action.ViewAction"
+			method="doPreDisplayView">
+			<param name="isPreview">true</param>
+			<!-- Success Result -->
+			<result name="success" type="OBPMdispatcher">preview/detail.jsp</result>
+			<result name="successSub" type="OBPMdispatcher">preview/display_view.jsp</result>
+			<result name="successCld" type="OBPMdispatcher">preview/cld_preview.jsp</result>
+			<result name="successTree" type="OBPMdispatcher">preview/tree_preview.jsp</result>
+			<result name="successGrid" type="OBPMdispatcher">preview/subGrid_preview.jsp</result>
+			<result name="successGantt" type="OBPMdispatcher">preview/gantt_preview.jsp</result>
+			<result name="successMap" type="OBPMdispatcher">preview/map_preview.jsp</result>
+			<result name="input" type="dispatcher">preview/detail.jsp</result>
+		</action>
+		
+		<action name="getChildrens"
+			class="OLink.bpm.core.dynaform.view.action.ViewRunTimeAction"
+			method="getChildren">
+			<result name="success" type="OBPMdispatcher" />
+		</action>
+		
+		<action name="innerPage"
+			class="OLink.bpm.core.dynaform.view.action.ViewRunTimeAction"
+			method="doInnerPage">
+			<result name="success" type="OBPMdispatcher">displayView.action</result>
+			<result name="successForm" type="OBPMdispatcher">/core/dynaform/document/preview.action</result>
+			<result name="successView" type="OBPMdispatcher">displayView.action</result>
+		</action>
+		
+		<action name="list"
+			class="OLink.bpm.core.dynaform.view.action.ViewAction"
+			method="list">
+			<result name="success" type="dispatcher">list.jsp</result>
+			<result name="input" type="dispatcher">list.jsp</result>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="new"
+			class="OLink.bpm.core.dynaform.view.action.ViewAction"
+			method="doNew">
+			<result name="success" type="dispatcher">
+				viewinfo.jsp
+			</result>
+		</action>
+		
+		<action name="edit"
+			class="OLink.bpm.core.dynaform.view.action.ViewAction"
+			method="doView">
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+		</action>
+		
+		<action name="delete"
+			class="OLink.bpm.core.dynaform.view.action.ViewAction"
+			method="doDelete">
+			<result name="success" type="chain">list</result>
+			<result name="input" type="chain">list</result>
+		</action>
+
+		<action name="saveviewinfo"
+			class="OLink.bpm.core.dynaform.view.action.ViewAction"
+			method="doSave">
+			<result name="input" type="dispatcher">viewinfo.jsp</result>
+			<result name="success" type="dispatcher">
+				success.jsp
+			</result>
+			<interceptor-ref name="validationWorkflowStack" />
+		</action>
+		
+		<action name="save"
+			class="OLink.bpm.core.dynaform.view.action.ViewAction"
+			method="doSave">
+			<result name="input" type="dispatcher">content.jsp</result>
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="validationWorkflowStack" />
+		</action>
+		
+		<action name="checkout" class="OLink.bpm.core.dynaform.view.action.ViewAction"
+		method="doCheckout">
+			<result name="success" type="dispatcher">content.jsp</result>
+			<result name="input" type="dispatcher">content.jsp</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="basicStack" />
+		</action>
+		
+		<action name="checkin" class="OLink.bpm.core.dynaform.view.action.ViewAction"
+		method="doCheckin">
+			<result name="success" type="dispatcher">content.jsp</result>
+			<result name="input" type="dispatcher">content.jsp</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="basicStack" />
+		</action>
+	</package>
+</xwork>

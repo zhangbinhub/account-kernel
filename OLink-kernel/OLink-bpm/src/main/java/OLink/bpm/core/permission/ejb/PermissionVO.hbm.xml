@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="OLink.bpm.core.permission.ejb.PermissionVO"
+        table="T_PERMISSION"
+        lazy="true"
+        batch-size="10"
+    >
+
+        <id
+            name="id"
+            column="ID"
+            type="java.lang.String"
+            length="100"
+        >
+            <generator class="assigned">
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-PermissionVO.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+        
+        <property
+            name="roleId"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="ROLE_ID"
+            length="100"
+        />
+        
+        <property
+            name="resourceId"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="RESOURCE_ID"
+            length="100"
+        />
+        
+        <property
+            name="resId"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="RES_ID"
+        />
+        
+        <property
+            name="resType"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="RES_TYPE"
+        />
+        
+        <property
+            name="operationId"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="OPERATION_ID"
+        />
+        
+        <property
+            name="sortId"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="SORTID"
+        />
+        <property
+            name="applicationid"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="APPLICATIONID"
+        />
+        <property
+            name="resName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="RESNAME"
+        />
+        <property
+            name="operationCode"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="OPERATIONCODE"
+        />
+        <property 
+         	name="type"
+            type="java.lang.Integer"
+            update="true"
+            insert="true"
+            column="TYPE"
+            not-null="false"
+        />
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-PermissionVO.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

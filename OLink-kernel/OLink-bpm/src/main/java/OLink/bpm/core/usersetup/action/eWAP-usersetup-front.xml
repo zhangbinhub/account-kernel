@@ -1,0 +1,27 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<package name="usersetup-front" extends="eWAP-default"
+		namespace="/portal/usersetup">
+		
+		<action name="userSetup"
+			class="OLink.bpm.core.usersetup.action.UserSetupAction"
+			method="doUserSetup">
+			<result name="success" type="dispatcher">
+				main.jsp
+			</result>
+			<interceptor-ref name="validationWorkflowStack" />
+			<interceptor-ref name="params" />
+		</action>
+		<action name="userSetupOnMainFrame"
+			class="OLink.bpm.core.usersetup.action.UserSetupAction"
+			method="doUserSetupOnMainFrame">
+			<result name="switchskin" type="dispatcher">
+				/portal/share/success.jsp
+			</result>
+			<interceptor-ref name="validationWorkflowStack" />
+			<interceptor-ref name="params" />
+		</action>
+		
+	</package>
+	
+</xwork>

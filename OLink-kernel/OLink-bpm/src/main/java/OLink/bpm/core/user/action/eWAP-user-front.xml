@@ -1,0 +1,170 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<package name="eWAP-user-front" extends="eWAP-default"
+		namespace="/portal/user">
+		<action name="editPersonal" class="OLink.bpm.core.user.action.UserAction"
+			method="doEdit">
+			<result name="success" type="dispatcher">
+				/portal/share/user/personalSetting.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		<action name="listuser" class="OLink.bpm.core.user.action.UserAction"
+			method="listUserExcept">
+			<result name="success" type="dispatcher">
+				/portal/share/user/domainuserlist.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		<action name="savePersonal" class="OLink.bpm.core.user.action.UserRunTimeAction"
+			method="doSavePersonal">
+			<result name="input" type="dispatcher">
+				/portal/share/user/personalSetting.jsp
+			</result>
+			<result name="success" type="dispatcher">
+				/portal/share/user/personalSetting.jsp
+			</result>
+			<result name="switchskin" type="dispatcher">
+				/portal/share/success.jsp
+			</result>
+			<interceptor-ref name="validationWorkflowStack" />
+			<interceptor-ref name="params" />
+		</action>
+		<action name="userlist" class="OLink.bpm.core.user.action.UserRunTimeAction"
+			method="doSelectUser">
+			<result name="success" type="dispatcher">
+				/portal/share/user/selectuser.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="treelist" class="OLink.bpm.core.user.action.UserRunTimeAction"
+			method="doUserListByDept">
+			<result name="success" type="dispatcher">/portal/share/user/superfront/userlist.jsp</result>
+			<result name="input" type="dispatcher">/portal/share/user/superfront/userlist.jsp</result>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="getUserListByRole" class="OLink.bpm.core.user.action.UserRunTimeAction"
+			method="getUserListByRole">
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="getAllUser" class="OLink.bpm.core.user.action.UserRunTimeAction"
+			method="doAllUser">
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="getOnLineUserList" class="OLink.bpm.core.user.action.UserRunTimeAction"
+			method="doOnLineUserList">
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="doListBySelectToJSON" class="OLink.bpm.core.user.action.UserRunTimeAction"
+			method="doListBySelectToJSON">
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="doSearch" class="OLink.bpm.core.user.action.UserRunTimeAction"
+			method="doList">
+			<result name="success" type="dispatcher">userlist.jsp</result>
+			<interceptor-ref name="params" />
+		</action>
+
+
+		<!-- superuser actions-->
+		<action name="list" class="OLink.bpm.core.user.action.UserAction"
+			method="doList">
+			<result name="success" type="dispatcher">
+				/portal/share/user/superfront/list.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		<action name="list2" class="OLink.bpm.core.user.action.UserAction"
+			method="doList">
+			<result name="success" type="dispatcher">
+				/portal/share/user/superfront/userlist.jsp
+			</result>
+			<interceptor-ref name="chain"></interceptor-ref>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="superusertreelist" class="OLink.bpm.core.user.action.UserAction"
+			method="doTreeList">
+			<result name="success" type="dispatcher">
+				/portal/share/user/superfront/userlist.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		<action name="new" class="OLink.bpm.core.user.action.UserAction"
+			method="doNew">
+			<result name="success" type="dispatcher">
+				/portal/share/user/superfront/content.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		<action name="edit" class="OLink.bpm.core.user.action.UserAction"
+			method="doEdit">
+			<result name="success" type="dispatcher">
+				/portal/share/user/superfront/content.jsp
+			</result>
+
+			<interceptor-ref name="params" />
+		</action>
+		<action name="save" class="OLink.bpm.core.user.action.UserAction"
+			method="doSave">
+			<result name="input" type="dispatcher">
+				/portal/share/user/superfront/content.jsp
+			</result>
+			<result name="success" type="dispatcher">
+				/portal/share/user/superfront/content.jsp
+			</result>
+
+			<interceptor-ref name="validationWorkflowStack" />
+			<interceptor-ref name="params" />
+		</action>
+		<action name="saveAndNew" class="OLink.bpm.core.user.action.UserAction"
+			method="doSaveAndNew">
+			<result name="input" type="dispatcher">
+				/portal/share/user/superfront/content.jsp
+			</result>
+			<result name="success" type="dispatcher">
+				/portal/share/user/superfront/content.jsp
+			</result>
+			<interceptor-ref name="validationWorkflowStack" />
+			<interceptor-ref name="params" />
+		</action>
+		<action name="delete" class="OLink.bpm.core.user.action.UserAction"
+			method="doDelete">
+			<result name="success" type="chain">list2</result>
+			<result name="input" type="chain">
+				/portal/share/user/superfront/userlist.jsp
+			</result>
+			<result name="error" type="dispatcher">
+				error.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		<action name="listByDepartment" class="OLink.bpm.core.user.action.UserAction"
+			method="listUser">
+			<result name="success" type="dispatcher">
+				/portal/share/user/superfront/user.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		<action name="listRole" class="OLink.bpm.core.user.action.UserAction"
+			method="listUser">
+			<result name="success" type="dispatcher">
+				/portal/share/user/superfront/user.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		<action name="removeDepartment" class="OLink.bpm.core.user.action.UserAction"
+			method="removeDepartment">
+			<result name="success" type="chain">
+				listByDepartment
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+	</package>
+</xwork>

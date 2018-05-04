@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="OLink.bpm.core.email.folder.ejb.EmailFolder"
+        table="T_EMAIL_FOLDER"
+        lazy="false"
+        batch-size="10"
+    >
+
+        <id
+            name="id"
+            column="ID"
+            type="java.lang.String"
+            length="100"
+        >
+            
+        </id>
+
+		<property
+            name="ownerId"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="OWNERID"
+        />
+
+        <property
+            name="name"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="NAME"
+        />
+        
+        <property
+            name="displayName"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="DISPLAYNAME"
+        />
+
+        <property
+            name="createDate"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="CREATDATE"
+        />
+        
+    </class>
+
+</hibernate-mapping>

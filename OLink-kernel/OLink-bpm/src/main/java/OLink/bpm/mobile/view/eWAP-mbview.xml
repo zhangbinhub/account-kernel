@@ -1,0 +1,57 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<!-- view package -->
+	<package name="eWAP-mbview" extends="eWAP-default"
+		namespace="/mobile/view">
+		<action name="displaySearchForm"
+			class="OLink.bpm.mobile.view.MbViewAction"
+			method="doDisplaySearchForm">
+			<result name="success" type="dispatcher">
+				/mobile/toXml.jsp
+			</result>
+			<result name="error" type="dispatcher">
+				/mobile/error.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				/mobile/error.jsp
+			</result>
+			<interceptor-ref name="validationWorkflowStack" />
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="displayView"
+			class="OLink.bpm.mobile.view.MbViewAction"
+			method="doDisplayView">
+			<result name="success" type="dispatcher">
+				/mobile/toXml.jsp
+			</result>
+			<result name="error" type="dispatcher">
+				/mobile/error.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				/mobile/error.jsp
+			</result>
+			<interceptor-ref name="validationWorkflowStack" />
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="dialogView"
+			class="OLink.bpm.mobile.view.MbViewAction"
+			method="doDialogView">
+			<result name="success" type="dispatcher">
+				/mobile/toXml.jsp
+			</result>
+			<result name="error" type="dispatcher">
+				/mobile/error.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				/mobile/error.jsp
+			</result>
+			<interceptor-ref name="validationWorkflowStack" />
+			<interceptor-ref name="params" />
+		</action>
+		
+	</package>
+
+
+</xwork>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="OLink.bpm.core.email.email.ejb.EmailBody"
+        table="T_EMAIL_BODY"
+        lazy="false"
+        batch-size="10"
+    >
+
+        <id
+            name="id"
+            column="ID"
+            type="java.lang.String"
+            length="100"
+        >
+            <generator class="assigned">
+            </generator>
+        </id>
+
+        <property
+            name="subject"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="SUBJECT"
+        />
+        
+        <property
+            name="content"
+            type="text"
+            update="true"
+            insert="true"
+            column="CONTENT"
+        />
+        
+        <property
+            name="from"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="E_FROM"
+        />
+        
+        <property
+            name="to"
+            type="text"
+            update="true"
+            insert="true"
+            column="RE_TO"
+        />
+        
+        <property
+            name="cc"
+            type="text"
+            update="true"
+            insert="true"
+            column="RE_CC"
+        />
+        
+        <property
+            name="bcc"
+            type="text"
+            update="true"
+            insert="true"
+            column="RE_BCC"
+        />
+        
+        <property
+            name="sendDate"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="SENDDATE"
+        />
+        
+        <set
+            name="attachments"
+            table="T_ATTACHMENT"
+            lazy="false"
+            inverse="false"
+            cascade="none"
+            sort="unsorted"
+        >
+
+            <key column="EMAILBODY_ID">
+            </key>
+
+            <one-to-many
+                  class="OLink.bpm.core.email.attachment.ejb.Attachment"
+            />
+
+        </set>
+    </class>
+
+</hibernate-mapping>

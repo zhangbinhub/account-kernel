@@ -1,0 +1,84 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<package name="columnmapping" extends="eWAP-default"
+		namespace="/core/dynaform/dts/exp/mappingconfig">
+
+		<action name="list"
+			class="OLink.bpm.core.dynaform.dts.exp.mappingconfig.action.MappingConfigAction"
+			method="doList">
+      
+			<result name="success" type="dispatcher">list.jsp</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+
+		<action name="view"
+			class="OLink.bpm.core.dynaform.dts.exp.mappingconfig.action.MappingConfigAction"
+			method="doView">
+
+			<!-- 			<interceptor-ref name="basicStack" />  -->
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+
+		<action name="new"
+			class="OLink.bpm.core.dynaform.dts.exp.mappingconfig.action.MappingConfigAction"
+			method="doNew">
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+
+		<action name="save"
+			class="OLink.bpm.core.dynaform.dts.exp.mappingconfig.action.MappingConfigAction"
+			method="doSave">
+			<result name="input" type="dispatcher">content.jsp</result>
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="validationWorkflowStack" />
+		</action>
+
+		<action name="edit"
+			class="OLink.bpm.core.dynaform.dts.exp.mappingconfig.action.MappingConfigAction"
+			method="doView">
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+
+		<action name="delete"
+			class="OLink.bpm.core.dynaform.dts.exp.mappingconfig.action.MappingConfigAction"
+			method="doDelete">
+			<result name="success" type="chain">list</result>
+			<result name="input" type="chain">list</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+		<action name="exportAllDocument"
+			class="OLink.bpm.core.dynaform.dts.exp.mappingconfig.action.MappingConfigAction"
+			method="exportAllDocument">
+			<result name="success" type="dispatcher">
+				list.action
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+				<action name="IncrementExportDocument"
+			class="OLink.bpm.core.dynaform.dts.exp.mappingconfig.action.MappingConfigAction"
+			method="IncrementExportDocument">
+			<result name="success" type="dispatcher">
+				list.action
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+	</package>
+</xwork>

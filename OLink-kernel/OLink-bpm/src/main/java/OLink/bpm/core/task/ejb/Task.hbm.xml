@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+	>
+	<class
+		name="OLink.bpm.core.task.ejb.Task"
+		table="T_TASK"
+		dynamic-update="true"
+		>
+
+		<id
+			name="id"
+			column="ID"
+			type="java.lang.String"
+			length="100"
+			>
+			<generator class="assigned">
+				<!--  
+						  To add non XDoclet generator parameters, create a file named 
+						  hibernate-generator-params-Task.xml 
+						  containing the additional parameters and place it in your merge dir. 
+					  --> 
+			</generator>
+		</id>
+
+		<property
+			name="startupType"
+			type="int"
+			update="true"
+			insert="true"
+			column="STARTUPTYPE"
+			/>
+
+		<property
+			name="state"
+			type="int"
+			update="true"
+			insert="true"
+			column="STATE"
+			/>
+
+		<property
+			name="creator"
+			type="java.lang.String"
+			update="true"
+			insert="true"
+			column="CREATOR"
+			/>
+
+		<property
+			name="description"
+			type="java.lang.String"
+			update="true"
+			insert="true"
+			column="DESCRIPTION"
+			length="1000"
+			/>
+
+		<property
+			name="runningTime"
+			type="java.util.Date"
+			update="true"
+			insert="true"
+			column="RUNNINGTIME"
+			/>
+
+		<property
+			name="modifyTime"
+			type="java.util.Date"
+			update="true"
+			insert="true"
+			column="MODIFY_TIME"
+			/>
+
+		<property
+			name="name"
+			type="java.lang.String"
+			update="true"
+			insert="true"
+			column="NAME"
+			/>
+
+		<property
+			name="taskScript"
+			type="text"
+			update="true"
+			insert="true"
+			column="TASK_SCRIPT"
+			/>
+
+		<property
+			name="terminateScript"
+			type="text"
+			update="true"
+			insert="true"
+			column="TERMINATE_SCRIPT"
+			/>
+
+		<property
+			name="runtimes"
+			type="int"
+			update="true"
+			insert="true"
+			column="RUNTIMES"
+			/>
+
+		<property
+			name="totalRuntimes"
+			type="int"
+			update="true"
+			insert="true"
+			column="TOTAL_RUNTIMES"
+			/>
+
+		<property
+			name="type"
+			type="int"
+			update="true"
+			insert="true"
+			column="TYPE"
+			/>
+
+		<property
+			name="dayOfMonth"
+			type="int"
+			update="true"
+			insert="true"
+			column="DAYOFMONTH"
+			/>
+
+		<property
+			name="period"
+			type="int"
+			update="true"
+			insert="true"
+			column="PERIOD"
+			/>
+
+		<list
+			name="daysOfWeek"
+			table="T_TASK_DAYSOFWEEK"
+			lazy="false"
+			cascade="none"
+			>
+
+			<key
+				column="TASKID"
+				>
+			</key>
+
+			<index
+				column="SORTNUMBER"
+				/>
+
+			<element
+				column="DAYOFWEEK"
+				type="int"
+				not-null="false"
+				unique="false"
+				/>
+
+		</list>
+
+		<property
+			name="creatorid"
+			type="java.lang.String"
+			update="true"
+			insert="true"
+			column="CREATORID"
+			/>
+
+		<property
+			name="repeatTimes"
+			type="int"
+			update="true"
+			insert="true"
+			column="REPEATTIMES"
+			/>
+
+		<property
+			name="frequency"
+			type="int"
+			update="true"
+			insert="true"
+			column="FREQUENCY"
+			/>
+
+		<property
+			name="applicationid"
+			type="java.lang.String"
+			update="true"
+			insert="true"
+			column="APPLICATIONID"
+			/>
+
+		<many-to-one
+			name="module"
+			class="OLink.bpm.core.deploy.module.ejb.ModuleVO"
+			cascade="none"
+			outer-join="auto"
+			update="true"
+			insert="true"
+			column="MODULE"
+			/>
+			
+		<property name="checkout" 
+			type="boolean" 
+			update="true" insert="true">
+			<column name="CHECKOUT" 
+				default="0"
+			/>
+		</property>
+		
+		<property name="checkoutHandler" type="java.lang.String" update="true"
+			insert="true" column="CHECKOUTHANDLER" />
+		<!--
+				To add non XDoclet property mappings, create a file named
+					hibernate-properties-Task.xml
+				containing the additional properties and place it in your merge dir.
+			-->
+
+	</class>
+
+</hibernate-mapping>

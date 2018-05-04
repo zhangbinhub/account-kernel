@@ -1,0 +1,64 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<include file="webwork-default.xml" />
+	<package name="home_page" extends="eWAP-default"
+		namespace="/core/homepage">
+		<!--action name="save"
+			class="HomePageAction"
+			method="doSave">
+			<result name="success" type="dispatcher">
+			content.jsp
+			</result>
+			<result name="input" type="dispatcher">content.jsp</result>
+			<interceptor-ref name="validationWorkflowStack"/>
+			<interceptor-ref name="params" />
+		</action-->
+		
+		<action name="new"
+			class="OLink.bpm.core.user.action.UserDefinedAction"
+			method="doNew">
+			<interceptor-ref name="params" />
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+		</action>
+		<action name="list"
+			class="OLink.bpm.core.user.action.UserDefinedAction"
+			method="doList">
+			<result name="success" type="dispatcher">list.jsp</result>
+			<result name="input" type="dispatcher">list.jsp</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="chain" />
+		</action>
+		
+		<action name="delete"
+			class="OLink.bpm.core.user.action.UserDefinedAction"
+			method="doHomeDelete">
+			<result name="success" type="dispatcher">list.jsp</result>
+			<result name="input" type="dispatcher">list.jsp</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="chain" />
+		</action>
+		<action name="addreminder"
+			class="OLink.bpm.core.user.action.UserDefinedAction"
+			method="doAddReminder">
+			<result name="success" type="dispatcher">
+				/core/homepage/reminder/reminderlist.action
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		<action name="saveAndNew"
+			class="OLink.bpm.core.user.action.UserDefinedAction"
+			method="doSaveAndNew">
+			<result name="input" type="dispatcher">
+				content.jsp
+			</result>
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<!-- interceptor-ref name="params" / -->
+			<interceptor-ref name="validationWorkflowStack"/>
+		
+		</action>
+	</package>
+</xwork>

@@ -1,0 +1,29 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<package name="workflowIntervention-front" extends="eWAP-default"
+		namespace="/core/workflow/storage/runtime/intervention">
+
+	<action name="list"
+		class="OLink.bpm.core.workflow.storage.runtime.intervention.action.FlowInterventionAction"
+		method="doList">
+		<result name="success" type="OBPMdispatcher">list.jsp</result>
+		<result name="input" type="OBPMdispatcher">list.jsp</result>
+	</action>
+	
+	<action name="view"
+		class="OLink.bpm.core.workflow.storage.runtime.intervention.action.FlowInterventionAction"
+		method="doView">
+		<result name="success" type="OBPMdispatcher">content.jsp</result>
+		<result name="input" type="OBPMdispatcher">list.jsp</result>
+	</action>
+	
+	<action name="flow"
+		class="OLink.bpm.core.workflow.storage.runtime.intervention.action.FlowInterventionAction"
+		method="doFlow">
+		<result name="success" type="OBPMdispatcher">list.jsp</result>
+		<result name="input" type="OBPMdispatcher">list.jsp</result>
+	</action>
+	
+	
+	</package>
+</xwork>

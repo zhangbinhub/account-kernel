@@ -1,0 +1,64 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<package name="remoteserver" extends="eWAP-default"
+		namespace="/core/remoteserver">
+		<action name="view"
+			class="OLink.bpm.core.remoteserver.action.RemoteServerAction"
+			method="doView">
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+
+		<action name="new"
+			class="OLink.bpm.core.remoteserver.action.RemoteServerAction"
+			method="doNew">
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="save"
+			class="OLink.bpm.core.remoteserver.action.RemoteServerAction"
+			method="doSave">
+			<result name="input" type="dispatcher">content.jsp</result>
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="validationWorkflowStack" />
+		</action>
+
+		<action name="edit"
+			class="OLink.bpm.core.remoteserver.action.RemoteServerAction"
+			method="doEdit">
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+
+		<action name="list"
+			class="OLink.bpm.core.remoteserver.action.RemoteServerAction"
+			method="doList">
+			<result name="success" type="dispatcher">list.jsp</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+
+		<action name="delete"
+			class="OLink.bpm.core.remoteserver.action.RemoteServerAction"
+			method="doDelete">
+			<result name="success" type="chain">
+				list.action
+			</result>
+			<result name="input" type="chain">
+				list.action
+			</result>
+		</action>
+
+	</package>
+</xwork>

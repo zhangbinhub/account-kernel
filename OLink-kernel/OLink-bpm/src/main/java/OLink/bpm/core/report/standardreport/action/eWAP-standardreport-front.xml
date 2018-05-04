@@ -1,0 +1,33 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+<package name="standardreport" extends="eWAP-default"
+		namespace="/portal/share/report/standardreport"> 
+		<action name="htmlReport"
+				class="OLink.bpm.core.report.standardreport.action.StandardReportAction" method="doHtmlReport">
+			<interceptor-ref name="chain" />
+			<interceptor-ref name="basicStack" />
+			<result name="success" type="dispatcher">listhtml.jsp</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+		
+		<action name="summaryReport"
+				class="OLink.bpm.core.report.standardreport.action.StandardReportAction" method="doSummaryReport">
+			<interceptor-ref name="chain" />
+			<interceptor-ref name="basicStack" />
+			<result name="success" type="dispatcher">listsummary.jsp</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+		
+			<action name="exportReport"
+					class="OLink.bpm.core.report.standardreport.action.StandardReportAction" method="doExportReport">
+			<interceptor-ref name="chain" />
+			<interceptor-ref name="basicStack" />
+			<result name="success" type="dispatcher">download.jsp</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+	</package>
+	
+</xwork>

@@ -1,0 +1,22 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<package name="admin" extends="eWAP-default" namespace="/admin">
+		<action name="login"
+			class="OLink.bpm.core.admin.action.LoginAction"
+			method="doLogin">
+			<result name="manage" type="redirect">
+				main.jsp
+			</result>
+			<result name="error" type="dispatcher">
+				login.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				login.jsp
+			</result>
+			<interceptor-ref name="validationWorkflowStack" />
+			<interceptor-ref name="params" />
+		</action>
+	</package>
+
+	
+</xwork>

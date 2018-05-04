@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="OLink.bpm.core.user.ejb.UserDepartmentSet" table="T_USER_DEPARTMENT_SET"
+		   lazy="false" batch-size="10">
+
+		<id name="id" column="ID" type="java.lang.String" length="100">
+			<generator class="uuid">
+				<!--
+					To add non XDoclet generator parameters, create a file named
+					hibernate-generator-params-DepartmentVO.xml containing the
+					additional parameters and place it in your merge dir.
+				-->
+			</generator>
+		</id>
+
+		<property name="departmentId" type="java.lang.String" update="true"
+			insert="true" column="DEPARTMENTID" length="100"/>
+
+		<property name="userId" type="java.lang.String" update="true"
+			insert="true" column="USERID" length="100"/>
+	</class>
+</hibernate-mapping>

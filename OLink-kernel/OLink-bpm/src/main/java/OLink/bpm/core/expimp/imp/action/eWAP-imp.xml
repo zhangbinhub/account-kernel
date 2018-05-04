@@ -1,0 +1,80 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<package name="imp" extends="eWAP-default" namespace="/core/expimp/imp">
+
+		<action name="start" class="OLink.bpm.core.expimp.imp.action.ImpAction"
+			method="doStart">
+			<result name="success" type="dispatcher">step1_import.jsp</result>
+
+			<interceptor-ref name="scope">
+				<param name="key">import</param>
+				<param name="type">start</param>
+				<param name="session">applicationid,moduleid,importType</param>
+			</interceptor-ref>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="next" class="OLink.bpm.core.expimp.imp.action.ImpAction"
+			method="doNext">
+			<result name="success" type="dispatcher">list.jsp</result>
+			<result name="input" type="dispatcher"></result>
+
+			<interceptor-ref name="validationWorkflowStack" />
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="backToStep1" class="OLink.bpm.core.expimp.imp.action.ImpAction"
+			method="doBack">
+			<result name="success" type="dispatcher">step1_import.jsp</result>
+
+			<interceptor-ref name="scope">
+				<param name="key">import</param>
+				<param name="session">applicationid,moduleid,importType</param>
+			</interceptor-ref>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="imp" class="OLink.bpm.core.expimp.imp.action.ImpAction"
+			method="doImp">
+			<result name="success" type="dispatcher">
+				step1_import.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				step1_import.jsp
+			</result>
+			<result name="confirm" type="dispatcher">
+				step2_confirm.jsp
+			</result>
+
+			<interceptor-ref name="fileUploadStack">
+				<param name="allowedTypes">
+					text/xml,application/x-zip-compressed
+				</param>
+			</interceptor-ref>
+
+			<interceptor-ref name="validationWorkflowStack" />
+			<interceptor-ref name="scope">
+				<param name="key">import</param>
+				<param name="session">applicationid,moduleid,importType</param>
+			</interceptor-ref>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="impNext" class="OLink.bpm.core.expimp.imp.action.ImpAction"
+			method="doImpNext">
+			<result name="success" type="dispatcher">
+				step3_success.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				step2_confirm.jsp
+			</result>
+
+			<interceptor-ref name="scope">
+				<param name="key">import</param>
+				<param name="type">end</param>
+				<param name="session">applicationid,moduleid,importType</param>
+			</interceptor-ref>
+			<interceptor-ref name="params" />
+		</action>
+	</package>
+</xwork>

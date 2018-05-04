@@ -1,0 +1,66 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<!-- domain package -->
+	<package name="sysconfig" extends="eWAP-default" namespace="/core/sysconfig">
+
+		<action name="config" class="OLink.bpm.core.sysconfig.action.SysConfigAction"
+			method="doView">
+			<interceptor-ref name="params" />
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				content.jsp
+			</result>
+		</action>
+
+		<action name="save" class="OLink.bpm.core.sysconfig.action.SysConfigAction"
+			method="doSave">
+			<interceptor-ref name="defaultStack" />
+			<result name="input" type="dispatcher">
+				content.jsp
+			</result>
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+		</action>
+
+		<action name="export" class="OLink.bpm.core.sysconfig.action.ExportAction"
+			method="doExport">
+			<interceptor-ref name="defaultStack"/>
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">exportFile</param>
+				<param name="contentDisposition">attachment;filename="sysConfig.xml"</param>
+				<param name="bufferSize">4096</param>
+			</result>
+			<result name="input">content.jsp</result>
+		</action>
+
+		<action name="import" class="OLink.bpm.core.sysconfig.action.ImportAction"
+			method="doImport">
+			<interceptor-ref name="fileUploadStack">
+				<param name="allowedTypes">text/xml</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"/>
+			<result name="success">imp/import.jsp</result>
+			<result name="input">imp/import.jsp</result>
+		</action>
+		
+		<action name="domainSynchronousToGke" class="OLink.bpm.core.sysconfig.action.SysConfigAction"
+			method="domainSynchronousToGke">
+			<interceptor-ref name="defaultStack" />
+		</action>
+		
+		<action name="departmentSynchronousToGke" class="OLink.bpm.core.sysconfig.action.SysConfigAction"
+			method="departmentSynchronousToGke">
+			<interceptor-ref name="defaultStack" />
+		</action>
+		
+		<action name="userSynchronousToGke" class="OLink.bpm.core.sysconfig.action.SysConfigAction"
+			method="userSynchronousToGke">
+			<interceptor-ref name="defaultStack" />
+		</action>
+		
+	</package>
+</xwork>

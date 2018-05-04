@@ -1,0 +1,255 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<package name="eWAP-view-front" extends="eWAP-default"
+		namespace="/portal/dynaform/view">
+		<interceptors>
+			<interceptor-stack name="default">
+				<interceptor-ref name="params" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="defaultStack" />
+
+		<action name="subFormView"
+			class="OLink.bpm.core.dynaform.view.action.ViewRunTimeAction"
+			method="doSubFormView">
+			<result name="success" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/view/display_view.jsp
+			</result>
+			<result name="input" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/view/display_view.jsp
+			</result>
+		</action>
+
+		<action name="subGridView"
+			class="OLink.bpm.core.dynaform.view.action.ViewRunTimeAction"
+			method="doSubFormView">
+			<result name="success" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/view/subGridView.jsp
+			</result>
+			<result name="input" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/view/subGridView.jsp
+			</result>
+		</action>
+
+		<!-- Dialog -->
+		<action name="dialogView"
+			class="OLink.bpm.core.dynaform.view.action.ViewRunTimeAction"
+			method="doDialogView">
+			<!-- Success Result -->
+			<result name="success" type="OBPMdispatcher">
+				/portal/share/dynaform/view/dialogview.jsp
+			</result>
+			<result name="successSub" type="OBPMdispatcher">
+				/portal/share/dynaform/view/dialogview.jsp
+			</result>
+			<result name="successCld" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/view/dialog_calendar_view.jsp
+			</result>
+			<result name="successTree" type="OBPMdispatcher">
+				/portal/share/dynaform/view/dialogtreeview.jsp
+			</result>
+			<result name="successGrid" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/view/subGridView.jsp
+			</result>
+			<result name="successGantt" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/view/ganttview.jsp
+			</result>
+			<result name="successMap" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/view/mapview.jsp
+			</result>
+			
+			<!-- Input Result -->
+			<result name="input" type="OBPMdispatcher">
+				/portal/share/dynaform/view/dialogview.jsp
+			</result>
+			<result name="inputSub" type="OBPMdispatcher">
+				/portal/share/dynaform/view/dialogview.jsp
+			</result>
+			<result name="inputCld" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/view/dialog_calendar_view.jsp
+			</result>
+			<result name="inputTree" type="OBPMdispatcher">
+				/portal/share/dynaform/view/dialogtreeview.jsp
+			</result>
+			<result name="inputGrid" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/view/subGridView.jsp
+			</result>
+			<result name="inputGantt" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/view/ganttview.jsp
+			</result>
+			<result name="inputMap" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/view/mapview.jsp
+			</result>
+		</action>
+		
+		<action name="expDocToExcel"
+			class="OLink.bpm.core.dynaform.view.action.ViewRunTimeAction"
+			method="expDocToExcel">
+			<result name="success" type="chain">displayView</result>
+		</action>
+		
+		<!-- Normal -->
+		<action name="displayView"
+			class="OLink.bpm.core.dynaform.view.action.ViewRunTimeAction"
+			method="doDisplayView">
+			<!-- Success Result -->
+			<result name="success" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/view/detail.jsp
+			</result>
+			<result name="successSub" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/view/display_view.jsp
+			</result>
+			<result name="successCld" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/view/calendar_view.jsp
+			</result>
+			<result name="successTree" type="OBPMdispatcher">
+				/portal/share/dynaform/view/treeview.jsp
+			</result>
+			<result name="successGrid" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/view/subGridView.jsp
+			</result>
+			<result name="successGantt" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/view/ganttview.jsp
+			</result>
+			<result name="successMap" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/view/mapview.jsp
+			</result>
+			
+			<!-- Input Result -->
+			<result name="input" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/view/detail.jsp
+			</result>
+			<result name="inputSub" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/view/display_view.jsp
+			</result>
+			<result name="inputCld" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/view/calendar_view.jsp
+			</result>
+			<result name="inputTree" type="OBPMdispatcher">
+				/portal/share/dynaform/view/treeview.jsp
+			</result>
+			<result name="inputGrid" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/view/subGridView.jsp
+			</result>
+			<result name="inputGantt" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/view/ganttview.jsp
+			</result>
+			<result name="inputMap" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/view/mapview.jsp
+			</result>
+		</action>
+		
+		<!-- Normal -->
+		<action name="printView"
+			class="OLink.bpm.core.dynaform.view.action.ViewRunTimeAction"
+			method="printDoDisplayView">
+			<!-- Success Result -->
+			<result name="success" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/view/printview/detail.jsp
+			</result>
+			<result name="successSub" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/view/printview/display_view.jsp
+			</result>
+			<result name="successCld" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/view/printview/calendar_view.jsp
+			</result>
+			<result name="successTree" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/view/treeview.jsp
+			</result>
+			<result name="successGrid" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/view/printview/subGridView.jsp
+			</result>
+			<result name="successGantt" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/view/printview/ganttview.jsp
+			</result>
+			<result name="successMap" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/view/printview/mapview.jsp
+			</result>
+			
+			<!-- Input Result -->
+			<result name="input" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/view/printview/detail.jsp
+			</result>
+			<result name="inputSub" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/view/printview/display_view.jsp
+			</result>
+			<result name="inputCld" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/view/printview/calendar_view.jsp
+			</result>
+			<result name="inputTree" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/view/treeview.jsp
+			</result>
+			<result name="inputGrid" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/view/printview/subGridView.jsp
+			</result>
+			<result name="inputGantt" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/view/printview/ganttview.jsp
+			</result>
+			<result name="inputMap" type="OBPMdispatcher">
+				/portal/dispatch/dynaform/view/printview/mapview.jsp
+			</result>
+		</action>
+		
+		<action name="innerPage"
+			class="OLink.bpm.core.dynaform.view.action.ViewRunTimeAction"
+			method="doInnerPage">
+			<result name="success" type="OBPMdispatcher">
+				/portal/share/dynaform/view/successlink.jsp
+			</result>
+			<result name="successForm" type="OBPMdispatcher">
+				/portal/dynaform/document/view.action
+			</result>
+			<result name="successView" type="OBPMdispatcher">
+				/portal/dynaform/view/displayView.action
+			</result>
+		</action>
+		
+		<action name="getChildren"
+			class="OLink.bpm.core.dynaform.view.action.ViewRunTimeAction"
+			method="getChildren">
+			<result name="success" type="OBPMdispatcher">
+			</result>
+		</action>
+		
+		<action name="search"
+			class="OLink.bpm.core.dynaform.view.action.ViewRunTimeAction"
+			method="doSearch">
+			<result name="success" type="OBPMdispatcher">
+			</result>
+		</action>
+		
+		<!-- Portlet -->
+		<action name="portletView" class="com.opensymphony.xwork.ActionSupport">
+			<result name="success" type="portlet">/portal/dispatch/dynaform/view/portlet/view.jsp</result>
+		</action>
+		<action name="portletDisplayView"
+			class="OLink.bpm.core.dynaform.view.action.ViewPortletAction"
+			method="doDisplayView">
+			<result name="success" type="portlet">
+				/portal/dispatch/dynaform/view/portlet/detail.jsp
+			</result>
+			<result name="successSub" type="portlet">
+				/portal/dispatch/dynaform/view/portlet/display_view.jsp
+			</result>
+			
+			<result name="input" type="portlet">
+				/portal/dispatch/dynaform/view/portlet/detail.jsp
+			</result>
+			<result name="inputSub" type="portlet">
+				/portal/dispatch/dynaform/view/portlet/display_view.jsp
+			</result>
+		</action>
+		
+		<action name="delete"
+			class="OLink.bpm.core.dynaform.document.action.DocumentAction"
+			method="doDelete">
+			<result name="success" type="chain">displayView</result>
+		</action>
+		
+		<action name="doflow"
+			class="OLink.bpm.core.dynaform.document.action.DocumentAction"
+			method="doBattchApprove">
+			<result name="success" type="chain">displayView</result>
+		</action>
+	</package>
+</xwork>

@@ -1,0 +1,23 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<package name="eWAP-view-front-report" extends="eWAP-default"
+		namespace="/portal/share/report/oReport">
+		<interceptors>
+			<interceptor-stack name="default">
+				<interceptor-ref name="params" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="defaultStack" />
+
+		<action name="displaySearchForm"
+			class="OLink.bpm.core.dynaform.view.action.ViewRunTimeAction"
+			method="displaySearchForm">
+			<result name="success" type="OBPMdispatcher">
+				/portal/share/report/oReport/searchForm.jsp
+			</result>
+			<result name="input" type="OBPMdispatcher">
+				/portal/share/report/oReport/searchForm.jsp
+			</result>
+		</action>
+	</package>
+</xwork>

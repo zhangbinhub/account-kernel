@@ -1,0 +1,120 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<!-- document package -->
+	<package name="reportconfig" extends="eWAP-default"
+		namespace="/core/report/reportconfig">
+
+		<action name="view" class="OLink.bpm.core.report.reportconfig.action.ReportConfigAction"
+			method="doView">
+      		<result name="ListTable" type="dispatcher">
+				listtablecontent.jsp
+			</result>
+			<result name="CrossTable" type="dispatcher">
+				crosstablecontent.jsp
+			</result>
+			<result name="UploadJrxml" type="dispatcher">
+				jrxmlcontent.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+
+		<action name="new" class="OLink.bpm.core.report.reportconfig.action.ReportConfigAction"
+			method="doNew">
+      		<result name="ListTable" type="dispatcher">
+				listtablecontent.jsp
+			</result>
+			<result name="CrossTable" type="dispatcher">
+				crosstablecontent.jsp
+			</result>
+			<result name="UploadJrxml" type="dispatcher">
+				jrxmlcontent.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+
+		<action name="save" class="OLink.bpm.core.report.reportconfig.action.ReportConfigAction"
+			method="doSave">
+      		<result name="ListTable" type="dispatcher">
+				listtablecontent.jsp
+			</result>
+			<result name="CrossTable" type="dispatcher">
+				crosstablecontent.jsp
+			</result>
+			<result name="UploadJrxml" type="dispatcher">
+				jrxmlcontent.jsp
+			</result>
+			<interceptor-ref name="validationWorkflowStack"/>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+
+		<action name="edit" class="OLink.bpm.core.report.reportconfig.action.ReportConfigAction"
+			method="doEdit">
+      		<result name="ListTable" type="dispatcher">
+				listtablecontent.jsp
+			</result>
+			<result name="CrossTable" type="dispatcher">
+				crosstablecontent.jsp
+			</result>
+			<result name="UploadJrxml" type="dispatcher">
+				jrxmlcontent.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+
+		<action name="list" class="OLink.bpm.core.report.reportconfig.action.ReportConfigAction"
+			method="doList">
+			<result name="success" type="dispatcher">list.jsp</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+
+		<action name="delete"
+				class="OLink.bpm.core.report.reportconfig.action.ReportConfigAction" method="doDelete">
+			<result name="success" type="chain">
+				list
+			</result>
+			<result name="input" type="chain">
+				list
+			</result>
+		</action>
+		
+		<action name="exportReport"
+				class="OLink.bpm.core.report.reportconfig.action.ReportConfigAction" method="exportReport">
+			<result name="success" type="dispatcher">
+				frame.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				list.action
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+		
+	    <action name="reportCondition"
+				class="OLink.bpm.core.report.reportconfig.action.ReportConfigAction" method="reportCondition">
+			<result name="success" type="dispatcher">
+				condition.jsp
+			</result>
+			<result name="input" type="chain">
+				<param name="actionName">exportReport</param>
+				<param name="namespace">/core/report/reportconfig</param>
+			</result>
+		</action>
+		
+		 <action name="refData"
+				 class="OLink.bpm.core.report.reportconfig.action.ReportConfigAction" method="refData">
+			<result name="success" type="dispatcher">
+				condition.jsp
+			</result>
+			<result name="input" type="chain">
+				<param name="actionName">exportReport</param>
+				<param name="namespace">/core/report/reportconfig</param>
+			</result>
+		</action>
+	</package>
+
+</xwork>

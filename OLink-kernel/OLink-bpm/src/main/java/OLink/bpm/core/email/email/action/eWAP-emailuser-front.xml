@@ -1,0 +1,34 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+<!-- domain package -->
+	<package name="eWAP-email-user-front" extends="eWAP-default"
+		namespace="/portal/email/user">
+		
+		<action name="save"
+			class="OLink.bpm.core.email.email.action.EmailUserAction"
+			method="doSave">
+			<result name="input" type="OBPMdispatcher">
+				/portal/share/email/userinfo.jsp
+			</result>
+			<result name="success" type="redirect">
+				/portal/share/email/index.jsp
+			</result>
+		</action>
+		
+		 <action name="view"
+				 class="OLink.bpm.core.email.email.action.EmailUserAction" method="doView">
+			<result name="input" type="OBPMdispatcher">
+				/portal/share/email/userinfo.jsp
+			</result>
+			<result name="success" type="OBPMdispatcher">
+				/portal/share/email/userinfo.jsp
+			</result>
+			<result name="error" type="OBPMdispatcher">
+				/portal/share/error.jsp
+			</result>
+			<interceptor-ref name="defaultStack">
+			    <param name="workflow.excludeMethods">default</param>
+			</interceptor-ref>
+		</action>
+	</package>
+</xwork>

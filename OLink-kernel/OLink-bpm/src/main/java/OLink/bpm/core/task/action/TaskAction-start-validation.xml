@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE validators PUBLIC
+  		"-//OpenSymphony Group//XWork Validator 1.0//EN" 
+  		"http://www.opensymphony.com/xwork/xwork-validator-1.0.2.dtd">
+
+<validators>
+	<field name="content.name">
+		<field-validator type="requiredstring">
+			<message>Please enter TaskName!</message>
+		</field-validator>
+	</field>
+	
+	<validator type="expression">
+	    <param name="expression"><![CDATA[content.runtimes > 0]]></param>
+	    <message>Runtimes must be greater than 0</message>
+    </validator>
+	
+</validators>

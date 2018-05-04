@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+	>
+	<class
+		name="OLink.bpm.core.resource.ejb.ResourceVO"
+		table="T_RESOURCE"
+		lazy="false"
+		>
+
+		<id
+			name="id"
+			column="ID"
+			type="java.lang.String"
+			length="100"
+			>
+			<generator class="assigned">
+				<!--  
+						  To add non XDoclet generator parameters, create a file named 
+						  hibernate-generator-params-ResourceVO.xml 
+						  containing the additional parameters and place it in your merge dir. 
+					  --> 
+			</generator>
+		</id>
+
+		<property
+			name="actionclass"
+			type="java.lang.String"
+			update="true"
+			insert="true"
+			column="ACTIONCLASS "
+			/>
+
+		<property
+			name="actionmethod"
+			type="java.lang.String"
+			update="true"
+			insert="true"
+			column="ACTIONMETHOD"
+			/>
+
+		<property
+			name="actionurl"
+			type="java.lang.String"
+			update="true"
+			insert="true"
+			column="ACTIONURL"
+			/>
+
+		<property
+			name="description"
+			type="java.lang.String"
+			update="true"
+			insert="true"
+			column="DESCRIPTION"
+			/>
+
+		<property
+			name="engdescription"
+			type="java.lang.String"
+			update="true"
+			insert="true"
+			column="ENGDESCRIPTION"
+			/>
+
+		<property
+			name="ico"
+			type="java.lang.String"
+			update="true"
+			insert="true"
+			column="ICO"
+			/>
+		<property
+			name="opentarget"
+			type="java.lang.String"
+			update="true"
+			insert="true"
+			column="OPENTARGET"
+			/>
+        
+		<property
+			name="mobileIco"
+			type="java.lang.String"
+			update="true"
+			insert="true"
+			column="MOBILEICO"
+			/>
+
+		<property
+			name="orderno"
+			type="java.lang.String"
+			update="true"
+			insert="true"
+			column="ORDERNO"
+			/>
+
+		<many-to-one
+			name="superior"
+			class="OLink.bpm.core.resource.ejb.ResourceVO"
+			cascade="none"
+			outer-join="true"
+			update="true"
+			insert="true"
+			column="SUPERIOR"
+			/>
+
+		<property
+			name="type"
+			type="java.lang.String"
+			update="true"
+			insert="true"
+			column="TYPE"
+			/>
+        
+		<property
+			name="colids"
+			type="java.lang.String"
+			update="true"
+			insert="true"
+			column="COLIDS"
+			/>
+        
+		<property 
+			name="isview"
+			type="java.lang.String"
+			update="true"
+			insert="true"
+			column="ISVIEW"
+			/>
+        
+		<property 
+			name="impMappingConfig"
+			type="java.lang.String"
+			update="true"
+			insert="true"
+			column="IMPMAPPINGCONFIG"
+			/>
+
+		<property
+			name="otherurl"
+			type="text"
+			update="true"
+			insert="true"
+			column="OTHERURL"
+			/>
+
+		<property
+			name="application"
+			type="java.lang.String"
+			update="true"
+			insert="true"
+			column="APPLICATION"
+			/>
+
+		<property
+			name="displayView"
+			type="java.lang.String"
+			update="true"
+			insert="true"
+			column="DISPLAYVIEW"
+			/>
+
+		<property
+			name="module"
+			type="java.lang.String"
+			update="true"
+			insert="true"
+			column="MODULE"
+			/>
+
+		<property
+			name="resourceAction"
+			type="java.lang.String"
+			update="true"
+			insert="true"
+			column="RESOURCEACTION"
+			/>
+
+		<set
+			name="relatedPermissions"
+			table="T_PERMISSION"
+			lazy="false"
+			inverse="true"
+			cascade="delete"
+			sort="unsorted"
+			>
+
+			<key
+				column="RESOURCE_ID"
+				>
+			</key>
+
+			<one-to-many
+				class="OLink.bpm.core.permission.ejb.PermissionVO"
+				/>
+
+		</set>
+
+		<property
+			name="isprotected"
+			type="boolean"
+			update="true"
+			insert="true"
+			column="ISPROTECTEDS"
+			/>
+			
+		<property
+			name="showtotalrow"
+			type="java.lang.String"
+			update="true"
+			insert="true"
+			column="SHOWTOTALROW"
+			/>
+		
+
+		<property
+			name="report"
+			type="java.lang.String"
+			update="true"
+			insert="true"
+			column="REPORT"
+			/>
+
+		<property
+			name="reportAppliction"
+			type="java.lang.String"
+			update="true"
+			insert="true"
+			column="REPORTAPPLICTION"
+			/>
+
+		<property
+			name="reportModule"
+			type="java.lang.String"
+			update="true"
+			insert="true"
+			column="REPORTMODULE"
+			/>
+
+		<property
+			name="sortId"
+			type="java.lang.String"
+			update="true"
+			insert="true"
+			column="SORTID"
+			/>
+
+		<property
+			name="applicationid"
+			type="java.lang.String"
+			update="true"
+			insert="true"
+			column="APPLICATIONID"
+			/>
+			
+		<many-to-one
+			name="link"
+			class="OLink.bpm.core.links.ejb.LinkVO"
+			cascade="all"
+			outer-join="true"
+			update="true"
+			insert="true"
+			lazy="false"
+			column="LINKID"
+			/>
+
+		<!--
+				To add non XDoclet property mappings, create a file named
+					hibernate-properties-ResourceVO.xml
+				containing the additional properties and place it in your merge dir.
+			-->
+
+	</class>
+
+</hibernate-mapping>

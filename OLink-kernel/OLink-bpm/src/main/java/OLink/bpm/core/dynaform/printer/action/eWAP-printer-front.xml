@@ -1,0 +1,22 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+<!-- domain package -->
+	<package name="printer-front" extends="eWAP-default"
+		namespace="/portal/dynaform/printer">
+
+	<action name="print"
+		class="OLink.bpm.core.dynaform.printer.action.PrinterAction"
+		method="doPrint">
+		<result name="success" type="OBPMdispatcher">/portal/share/dynaform/printer/result/getReportData.jsp</result>
+	</action>
+	
+	<action name="flexprint"
+		class="OLink.bpm.core.dynaform.printer.action.PrinterAction"
+		method="doFlexPrint">
+		<result name="success" type="OBPMdispatcher">
+		/portal/dynaform/activity/after.action
+		</result>
+	</action>
+	
+	</package>
+</xwork>

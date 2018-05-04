@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE validators PUBLIC
+  		"-//OpenSymphony Group//XWork Validator 1.0//EN" 
+  		"http://www.opensymphony.com/xwork/xwork-validator-1.0.2.dtd">
+
+<validators>
+	<field name="content.description">
+		<field-validator type="requiredstring">
+			<message>{*[page.name.notexist]*}!</message>
+		</field-validator>
+		<!-- 
+		<field-validator type="regex">
+			<param name="expression"><![CDATA[^[A-Za-z0-9]+$]]></param>
+			<message>{*[page.description.llegal]*}</message>
+		</field-validator> -->
+	</field>
+	<field name="content.type">
+		<field-validator type="requiredstring">
+			<message>{*[please.choose.type]*}!</message>
+		</field-validator>
+	</field>
+</validators>
+

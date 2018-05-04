@@ -1,0 +1,64 @@
+[
+  {
+    "sheetName": "string",
+    "printSetting": {
+      "isHorizontal": "boolean",
+      "pageWidth": "int",
+      "pageHeight": "int",
+      "topMargin": "double",
+      "bottomMargin": "double",
+      "leftMargin": "double",
+      "rightMargin": "double",
+      "horizontalCentre": "boolean",
+      "verticallyCenter": "boolean",
+      "printArea": {
+        "firstCol": "int",
+        "firstRow": "int",
+        "lastCol": "int",
+        "lastRow": "int"
+      },
+      "printTitles": {
+        "firstCol": "int",
+        "firstRow": "int",
+        "lastCol": "int",
+        "lastRow": "int"
+      }
+    },
+    "header": {
+      "left": "(string)***[pageNumber]***[pageTotal]***",
+      "center": "(string)***[pageNumber]***[pageTotal]***",
+      "right": "(string)***[pageNumber]***[pageTotal]***"
+    },
+    "footer": {
+      "left": "(string)***[pageNumber]***[pageTotal]***",
+      "center": "(string)***[pageNumber]***[pageTotal]***",
+      "right": "(string)***[pageNumber]***[pageTotal]***"
+    },
+    "datas": {
+      "jsonDatas": [
+        {
+          "name": "value"
+        }
+      ],
+      "names": "string",
+      "titleCtrl": "(string)内容[row=,col=,colspan=,rowspan=,width=,height=,font=,bold=true|false,underline=true|false,align=,color=,border=no|all|top|left|right|bottom]^...",
+      "bodyCtrl": "(string)内容[colspan=,rowspan=,width=,height=,font=,bold=true|false,underline=true|false,align=,color=,border=no|all|top|left|right|bottom]^...",
+      "footCtrl": "(string)内容[row=,col=,colspan=,rowspan=,width=,height=,font=,bold=true|false,underline=true|false,align=,color=,border=no|all|top|left|right|bottom]^...",
+      "showBodyHead": "boolean",
+      "defaultRowIndex": "int",
+      "defaultCellIndex": "int"
+    },
+    "mergeCells": [
+      {
+        "firstCol": "int",
+        "firstRow": "int",
+        "lastCol": "int",
+        "lastRow": "int"
+      }
+    ],
+    "freeze": {
+      "row": "int",
+      "col": "int"
+    }
+  }
+]

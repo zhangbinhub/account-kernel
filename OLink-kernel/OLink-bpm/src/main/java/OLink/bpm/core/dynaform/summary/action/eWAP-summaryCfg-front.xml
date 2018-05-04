@@ -1,0 +1,20 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<include file="webwork-default.xml" />
+	<package name="summaryCfg-front" extends="eWAP-default"
+		namespace="/portal/share/user">
+		
+		<action name="addSummaryList"
+			class="OLink.bpm.core.dynaform.summary.action.SummaryCfgAction"
+			method="doList">
+			<result name="success" type="dispatcher">
+				addSummaryList.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				addSummaryList.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="chain" />
+		</action>
+	</package>
+</xwork>

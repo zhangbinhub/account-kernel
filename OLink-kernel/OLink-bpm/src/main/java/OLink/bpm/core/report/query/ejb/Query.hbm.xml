@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="OLink.bpm.core.report.query.ejb.Query"
+        table="T_QUERY"
+    >
+
+        <id
+            name="id"
+            column="ID"
+            type="java.lang.String"
+            length="100"
+        >
+            <generator class="assigned">
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-Query.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="name"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="NAME"
+        />
+
+        <property
+            name="queryString"
+            type="text"
+            update="true"
+            insert="true"
+            column="QUERYSTRING"
+        />
+
+        <many-to-one
+            name="dataSource"
+            class="OLink.bpm.core.dynaform.dts.datasource.ejb.DataSource"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            column="DATASOURCE_ID"
+        />
+
+        <many-to-one
+            name="searchForm"
+            class="OLink.bpm.core.dynaform.form.ejb.Form"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            column="FORM_ID"
+        />
+
+        <many-to-one
+            name="module"
+            class="OLink.bpm.core.deploy.module.ejb.ModuleVO"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            column="MODULE"
+        />
+
+        <set
+            name="paramters"
+            table="T_QUERY_PARAMETER"
+            lazy="false"
+            cascade="delete"
+            sort="unsorted"
+        >
+
+            <key
+                column="QUERY_ID"
+            >
+            </key>
+
+            <one-to-many
+                  class="OLink.bpm.core.report.query.ejb.Parameter"
+            />
+
+        </set>
+
+        <property
+            name="sortId"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="SORTID"
+        />
+
+        <property
+            name="applicationid"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="APPLICATIONID"
+        />
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-Query.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

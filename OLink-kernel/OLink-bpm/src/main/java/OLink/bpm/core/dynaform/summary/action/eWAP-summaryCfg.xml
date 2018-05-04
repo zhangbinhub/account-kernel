@@ -1,0 +1,57 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<include file="webwork-default.xml" />
+	<package name="summaryCfg" extends="eWAP-default"
+		namespace="/core/dynaform/summary">
+		
+		<action name="list"
+			class="OLink.bpm.core.dynaform.summary.action.SummaryCfgAction"
+			method="doHomepageList">
+			<result name="success" type="dispatcher">
+				list.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				list.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="chain" />
+		</action>
+		<action name="summaryList"
+			class="OLink.bpm.core.dynaform.summary.action.SummaryCfgAction"
+			method="doList">
+			<result name="success" type="dispatcher">
+				summaryList.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				summaryList.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="chain" />
+		</action>
+		<action name="save"
+			class="OLink.bpm.core.dynaform.summary.action.SummaryCfgAction"
+			method="doSave">
+			<result name="success" type="dispatcher">content.jsp</result>
+			<result name="input" type="dispatcher">content.jsp</result>
+		</action>
+		
+		<action name="new"
+			class="OLink.bpm.core.dynaform.summary.action.SummaryCfgAction"
+			method="doNew">
+			<result name="success" type="dispatcher">content.jsp</result>
+			<interceptor-ref name="params" />
+		</action>
+		<action name="delete"
+			class="OLink.bpm.core.dynaform.summary.action.SummaryCfgAction"
+			method="doDelete">
+			<result name="success" type="chain">summaryList</result>
+			<result name="input" type="chain">summaryList</result>
+		</action>
+		<action name="edit"
+			class="OLink.bpm.core.dynaform.summary.action.SummaryCfgAction"
+			method="doEdit">
+			<result name="success" type="dispatcher">content.jsp</result>
+			<interceptor-ref name="params" />
+		</action>
+	</package>
+</xwork>

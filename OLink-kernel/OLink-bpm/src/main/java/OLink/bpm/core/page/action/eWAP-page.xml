@@ -1,0 +1,80 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+<package name="page" extends="eWAP-default"
+		namespace="/core/page">
+		<action name="select"
+			class="OLink.bpm.core.page.action.PageAction"
+			method="doSelect">
+			<result name="success" type="dispatcher">select.jsp</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+
+		<action name="selectField"
+			class="OLink.bpm.core.page.action.PageAction"
+			method="doSelectField">
+			<result name="success" type="dispatcher">
+				selectfield.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+
+		<action name="new"
+			class="OLink.bpm.core.page.action.PageAction"
+			method="doNew">
+			<result name="success" type="dispatcher">
+				createpage.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		<action name="edit"
+			class="OLink.bpm.core.page.action.PageAction"
+			method="doEdit">
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		<action name="save"
+			class="OLink.bpm.core.page.action.PageAction"
+			method="doSave">
+			<result name="input" type="dispatcher">
+			content.jsp
+			</result>
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+		<interceptor-ref name="validationWorkflowStack"/>
+		</action>
+		<action name="savepageinfo"
+			class="OLink.bpm.core.page.action.PageAction"
+			method="doSave">
+			<result name="input" type="dispatcher">
+			  createpage.jsp
+			</result>
+			<result name="success" type="dispatcher">
+				success.jsp
+			</result>
+		<interceptor-ref name="validationWorkflowStack"/>
+		</action>
+		<action name="delete"
+			class="OLink.bpm.core.page.action.PageAction"
+			method="doDelete">
+			<interceptor-ref name="params" />
+			<interceptor-ref name="chain" />
+			<result name="success" type="chain">list</result>
+			<result name="input" type="chain">list</result>
+		</action>
+		<action name="list"
+			class="OLink.bpm.core.page.action.PageAction"
+			method="doList">
+			<interceptor-ref name="params" />
+			<interceptor-ref name="chain" />
+			<!-- 			<interceptor-ref name="basicStack" />  -->
+			<result name="success" type="dispatcher">list.jsp</result>
+			<result name="input" type="dispatcher">list.jsp</result>
+			
+		</action>
+	</package>
+</xwork>

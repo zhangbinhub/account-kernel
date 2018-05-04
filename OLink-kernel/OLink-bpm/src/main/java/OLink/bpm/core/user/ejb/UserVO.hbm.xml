@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="OLink.bpm.core.user.ejb.UserVO" table="T_USER" lazy="false"
+		   batch-size="10">
+
+		<id name="id" column="ID" type="java.lang.String" length="100">
+			<generator class="assigned">
+				<!--
+					To add non XDoclet generator parameters, create a file named
+					hibernate-generator-params-UserVO.xml containing the additional
+					parameters and place it in your merge dir.
+				-->
+			</generator>
+		</id>
+
+		<set name="userDepartmentSets" table="T_USER_DEPARTMENT_SET" lazy="true"
+			cascade="all" sort="unsorted">
+			<key column="USERID"></key>
+			<one-to-many class="OLink.bpm.core.user.ejb.UserDepartmentSet" />
+		</set>
+
+		<set name="userRoleSets" table="T_USER_ROLE_SET" lazy="true"
+			cascade="all" sort="unsorted">
+			<key column="USERID"></key>
+			<one-to-many class="OLink.bpm.core.user.ejb.UserRoleSet" />
+		</set>
+
+		<!--add by lr 2013-09-09
+			<set name="departments" table="T_USER_DEPARTMENT_SET" lazy="false"
+			cascade="save-update" sort="unsorted"> <key column="USERID"></key>
+
+			<many-to-many class="DepartmentVO"
+			column="DEPARTMENTID" outer-join="auto" /> </set>
+		-->
+
+		<!--
+			<set name="roles" table="T_USER_ROLE_SET" lazy="false"
+			cascade="save-update" sort="unsorted"> <key column="USERID"></key>
+
+			<many-to-many class="RoleVO" column="ROLEID"
+			outer-join="auto" /> </set>
+		-->
+
+		<property name="calendarType" type="java.lang.String" update="true"
+			insert="true" column="CALENDAR" />
+
+		<property name="level" type="int" update="true" insert="true"
+			column="LEVELS" />
+
+		<property name="remarks" type="java.lang.String" update="true"
+			insert="true" column="REMARKS" />
+
+		<one-to-one name="userSetup" class="OLink.bpm.core.usersetup.ejb.UserSetupVO"
+			fetch="join" cascade="all" />
+
+		<many-to-one name="superior" class="OLink.bpm.core.user.ejb.UserVO"
+			cascade="none" outer-join="auto" update="true" insert="true" column="SUPERIOR" />
+
+		<many-to-one name="proxyUser" class="OLink.bpm.core.user.ejb.UserVO"
+			cascade="none" outer-join="auto" update="true" insert="true" column="PROXYUSER" />
+
+		<property name="defaultDepartment" type="java.lang.String"
+			update="true" insert="true" column="DEFAULTDEPARTMENT" />
+
+		<property name="defaultApplication" type="java.lang.String"
+			update="true" insert="true" column="DEFAULTAPPLICATION" />
+
+		<property name="email" type="java.lang.String" update="true"
+			insert="true" column="EMAIL" />
+
+		<property name="loginno" type="java.lang.String" update="true"
+			insert="true" column="LOGINNO" />
+
+		<property name="loginpwd" type="java.lang.String" update="true"
+			insert="true" column="LOGINPWD" />
+
+		<property name="name" type="java.lang.String" update="true"
+			insert="true" column="NAME" />
+
+		<property name="telephone" type="java.lang.String" update="true"
+			insert="true" column="TELEPHONE" />
+
+		<property name="status" type="int" update="true" insert="true"
+			column="STATUS" />
+
+		<property name="domainid" type="java.lang.String" update="true"
+			insert="true" column="DOMAINID" />
+		
+		<property name="domainUser" type="java.lang.String" update="true"
+			insert="true" column="ISDOMAINUSER" />
+
+		<property name="startProxyTime" type="java.util.Date"
+			update="true" insert="true" column="STARTPROXYTIME"/>
+		
+		<property name="endProxyTime" type="java.util.Date"
+			update="true" insert="true" column="ENDPROXYTIME"/>
+			
+		<property name="useIM" type="java.lang.Boolean" update="true"
+			insert="true" column="USEIM" />
+			
+		<!--
+			To add non XDoclet property mappings, create a file named
+			hibernate-properties-UserVO.xml containing the additional properties
+			and place it in your merge dir.
+		-->
+
+		<property name="field1" type="java.lang.String" column="FIELD1" />
+
+		<property name="field2" type="java.lang.String" column="FIELD2" />
+
+		<property name="field3" type="java.lang.String" column="FIELD3" />
+
+		<property name="field4" type="java.lang.String" column="FIELD4" />
+
+		<property name="field5" type="java.lang.String" column="FIELD5" />
+
+		<property name="field6" type="java.lang.String" column="FIELD6" />
+
+		<property name="field7" type="java.lang.String" column="FIELD7" />
+
+		<property name="field8" type="java.lang.String" column="FIELD8" />
+
+		<property name="field9" type="java.lang.String" column="FIELD9" />
+
+		<property name="field10" type="java.lang.String" column="FIELD10" />
+	</class>
+
+</hibernate-mapping>

@@ -1,0 +1,232 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<package name="user" extends="eWAP-default" namespace="/core/user">
+		<action name="new" class="OLink.bpm.core.user.action.UserAction"
+			method="doNew">
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="edit" class="OLink.bpm.core.user.action.UserAction"
+			method="doEdit">
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="save" class="OLink.bpm.core.user.action.UserAction"
+			method="doSave">
+			<result name="input" type="dispatcher">content.jsp</result>
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+
+			<interceptor-ref name="validationWorkflowStack" />
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="userDefinedList" class="OLink.bpm.core.user.action.UserDefinedAction"
+			method="doUserDefinedList">
+			<result name="success" type="dispatcher">/core/homepage/list.jsp</result>
+			<result name="input" type="dispatcher">/core/homepage/list.jsp</result>
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="delete" class="OLink.bpm.core.user.action.UserAction"
+			method="doDelete">
+			<result name="success" type="chain">list2</result>
+			<result name="input" type="chain">userlist.jsp</result>
+			<result name="error" type="dispatcher">
+				error.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="list" class="OLink.bpm.core.user.action.UserAction"
+			method="doList">
+			<result name="success" type="dispatcher">list.jsp</result>
+			<result name="input" type="dispatcher">list.jsp</result>
+			<interceptor-ref name="params" />
+		</action>
+		<action name="list2" class="OLink.bpm.core.user.action.UserAction"
+			method="doList">
+			<result name="success" type="dispatcher">userlist.jsp</result>
+			<result name="input" type="dispatcher">userlist.jsp</result>
+			<interceptor-ref name="chain"></interceptor-ref>
+			<interceptor-ref name="params" />
+		</action>
+		<action name="userlist2" class="OLink.bpm.core.user.action.UserAction"
+			method="doList">
+			<result name="success" type="dispatcher">userlist.jsp</result>
+			<result name="input" type="dispatcher">userlist.jsp</result>
+			<interceptor-ref name="params" />
+		</action>
+
+
+		<action name="userListUnjoinedDept" class="OLink.bpm.core.user.action.UserAction"
+			method="doUserListUnjoinedDept">
+			<result name="success" type="dispatcher">userUnjoinDept.jsp</result>
+			<interceptor-ref name="params" />
+		</action>
+		<action name="addUserToDept" class="OLink.bpm.core.user.action.UserAction"
+			method="doAddUserToDept">
+			<result name="success" type="dispatcher">success.jsp</result>
+			<interceptor-ref name="params" />
+		</action>
+		<action name="userListUnjoinedRole" class="OLink.bpm.core.user.action.UserAction"
+			method="doUserListUnjoinedRole">
+			<result name="success" type="dispatcher">userUnjoinRole.jsp</result>
+			<interceptor-ref name="params" />
+		</action>
+		<action name="addUserToRole" class="OLink.bpm.core.user.action.UserAction"
+			method="doAddUserToRole">
+			<result name="success" type="dispatcher">success.jsp</result>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="treelist" class="OLink.bpm.core.user.action.UserAction"
+			method="doTreeList">
+			<result name="success" type="dispatcher">userlist.jsp</result>
+			<result name="input" type="dispatcher">userlist.jsp</result>
+			<interceptor-ref name="params" />
+		</action>
+		<action name="treelist2" class="OLink.bpm.core.user.action.UserAction"
+			method="doTreeList">
+			<result name="success" type="dispatcher">treelist.jsp</result>
+			<interceptor-ref name="params" />
+		</action>
+		<action name="listByDepartment" class="OLink.bpm.core.user.action.UserAction"
+			method="listUser">
+			<result name="success" type="dispatcher">user.jsp</result>
+			<interceptor-ref name="params" />
+		</action>
+		<action name="listRole" class="OLink.bpm.core.user.action.UserAction"
+			method="listUser">
+			<result name="success" type="dispatcher">user.jsp</result>
+			<interceptor-ref name="params" />
+		</action>
+		<action name="removeDepartment" class="OLink.bpm.core.user.action.UserAction"
+			method="removeDepartment">
+			<result name="success" type="chain">
+				listByDepartment
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		<action name="removeRole" class="OLink.bpm.core.user.action.UserAction"
+			method="removeRole">
+			<result name="success" type="chain">listRole</result>
+			<interceptor-ref name="params" />
+		</action>
+		<action name="userlist" class="OLink.bpm.core.user.action.UserAction"
+			method="doSelectUser">
+			<result name="success" type="dispatcher">selectuser.jsp</result>
+			<interceptor-ref name="params" />
+		</action>
+		<action name="linkmen" class="OLink.bpm.core.user.action.UserAction"
+			method="linkmen">
+			<result name="success" type="dispatcher">linkmen.jsp</result>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="saveAndNew" class="OLink.bpm.core.user.action.UserAction"
+			method="doSaveAndNew">
+			<result name="input" type="dispatcher">content.jsp</result>
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+
+			<interceptor-ref name="validationWorkflowStack" />
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="showUserExtends" class="OLink.bpm.core.user.action.UserAction"
+			method="doShowUserExtends">
+			<result name="input" type="dispatcher">content.jsp</result>
+			<result name="success" type="dispatcher">
+				extends.jsp
+			</result>
+
+			<interceptor-ref name="params" />
+		</action>
+		<action name="editHomepage"	class="OLink.bpm.core.user.action.UserDefinedAction"
+			method="doEditHomepage">
+			<result name="success" type="dispatcher">
+				/core/homepage/content.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				/core/homepage/content.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="saveElement" class="OLink.bpm.core.user.action.UserDefinedAction"
+			method="doSaveElement">
+			<result name="input" type="dispatcher">
+				/core/homepage/content.jsp
+			</result>
+			<result name="success" type="dispatcher">
+				/core/homepage/content.jsp
+			</result>
+			<!-- interceptor-ref name="params" / -->
+			<interceptor-ref name="params" />
+			<interceptor-ref name="chain" />
+		</action>
+		
+		<action name="saveAndNewHomepage" class="OLink.bpm.core.user.action.UserDefinedAction"
+			method="doSaveAndNewHomepage">
+			<result name="input" type="dispatcher">
+				/core/homepage/content.jsp
+			</result>
+			<result name="success" type="dispatcher">
+				/core/homepage/content.jsp
+			</result>
+			<!-- interceptor-ref name="params" / -->
+			<interceptor-ref name="params" />
+			<interceptor-ref name="chain" />
+		</action>
+		
+		<action name="newHomepage" class="OLink.bpm.core.user.action.UserDefinedAction"
+			method="doNewHomepage">
+			<result name="input" type="dispatcher">
+				/core/homepage/content.jsp
+			</result>
+			<result name="success" type="dispatcher">
+				/core/homepage/content.jsp
+			</result>
+		</action>
+		
+		<action name="deleteHomepage" class="OLink.bpm.core.user.action.UserDefinedAction"
+			method="doDelete">
+			<result name="error" type="dispatcher">
+				error.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<result name="input" type="dispatcher">
+				/core/homepage/list.jsp
+			</result>
+			<result name="success" type="dispatcher">
+				userDefinedList.action
+			</result>
+		</action>
+		
+		<action name="queryHomepage" class="OLink.bpm.core.user.action.UserDefinedAction"
+			method="doQueryHomepage">
+			<result name="error" type="dispatcher">
+				error.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<result name="input" type="dispatcher">
+				/core/homepage/list.jsp
+			</result>
+			<result name="success" type="dispatcher">
+				/core/homepage/list.jsp
+			</result>
+		</action>
+		
+	</package>
+
+</xwork>

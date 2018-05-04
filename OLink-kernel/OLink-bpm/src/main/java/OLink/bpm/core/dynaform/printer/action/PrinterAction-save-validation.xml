@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE validators PUBLIC
+  		"-//OpenSymphony Group//XWork Validator 1.0//EN" 
+  		"http://www.opensymphony.com/xwork/xwork-validator-1.0.2.dtd">
+
+<validators>
+	<field name="content.name">
+		<field-validator type="requiredstring">
+			<message>{*[page.name.notexist]*}</message>
+		</field-validator>
+	</field>
+	<field name="content.name">
+		<field-validator type="stringlength">
+		 <param name="maxLength">200</param>  
+            <param name="minLength">1</param>  
+			<message>名称长度不能超过200个字符</message>
+		</field-validator>
+	</field>
+	
+	<field name="content.description">
+		<field-validator type="stringlength">
+		 <param name="maxLength">200</param>  
+            <param name="minLength">0</param>  
+			<message>描述长度不能超过200个字符</message>
+		</field-validator>
+	</field>
+	
+	<field name="content.template">
+		<field-validator type="requiredstring">
+			<message>{*[page.content.notexist]*}</message>
+		</field-validator>
+	</field>
+</validators>

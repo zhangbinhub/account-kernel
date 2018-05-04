@@ -1,0 +1,42 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+<!-- domain package -->
+	<package name="eWAP-attachment-front" extends="eWAP-default"
+		namespace="/portal/email/attachment">
+
+		<action name="save"
+			class="OLink.bpm.core.email.attachment.action.AttachmentAction"
+			method="doSave">
+			
+		</action>
+		
+		<action name="delete"
+			class="OLink.bpm.core.email.attachment.action.AttachmentAction"
+			method="doDelete">
+			<interceptor-ref name="params" />
+			<interceptor-ref name="chain" />
+			<result name="success" type="chain"></result>
+			<result name="input" type="chain"></result>
+		</action>
+		
+		<action name="upload"
+			class="OLink.bpm.core.email.attachment.action.AttachmentAction"
+			method="doUpload">
+			<interceptor-ref name="params" />
+			<interceptor-ref name="chain" />
+			<result name="success" type="OBPMdispatcher">/portal/share/email/upload.jsp</result>
+			<result name="input" type="OBPMdispatcher"></result>
+		</action>
+		
+		<action name="download"
+			class="OLink.bpm.core.email.attachment.action.AttachmentAction"
+			method="doDownload">
+			<result name="error" type="OBPMdispatcher">
+				/portal/share/email/error.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="chain" />
+		</action>
+		 
+	</package>
+</xwork>

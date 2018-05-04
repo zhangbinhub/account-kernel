@@ -1,0 +1,57 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<!-- view package -->
+	<package name="eWAP-dview" extends="eWAP-default"
+		namespace="/desktop/view">
+		<action name="displaySearchForm"
+			class="OLink.bpm.desktop.view.DViewAction"
+			method="doDisplaySearchForm">
+			<result name="success" type="dispatcher">
+				/desktop/xml.jsp
+			</result>
+			<result name="error" type="dispatcher">
+				/desktop/error.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				/desktop/error.jsp
+			</result>
+			<interceptor-ref name="validationWorkflowStack" />
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="displayView"
+			class="OLink.bpm.desktop.view.DViewAction"
+			method="doDisplayView">
+			<result name="success" type="dispatcher">
+				/desktop/xml.jsp
+			</result>
+			<result name="error" type="dispatcher">
+				/desktop/error.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				/desktop/error.jsp
+			</result>
+			<interceptor-ref name="validationWorkflowStack" />
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="dialogView"
+			class="OLink.bpm.desktop.view.DViewAction"
+			method="doDialogView">
+			<result name="success" type="dispatcher">
+				/desktop/xml.jsp
+			</result>
+			<result name="error" type="dispatcher">
+				/desktop/error.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				/desktop/error.jsp
+			</result>
+			<interceptor-ref name="validationWorkflowStack" />
+			<interceptor-ref name="params" />
+		</action>
+		
+	</package>
+
+
+</xwork>

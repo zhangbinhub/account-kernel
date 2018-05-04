@@ -1,0 +1,92 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<package name="multilanguage" extends="eWAP-default"
+		namespace="/core/multilanguage">
+
+		<action name="view"
+			class="OLink.bpm.core.multilanguage.action.MultiLanguageAction"
+			method="doView">
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+
+		<action name="new"
+			class="OLink.bpm.core.multilanguage.action.MultiLanguageAction"
+			method="doNew">
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+
+		<action name="save"
+			class="OLink.bpm.core.multilanguage.action.MultiLanguageAction"
+			method="doSave">
+			<result name="input" type="dispatcher">content.jsp</result>
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="validationWorkflowStack" />
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+
+		<action name="edit"
+			class="OLink.bpm.core.multilanguage.action.MultiLanguageAction"
+			method="doEdit">
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+
+		<action name="list"
+			class="OLink.bpm.core.multilanguage.action.MultiLanguageAction"
+			method="list">
+			<result name="success" type="dispatcher">list.jsp</result>
+			<result name="input" type="dispatcher">list.jsp</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="chain" />
+		</action>
+
+		<action name="reloadLanguage"
+			class="OLink.bpm.core.multilanguage.action.MultiLanguageAction"
+			method="doLoadLanguage">
+			<result name="success" type="dispatcher">
+				list.action
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+
+		<action name="delete"
+			class="OLink.bpm.core.multilanguage.action.MultiLanguageAction"
+			method="doDelete">
+			<interceptor-ref name="params" />
+			<interceptor-ref name="chain" />
+			<result name="success" type="chain">list</result>
+			<result name="input" type="chain">list</result>
+		</action>
+
+		<action name="change"
+			class="OLink.bpm.core.multilanguage.action.MultiLanguageAction"
+			method="doChange">
+			<result name="success" type="redirect">/</result>
+			<result name="debug" type="redirect">/portal/share/security/login_debug.jsp</result>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="changeLanguage"
+			class="OLink.bpm.core.multilanguage.action.MultiLanguageAction"
+			method="doChange">
+			<result name="success" type="redirect">/admin/</result>
+			<interceptor-ref name="params" />
+		</action>
+
+	</package>
+</xwork>

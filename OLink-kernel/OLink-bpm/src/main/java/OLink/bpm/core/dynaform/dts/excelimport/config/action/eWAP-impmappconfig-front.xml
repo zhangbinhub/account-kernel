@@ -1,0 +1,18 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<!-- document package -->
+	<package name="excelimport-front" extends="eWAP-default"
+		namespace="/portal/dynaform/dts/excelimport">
+
+		<action name="ImprotExcelToDocument"
+				class="OLink.bpm.core.dynaform.dts.excelimport.config.action.IMPMappingConfigAction" method="improtExcelToDocument">
+			<result name="success" type="OBPMdispatcher">
+				/portal/share/dynaform/dts/excelimport/result.jsp
+			</result>
+			<result name="input" type="OBPMdispatcher">
+				/portal/share/dynaform/dts/excelimport/result.jsp
+			</result>
+		</action>
+	</package>
+
+</xwork>

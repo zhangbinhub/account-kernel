@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="OLink.bpm.core.dynaform.printer.ejb.Printer"
+		table="T_PRINTER"
+		dynamic-update="true">
+
+		<id name="id" column="ID" type="java.lang.String" length="100">
+			<generator class="assigned">
+				<!--
+					To add non XDoclet generator parameters, create a file named 
+					hibernate-generator-params-DepartmentVO.xml 
+					containing the additional parameters and place it in your merge dir. 
+				-->
+			</generator>
+		</id>
+		
+		
+		<property name="name" type="java.lang.String" 
+			update="true" insert="true"
+			column="NAME"/>
+			
+		<property name="description" type="java.lang.String" 
+			update="true" insert="true"
+			column="DESCRIPTION"/>
+
+		<property name="template" type="text"
+			insert="true" update="true"
+			column="TEMPLATE" />
+			
+		<property
+            name="relatedForm"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="RELATEDFORM"
+        />
+			
+		<many-to-one
+			name="module"
+			class="OLink.bpm.core.deploy.module.ejb.ModuleVO"
+			cascade="none"
+			outer-join="auto"
+			update="true"
+			insert="true"
+			column="MODULE"
+			/>
+	
+	
+	      <property
+            name="applicationid"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="APPLICATIONID"
+        />
+        <property name="checkout" 
+			type="boolean" 
+			update="true" insert="true">
+			<column name="CHECKOUT" 
+				default="0"
+			/>
+		</property>
+		
+		<property name="checkoutHandler" type="java.lang.String" update="true"
+			insert="true" column="CHECKOUTHANDLER" />
+        
+	</class>
+
+</hibernate-mapping>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="OLink.bpm.core.personalmessage.ejb.PersonalMessageVO" table="T_PERSONALMESSAGE"
+		   lazy="true" batch-size="10">
+
+		<id name="id" column="ID" type="java.lang.String" length="100">
+			<generator class="assigned">
+			</generator>
+		</id>
+
+		<many-to-one name="body" insert="true" update="false" not-null="true">
+			<column name="BODYID"></column>
+		</many-to-one>
+			
+		<property name="receiverId" type="java.lang.String" length="1000"
+			update="true" insert="true" column="RECEIVERID" />	
+			
+		<property name="read" type="java.lang.Boolean"
+			update="true" insert="true" column="ISREAD" />
+
+		<property name="trash" type="java.lang.Boolean"
+			update="true" insert="true" column="ISTRASH" />
+			
+		<property name="domainid" type="java.lang.String" update="true"
+			insert="true" column="DOMAINID" />
+			
+		<property name="sendDate" type="java.util.Date" update="true"
+			insert="true" column="SENDDATE" />
+
+		<property name="senderId" type="java.lang.String"
+			update="true" insert="true" column="SENDERID" />
+			
+		<property name="ownerId" type="java.lang.String"
+			update="true" insert="true" column="OWNERID" />
+			
+		<property name="inbox" type="java.lang.Boolean"
+			update="false" insert="true" column="ISINBOX" />
+		
+		<property name="outbox" type="java.lang.Boolean"
+			update="false" insert="true" column="ISOUTBOX" />	
+	</class>
+
+</hibernate-mapping>

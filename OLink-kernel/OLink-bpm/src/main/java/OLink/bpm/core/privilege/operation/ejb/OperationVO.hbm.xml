@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="OLink.bpm.core.privilege.operation.ejb.OperationVO"
+		table="T_OPERATION" lazy="false" batch-size="10">
+
+		<id name="id" column="ID" type="java.lang.String" length="100">
+			<generator class="assigned">
+				<!--
+					To add non XDoclet generator parameters, create a file named
+					hibernate-generator-params-DepartmentVO.xml containing the
+					additional parameters and place it in your merge dir.
+				-->
+			</generator>
+		</id>
+
+		<property name="name" type="java.lang.String" update="true"
+			insert="true" column="NAME" />
+
+		<property name="resType" type="java.lang.Integer" update="true"
+			insert="true" column="RESTYPE" />
+
+		<property name="code" type="java.lang.Integer" update="true"
+			insert="true" column="CODE" />
+		
+		<property name="applicationid" type="java.lang.String" update="true"
+			insert="true" column="APPLICATIONID" />			
+	</class>
+
+</hibernate-mapping>

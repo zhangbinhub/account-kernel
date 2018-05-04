@@ -1,0 +1,31 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+<!-- domain package -->
+	<package name="domain-front" extends="eWAP-default"
+		namespace="/portal/domain">
+
+		<action name="edit"
+			class="OLink.bpm.core.domain.action.DomainAction"
+			method="doEditByUser">
+			<result name="success" type="dispatcher">
+				/portal/share/uManageDomainInfo.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="save"
+			class="OLink.bpm.core.domain.action.DomainAction"
+			method="doSave">
+			<result name="input" type="dispatcher">
+				/portal/share/uManageDomainInfo.jsp
+			</result>
+			<result name="success" type="dispatcher">
+				/portal/share/uManageDomainInfo.jsp
+			</result>
+			<interceptor-ref name="defaultStack">
+			    <param name="workflow.excludeMethods">default</param>
+			</interceptor-ref>
+		
+		</action>
+	</package>
+</xwork>

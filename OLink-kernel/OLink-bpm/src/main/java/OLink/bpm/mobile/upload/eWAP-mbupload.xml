@@ -1,0 +1,22 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<package name="mbupload" extends="eWAP-default" namespace="/mobile/upload">
+		<action name="upload"
+			class="OLink.bpm.mobile.upload.MbUploadAction"
+			method="doUpload">
+			<result name="success" type="dispatcher">
+				upload.jsp
+			</result>
+			<result name="error" type="dispatcher">
+				/mobile/error.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				/mobile/error.jsp
+			</result>
+		   	<interceptor-ref name="validationWorkflowStack"/>
+			<interceptor-ref name="params" />
+		</action>
+		
+	</package>
+	
+</xwork>

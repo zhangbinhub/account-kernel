@@ -1,0 +1,171 @@
+// Source file:
+// C:\\Java\\workspace\\SmartWeb3\\src\\com\\cyberway\\dynaform\\form\\ejb\\InputField.java
+
+package OLink.bpm.core.dynaform.form.ejb;
+
+import OLink.bpm.core.dynaform.PermissionType;
+import OLink.bpm.core.dynaform.document.ejb.Document;
+import OLink.bpm.core.dynaform.document.ejb.Item;
+import OLink.bpm.core.macro.runner.IRunner;
+import OLink.bpm.core.user.action.WebUser;
+import OLink.bpm.util.sequence.Sequence;
+
+public class WordField extends FormField {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9221526684588846664L;
+
+	/**
+	 * @roseuid 41ECB66E012A
+	 */
+	public WordField() {
+
+	}
+
+	public ValidateMessage validate(IRunner runner, Document doc)
+			throws Exception {
+		return null;
+	}
+
+	public void store() {
+
+	}
+
+	/**
+	 * 
+	 * Form模版的WordField组件内容结合Document中的ITEM存放的值,返回重定义后的html
+	 * 
+	 * @param doc
+	 *            文档对象
+	 * @see OLink.bpm.base.action.ParamsTable#params
+	 * @see OLink.bpm.core.macro.runner.AbstractRunner#run(String, String)
+	 * @return 重定义后的html为Form模版的WordField组件内容结合Document中的ITEM存放的值
+	 * 
+	 */
+	public String toHtmlTxt(Document doc, IRunner runner, WebUser webUser)
+			throws Exception {
+		StringBuffer html = new StringBuffer();
+		Item item = null;
+		int displayType = getDisplayType(doc, runner);
+		if (displayType == PermissionType.HIDDEN) {
+			return toHiddenHtml(doc);
+		} else {
+			if (doc != null) {
+				item = doc.findItem(this.getName());
+
+				if (displayType == PermissionType.MODIFY) {
+					boolean isnew = false;
+					if (item == null) {
+						item = new Item();
+						try {
+							item.setId(Sequence.getSequence());
+						} catch (Exception e) {
+						}
+						isnew = true;
+					}
+
+					html.append("<script language='JavaScript'>");
+					html.append("var beforesave" + item.getId()
+							+ "=new Function(");
+					html.append("\"var iframe" + item.getId()
+							+ "=document.all.wordEditor" + item.getId() + ";");
+					html.append("iframe" + item.getId()
+							+ ".Document.all.btnsave.onclick();");
+					html.append("\");");
+					html.append("addfunction(beforesave_functions, beforesave"
+							+ item.getId() + ");");
+					html.append("</script>");
+					String src = "";
+					if (doc.is_new() || isnew) {
+						src = "/dynaform/document/newitem.do?id="
+								+ item.getId() + "&docid=" + doc.getId()
+								+ "&ISNEW=true&ISEDIT=TRUE&name="
+								+ item.getName() + "&_type=word";
+					} else {
+						src = "/dynaform/document/edititem.do?id="
+								+ item.getId() + "&docid=" + doc.getId()
+								+ "&ISNEW=false&ISEDIT=TRUE&name="
+								+ item.getName() + "&_type=word";
+					}
+
+					if (item != null) {
+						html
+								.append("<IFRAME ID='wordEditor"
+										+ item.getId()
+										+ "' src='"
+										+ src
+										+ "' frameborder='0' scrolling='no' width='100%' height='100%'></IFRAME>");
+					}
+				} else {
+					if (item != null) {
+						String src = "/dynaform/document/edititem.do?id="
+								+ item.getId() + "&docid=" + doc.getId()
+								+ "&ISNEW=false&ISEDIT=FALSE&name="
+								+ item.getName() + "&_type=word";
+						html
+								.append("<IFRAME ID='wordEditor"
+										+ item.getId()
+										+ "' src='"
+										+ src
+										+ "' frameborder='0' scrolling='no' width='100%' height='100%'></IFRAME>");
+					}
+				}
+			}
+		}
+		return html.toString();
+	}
+
+	/**
+	 * 返回模板描述文本
+	 * 
+	 * @return java.lang.String
+	 * @roseuid 41E7917A033F
+	 */
+	public String toTemplate() {
+		StringBuffer template = new StringBuffer();
+		template.append("<input type='text'");
+		template.append(" className='" + this.getClass().getName() + "'");
+		template.append(" id='" + getId() + "'");
+		template.append(" name='" + getName() + "'");
+		template.append(" formid='" + getFormid() + "'");
+		template.append(" discript='" + getDiscript() + "'");
+		template.append(" hiddenScript='" + getHiddenScript() + "'");
+		template.append(" hiddenPrintScript='" + getHiddenPrintScript() + "'");
+		template.append(">");
+		return template.toString();
+	}
+
+	/**
+	 * 重新计算
+	 * 
+	 * @roseuid 41DB89D700F9
+	 */
+	public void recalculate(IRunner runner, Document doc, WebUser webUser)
+			throws Exception {
+	}
+
+	/*
+	 * 运行计算Field值Script，返回值即为计算结果。
+	 * 
+	 * @return java.lang.String @roseuid 41DB8C1E03E7
+	 */
+	public Object runValueScript(IRunner runner, Document doc)
+			throws Exception {
+		return null;
+	}
+
+	public String toPrintHtmlTxt(Document doc, IRunner runner, WebUser webUser)
+			throws Exception {
+		return null;
+	}
+
+	@Override
+	public String toMbXMLText(Document doc, IRunner runner, WebUser webUser) throws Exception {
+		return null;
+	}
+
+}
+/*
+ * FormField InputField.init(java.lang.String){ return null; }
+ */

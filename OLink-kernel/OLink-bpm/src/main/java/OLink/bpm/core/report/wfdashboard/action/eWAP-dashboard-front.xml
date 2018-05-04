@@ -1,0 +1,51 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+<package name="wfdashboard" extends="eWAP-default"
+		namespace="/portal/share/report/wfdashboard">
+		<action name="sumbywf"
+				class="OLink.bpm.core.report.wfdashboard.action.WFDashBoardAction" method="doSumWF">
+			<interceptor-ref name="chain" />
+			<interceptor-ref name="basicStack" />
+			<result name="success" type="dispatcher">templet.jsp</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+		
+		<action name="sumbystl"
+				class="OLink.bpm.core.report.wfdashboard.action.WFDashBoardAction" method="doSumStateLabel">
+			<interceptor-ref name="chain" />
+			<interceptor-ref name="basicStack" />
+			<result name="success" type="dispatcher">templet.jsp</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+		
+			<action name="sumbytime"
+					class="OLink.bpm.core.report.wfdashboard.action.WFDashBoardAction" method="doSumTime">
+			<interceptor-ref name="chain" />
+			<interceptor-ref name="basicStack" />
+			<result name="success" type="dispatcher">templet.jsp</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+		
+			<action name="sumbyrole"
+					class="OLink.bpm.core.report.wfdashboard.action.WFDashBoardAction" method="doSumRole">
+			<interceptor-ref name="chain" />
+			<interceptor-ref name="basicStack" />
+			<result name="success" type="dispatcher">sumbyrole.jsp</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+		
+		<action name="query"
+				class="OLink.bpm.core.report.wfdashboard.action.WFDashBoardAction" method="doQuery">
+			<interceptor-ref name="chain" />
+			<interceptor-ref name="basicStack" />
+			<result name="success" type="dispatcher">sumframe.jsp</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+	</package>
+	
+</xwork>

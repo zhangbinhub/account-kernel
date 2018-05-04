@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="OLink.bpm.core.domain.level.ejb.DomainLevelVO" table="T_DOMAINLEVEL"
+		   lazy="false" batch-size="10">
+
+		<id name="id" column="ID" type="java.lang.String" length="100">
+			<generator class="assigned">
+				<!--  
+					To add non XDoclet generator parameters, create a file named 
+					hibernate-generator-params-DepartmentVO.xml 
+					containing the additional parameters and place it in your merge dir. 
+				-->
+			</generator>
+		</id>
+
+		<property name="name" type="java.lang.String" update="true"
+			insert="true" column="NAME" />
+		
+		<property name="sortId" type="java.lang.String" update="true"
+			insert="true" column="SORTID" />
+
+		<property name="description" type="text" update="true"
+			insert="true" column="DESCRIPTION" />
+
+		<property name="level" type="java.lang.String" update="true" insert="true"
+			column="DOMAINLEVEL" />
+		
+		<property name="userCount" type="int" update="true" insert="true"
+			column="USERCOUNT" />
+			
+		<property name="mobileUserCount" type="int" update="true" insert="true"
+			column="MOBILEUSERCOUNT" />
+		
+		<property name="price" type="double" update="true" insert="true"
+			column="PRICE" />	
+			
+		<set name="domains" table="T_DOMAIN" inverse="true" lazy="true"
+			cascade="all" sort="unsorted">
+
+			<key column="DOMAIN_LEVEL_ID"></key>
+
+			<one-to-many
+				class="OLink.bpm.core.domain.ejb.DomainVO" />
+
+		</set>
+		<!--
+			To add non XDoclet property mappings, create a file named
+			hibernate-properties-DepartmentVO.xml
+			containing the additional properties and place it in your merge dir.
+		-->
+
+	</class>
+
+</hibernate-mapping>

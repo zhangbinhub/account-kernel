@@ -1,0 +1,62 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<package name="dlogin" extends="eWAP-default" namespace="/desktop">
+		<action name="login" class="OLink.bpm.desktop.login.DLoginAction"
+			method="doLogin">
+			<result name="success" type="dispatcher">
+				/desktop/xml.jsp
+			</result>
+			<result name="error" type="dispatcher">
+				error.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				error.jsp
+			</result>
+			<interceptor-ref name="validationWorkflowStack" />
+			<interceptor-ref name="params" />
+		</action>
+		<action name="update" 
+			class="OLink.bpm.desktop.login.DLoginAction"
+			method="update">
+			<result name="success" type="dispatcher">
+				/desktop/xml.jsp
+			</result>
+			<result name="error" type="dispatcher">
+				error.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				error.jsp
+			</result>
+			<interceptor-ref name="validationWorkflowStack" />
+			<interceptor-ref name="params" />
+		</action>
+		<action name="change" class="OLink.bpm.desktop.login.DLoginAction"
+			method="doChange">
+			<result name="success" type="dispatcher">
+				/desktop/xml.jsp
+			</result>
+			<result name="error" type="dispatcher">
+				error.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				error.jsp
+			</result>
+			<interceptor-ref name="validationWorkflowStack" />
+			<interceptor-ref name="params" />
+		</action>
+		<action name="logout" class="OLink.bpm.desktop.login.DLoginAction"
+			method="doLogout">
+			<result name="success" type="dispatcher">
+				/desktop/xml.jsp
+			</result>
+		</action>
+		<action name="refreshuser" class="OLink.bpm.desktop.login.DLoginAction"
+			method="doRefreshUser">
+			<result name="success" type="dispatcher">
+				/desktop/xml.jsp
+			</result>
+		</action>
+	</package>
+
+
+</xwork>

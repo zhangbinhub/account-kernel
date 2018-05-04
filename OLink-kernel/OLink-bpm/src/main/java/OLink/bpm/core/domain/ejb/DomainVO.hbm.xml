@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="OLink.bpm.core.domain.ejb.DomainVO" table="T_DOMAIN"
+		   lazy="false" batch-size="10">
+
+		<id name="id" column="ID" type="java.lang.String" length="100">
+			<generator class="assigned">
+				<!--  
+					To add non XDoclet generator parameters, create a file named 
+					hibernate-generator-params-DepartmentVO.xml 
+					containing the additional parameters and place it in your merge dir. 
+				-->
+			</generator>
+		</id>
+
+		<property name="name" type="java.lang.String" update="true"
+			insert="true" column="NAME" />
+
+		<set name="departments" table="T_DEPARTMENT" inverse="true" lazy="true"
+			cascade="all" sort="unsorted">
+
+			<key column="DOMAIN_ID"></key>
+
+			<one-to-many
+				class="OLink.bpm.core.department.ejb.DepartmentVO" />
+
+		</set>
+
+		<many-to-one
+            name="level"
+            class="OLink.bpm.core.domain.level.ejb.DomainLevelVO"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            column="DOMAIN_LEVEL_ID"
+        />
+        
+		<set name="users" table="T_DOMAIN_SUPERUSER_SET" lazy="false"
+			inverse="false" cascade="all" sort="unsorted">
+
+			<key column="DOMAINID"></key>
+
+			<many-to-many
+					class="OLink.bpm.core.superuser.ejb.SuperUserVO" column="USERID"
+					outer-join="auto" />
+
+		</set>
+
+		<property name="sortId" type="java.lang.String" update="true"
+			insert="true" column="SORTID" />
+			
+		<property name="skinType" type="java.lang.String" update="true"
+			insert="true" column="SKINTYPE" />
+
+		<property name="description" type="text" update="true"
+			insert="true" column="DESCRIPTION" />
+
+		<set name="applications" table="T_DOMAIN_APPLICATION_SET"
+			lazy="false" inverse="false" cascade="save-update" sort="unsorted" order-by="APPLICATIONID">
+
+			<key column="DOMAINID"></key>
+
+			<many-to-many
+				class="OLink.bpm.core.deploy.application.ejb.ApplicationVO"
+				column="APPLICATIONID" outer-join="auto" />
+
+		</set>
+
+		<property name="status" type="int" update="true" insert="true"
+			column="STATUS" />
+		<!--
+			To add non XDoclet property mappings, create a file named
+			hibernate-properties-DepartmentVO.xml
+			containing the additional properties and place it in your merge dir.
+		-->
+
+		<property name="smsMemberCode" type="java.lang.String" update="true"
+			insert="true" column="SMSMEMBERCODE" />
+		
+		<property name="smsMemberPwd" type="java.lang.String" update="true"
+			insert="true" column="SMSMEMBERPWD" />
+			
+		<property name="log" type="java.lang.Boolean" update="true"
+			insert="true" column="IS_LOG" />
+	</class>
+
+</hibernate-mapping>

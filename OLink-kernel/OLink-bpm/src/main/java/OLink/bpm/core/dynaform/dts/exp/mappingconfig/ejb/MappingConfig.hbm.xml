@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="OLink.bpm.core.dynaform.dts.exp.mappingconfig.ejb.MappingConfig"
+        table="T_MAPPINGCONFIG"
+    >
+
+        <id
+            name="id"
+            column="ID"
+            type="java.lang.String"
+            length="100"
+        >
+            <generator class="assigned">
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-MappingConfig.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <many-to-one
+            name="module"
+            class="OLink.bpm.core.deploy.module.ejb.ModuleVO"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            column="MODULE"
+        />
+
+        <property
+            name="lastRun"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="LASTRUN"
+        />
+
+        <property
+            name="description"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="DESCRIPTION"
+        />
+
+        <property
+            name="name"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="NAME"
+        />
+
+        <property
+            name="valuescript"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="VALUESCRIPT"
+        />
+
+        <set
+            name="columnMappings"
+            table="T_COLUMNMAPPING"
+            lazy="false"
+            inverse="true"
+            cascade="delete"
+            sort="unsorted"
+        >
+
+            <key
+                column="MAPPINGCONFIG"
+            >
+            </key>
+
+            <one-to-many
+                  class="OLink.bpm.core.dynaform.dts.exp.columnmapping.ejb.ColumnMapping"
+            />
+
+        </set>
+
+        <property
+            name="tablename"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="TABLENAME"
+        />
+
+        <many-to-one
+            name="datasource"
+            class="OLink.bpm.core.dynaform.dts.datasource.ejb.DataSource"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            column="DATASOURCE"
+        />
+
+        <set
+            name="reports"
+            table="T_REPORT_MAPPING_SET"
+            lazy="false"
+            inverse="true"
+            cascade="none"
+            sort="unsorted"
+        >
+
+            <key
+                column="MAPPINGCONFIGS_ID"
+            >
+            </key>
+
+            <many-to-many
+                class="OLink.bpm.core.report.reportconfig.ejb.ReportConfig"
+                column="REPORT_ID"
+                outer-join="auto"
+             />
+
+        </set>
+
+        <property
+            name="sortId"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="SORTID"
+        />
+
+        <property
+            name="applicationid"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="APPLICATIONID"
+        />
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-MappingConfig.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

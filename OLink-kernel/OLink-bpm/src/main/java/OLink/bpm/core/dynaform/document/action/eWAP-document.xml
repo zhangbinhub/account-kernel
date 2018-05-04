@@ -1,0 +1,42 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<!-- document package -->
+	<package name="document" extends="eWAP-default" namespace="/core/dynaform/document">
+
+		<interceptors>
+			<interceptor-stack name="basicStack">
+				<interceptor-ref name="params" />
+				<interceptor-ref name="prepare" />
+			</interceptor-stack>
+
+
+			<interceptor-stack name="validationWorkflowStack">
+				<interceptor-ref name="basicStack" />
+				<interceptor-ref name="validation" />
+				<interceptor-ref name="workflow" />
+			</interceptor-stack>
+		</interceptors>
+
+		<action name="preview"
+			class="OLink.bpm.core.dynaform.document.action.DocumentAction"
+			method="doPreview">
+			<result name="success" type="dispatcher">
+				preview.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				preview.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="newword"
+			class="OLink.bpm.core.dynaform.document.action.DocumentAction"
+			method="doNewWord">
+			<result name="success" type="OBPMdispatcher">
+				/core/dynaform/form/word/content.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+
+	</package>
+</xwork>

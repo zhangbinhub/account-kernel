@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="OLink.bpm.core.deploy.application.ejb.ApplicationVO"
+		table="T_APPLICATION" lazy="false" dynamic-update="true">
+
+		<id name="id" column="ID" type="java.lang.String" length="100">
+			<generator class="assigned">
+				<!--
+					To add non XDoclet generator parameters, create a file named
+					hibernate-generator-params-ApplicationVO.xml containing the
+					additional parameters and place it in your merge dir.
+				-->
+			</generator>
+		</id>
+
+		<many-to-one name="homePage" class="OLink.bpm.core.homepage.ejb.HomePage"
+			cascade="none" outer-join="auto" update="true" insert="true" column="HOMEPAGE" />
+
+		<property name="domainName" type="java.lang.String" update="true"
+			insert="true" column="DOMAINNAME" />
+		<!--
+		<property name="sipAppkey" type="java.lang.String" update="true"
+			insert="true" column="SIPAPPKEY" />
+		
+		<property name="sipAppsecret" type="java.lang.String" update="true"
+			insert="true" column="SIPAPPSECRET" />
+		-->
+
+		<set name="modules" table="T_MODULE" lazy="false" inverse="true"
+			cascade="none" sort="unsorted" order-by="orderno">
+
+			<key column="APPLICATION"></key>
+
+			<one-to-many class="OLink.bpm.core.deploy.module.ejb.ModuleVO" />
+
+		</set>
+
+		<property name="description" type="text" update="true"
+			insert="true" column="DESCRIPTION"/>
+
+		<property name="isdefaultsite" type="boolean" update="true"
+			insert="true" column="ISDEFAULTSITE" />
+
+		<property name="ispublished" type="boolean" update="true"
+			insert="true" column="ISPUBLISHED" />
+
+		<property name="name" type="java.lang.String" update="true"
+			insert="true" column="NAME" />
+
+		<set name="owners" table="T_APPLICATION_SUPERUSER_SET" lazy="false"
+			inverse="false" cascade="all" sort="unsorted">
+
+			<key column="APPLICATIONID"></key>
+
+			<many-to-many class="OLink.bpm.core.superuser.ejb.SuperUserVO"
+				column="USERID" outer-join="auto" />
+
+		</set>
+
+		<property name="resourcepath" type="java.lang.String" update="true"
+			insert="true" column="RESOURCEPATH" />
+
+		<property name="serveraddress" type="java.lang.String"
+			update="true" insert="true" column="SERVERADDRESS" />
+
+		<property name="serverport" type="int" update="true" insert="true"
+			column="SERVERPORT" />
+
+		<property name="indextemplate" type="java.lang.String"
+			update="true" insert="true" column="INDEXTEMPLATE" />
+
+		<property name="welcomePage" type="java.lang.String" update="true"
+			insert="true" column="welcomePage" />
+
+		<property name="logourl" type="java.lang.String" update="true"
+			insert="true" column="logourl" />
+		
+		<property name="type" type="java.lang.String" update="true"
+			insert="true" column="type" />
+		
+		<property name="videodemo" type="java.lang.String" update="true"
+			insert="true" column="videodemo" />
+		
+		<property name="sortId" type="java.lang.String" update="true"
+			insert="true" column="SORTID" />
+
+		<property name="applicationid" type="java.lang.String"
+			update="true" insert="true" column="APPLICATIONID" />
+			
+		<property name="datasourceid" type="java.lang.String" 
+			update="true" insert="true" column="DATASOURCEID" />
+
+		<set name="domains" table="T_DOMAIN_APPLICATION_SET" lazy="false"
+			inverse="true" cascade="none" sort="unsorted">
+
+			<key column="APPLICATIONID"></key>
+
+			<many-to-many class="OLink.bpm.core.domain.ejb.DomainVO"
+				column="DOMAINID" outer-join="auto" />
+
+		</set>
+		
+		<property name="activated" type="boolean" update="true"
+			insert="true">
+			<column name="ACTIVATED" default="1" />
+		</property>
+		<!--
+			To add non XDoclet property mappings, create a file named
+			hibernate-properties-ApplicationVO.xml containing the additional
+			properties and place it in your merge dir.
+		-->
+
+	</class>
+
+</hibernate-mapping>

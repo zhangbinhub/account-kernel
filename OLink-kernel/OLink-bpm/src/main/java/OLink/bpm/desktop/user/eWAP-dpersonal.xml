@@ -1,0 +1,44 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<package name="duser" extends="eWAP-default" namespace="/desktop/user">
+		<action name="viewByLoginnoAndDomainName"
+			class="OLink.bpm.desktop.user.DUserAction"
+			method="doViewByLoginnoAndDomainName">
+			<result name="success" type="dispatcher">
+				/desktop/xml.jsp
+			</result>
+			<result name="error" type="dispatcher">
+				../error.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				../error.jsp
+			</result>
+		</action>
+		<action name="viewAdminByLoginno"
+			class="OLink.bpm.desktop.user.DUserAction"
+			method="doViewAdminByLoginno">
+			<result name="success" type="dispatcher">
+				/desktop/xml.jsp
+			</result>
+			<result name="error" type="dispatcher">
+				../error.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				../error.jsp
+			</result>
+		</action>
+		<action name="list"
+			class="OLink.bpm.desktop.user.DUserAction"
+			method="doList">
+			<result name="success" type="dispatcher">
+				/desktop/xml.jsp
+			</result>
+			<result name="error" type="dispatcher">
+				../error.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				../error.jsp
+			</result>
+		</action>
+	</package>
+</xwork>

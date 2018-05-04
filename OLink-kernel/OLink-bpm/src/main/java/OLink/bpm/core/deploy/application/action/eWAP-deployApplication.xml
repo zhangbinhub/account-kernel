@@ -1,0 +1,195 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<package name="deploy_application" extends="eWAP-default"
+		namespace="/core/deploy/application">
+		<action name="new"
+			class="OLink.bpm.core.deploy.application.action.ApplicationAction"
+			method="doNew">
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="edit"
+			class="OLink.bpm.core.deploy.application.action.ApplicationAction"
+			method="doEdit">
+			<result name="success" type="dispatcher">
+				/core/deploy/application/content.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="save"
+			class="OLink.bpm.core.deploy.application.action.ApplicationAction"
+			method="doSave">
+			<result name="input" type="dispatcher">content.jsp</result>
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="validationWorkflowStack" />
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="update"
+			class="OLink.bpm.core.deploy.application.action.ApplicationAction"
+			method="doSave">
+			<interceptor-ref name="params" />
+			<interceptor-ref name="validationWorkflowStack" />
+			<result name="input" type="dispatcher">content.jsp</result>
+			<result name="success" type="dispatcher">content.jsp</result>
+		</action>
+
+		<action name="addupdate"
+			class="OLink.bpm.core.deploy.application.action.ApplicationAction"
+			method="doSave">
+			<result name="input" type="dispatcher">content.jsp</result>
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="validationWorkflowStack" />
+			<interceptor-ref name="params" />
+		</action>
+		<action name="delete"
+			class="OLink.bpm.core.deploy.application.action.ApplicationAction"
+			method="doDelete">
+			<interceptor-ref name="params" />
+			<interceptor-ref name="chain" />
+			<result name="success" type="chain">list-apps</result>
+			<result name="input" type="chain">list-apps</result>
+		</action>
+
+		<action name="appdelete"
+			class="OLink.bpm.core.deploy.application.action.ApplicationAction"
+			method="doDelete">
+			<result name="success" type="dispatcher">
+				appnavigator.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="getmoduletree"
+			class="OLink.bpm.core.deploy.application.action.ApplicationAction"
+			method="doModuleTree">
+			<result name="success" type="dispatcher">
+				frames.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="list-apps"
+			class="OLink.bpm.core.deploy.application.action.ApplicationAction"
+			method="listApps">
+			<interceptor-ref name="params" />
+			<interceptor-ref name="chain" />
+			<result name="success" type="dispatcher">
+				list-apps.jsp
+			</result>
+			<result name="input" type="dispatcher">list-apps.jsp</result>
+		</action>
+
+		<!--
+			action name="viewapps"
+			class="ApplicationAction"
+			method="listAppsByDomain"> <result name="success"
+			type="dispatcher">list-apps.jsp</result> <interceptor-ref
+			name="params" /> </action
+		-->
+
+		<action name="listJoinedDeveloper"
+			class="OLink.bpm.core.deploy.application.action.ApplicationAction"
+			method="doListJoinedDeveloper">
+			<result name="success" type="dispatcher">
+				listjoineddeveloper.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				listjoineddeveloper.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="listUnjoinedDeveloper"
+			class="OLink.bpm.core.deploy.application.action.ApplicationAction"
+			method="doListUnjoinedDeveloper">
+			<result name="success" type="dispatcher">
+				listunjoineddeveloper.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="addDeveloper"
+			class="OLink.bpm.core.deploy.application.action.ApplicationAction"
+			method="doAddDeveloper">
+			<result name="input" type="dispatcher">
+				listunjoineddeveloper.jsp
+			</result>
+			<result name="success" type="dispatcher">
+				exit.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="removeDeveloper"
+			class="OLink.bpm.core.deploy.application.action.ApplicationAction"
+			method="doRemoveDeveloper">
+			<result name="input" type="dispatcher">
+				listjoineddeveloper.jsp
+			</result>
+			<result name="success" type="chain">
+				listJoinedDeveloper
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		<action name="copynew"
+			class="OLink.bpm.core.deploy.application.action.ApplicationAction"
+			method="doCopyNew">
+			<interceptor-ref name="params" />
+			<result name="success" type="dispatcher">content2.jsp</result>
+		</action>
+		<action name="copysave"
+			class="OLink.bpm.core.deploy.application.action.ApplicationAction"
+			method="doSave">
+			<interceptor-ref name="params" />
+			<interceptor-ref name="validationWorkflowStack" />
+			<result name="success" type="dispatcher">content2.jsp</result>
+			<result name="input" type="dispatcher">content2.jsp</result>
+		</action>
+		<action name="copy"
+			class="OLink.bpm.core.deploy.application.action.ApplicationAction"
+			method="doCopy">
+			<result name="success" type="dispatcher">
+				content2.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		<action name="createModuleTree"
+			class="OLink.bpm.core.deploy.application.action.ApplicationAction"
+			method="doCreateModuleTree">
+			<interceptor-ref name="params" />
+			<result name="success">frame.jsp</result>
+		</action>
+		<action name="synFormTable"
+			class="OLink.bpm.core.deploy.application.action.ApplicationAction"
+			method="doSynFormTable">
+			<interceptor-ref name="params" />
+			<interceptor-ref name="validationWorkflowStack" />
+			<result name="input" type="dispatcher">content.jsp</result>
+			<result name="success" type="dispatcher">content.jsp</result>
+		</action>
+
+		<!-- 2.6版本新增 ,创建应用的整个概览-->
+		<action name="createOverview"
+			class="OLink.bpm.core.deploy.application.action.ApplicationAction"
+			method="doCreateOverview">
+			<interceptor-ref name="defaultStack"/>
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">overview</param>
+				<param name="contentDisposition">attachment;filename="${overviewFile}"</param>
+				<param name="bufferSize">10240</param>
+			</result>
+			<result name="input">content.jsp</result>
+		</action>
+	</package>
+
+</xwork>

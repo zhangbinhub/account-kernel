@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>JSideTextPane Preferences</comment>
+<entry key="codeStyling.enable">true</entry>
+<entry key="lineHighlighting.enable">false</entry>
+<entry key="lineNumbers.enable">true</entry>
+<entry key="font.size">12</entry>
+<entry key="font.type">SansSerif</entry>
+<entry key="lineHighlight.color.r">223</entry>
+<entry key="lineHighlight.color.g">239</entry>
+<entry key="lineHighlight.color.b">255</entry>
+<entry key="normal.color.r">0</entry>
+<entry key="normal.color.g">0</entry>
+<entry key="normal.color.b">0</entry>
+<entry key="comments.color.r">0</entry>
+<entry key="comments.color.g">128</entry>
+<entry key="comments.color.b">64</entry>
+<entry key="keywords.color.r">192</entry>
+<entry key="keywords.color.g">126</entry>
+<entry key="keywords.color.b">138</entry>
+<entry key="string.color.r">0</entry>
+<entry key="string.color.g">0</entry>
+<entry key="string.color.b">255</entry>
+<entry key="numbers.color.r">255</entry>
+<entry key="numbers.color.g">0</entry>
+<entry key="numbers.color.b">0</entry>
+<entry key="braceMatching.color.r">255</entry>
+<entry key="braceMatching.color.g">255</entry>
+<entry key="braceMatching.color.b">0</entry>
+<entry key="lineNumbers.bgcolor.r">223</entry>
+<entry key="lineNumbers.bgcolor.g">239</entry>
+<entry key="lineNumbers.bgcolor.b">255</entry>
+<entry key="lineNumbers.fgcolor.r">0</entry>
+<entry key="lineNumbers.fgcolor.g">0</entry>
+<entry key="lineNumbers.fgcolor.b">0</entry>
+<entry key="keywords">function;var</entry>
+</properties>

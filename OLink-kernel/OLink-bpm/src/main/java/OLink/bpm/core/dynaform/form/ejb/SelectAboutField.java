@@ -1,0 +1,533 @@
+// Source file:
+// C:\\Java\\workspace\\SmartWeb3\\src\\com\\cyberway\\dynaform\\form\\ejb\\SelectField.java
+
+package OLink.bpm.core.dynaform.form.ejb;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Iterator;
+
+import OLink.bpm.core.dynaform.PermissionType;
+import OLink.bpm.core.dynaform.document.ejb.Document;
+import OLink.bpm.core.dynaform.document.ejb.Item;
+import OLink.bpm.core.macro.runner.AbstractRunner;
+import OLink.bpm.core.macro.runner.IRunner;
+import OLink.bpm.core.macro.runner.JavaScriptRunner;
+import OLink.bpm.core.table.constants.MobileConstant;
+import OLink.bpm.core.user.action.WebUser;
+import OLink.bpm.util.HtmlEncoder;
+import OLink.bpm.util.StringUtil;
+
+/**
+ * @author Marky
+ */
+public class SelectAboutField extends FormField implements ValueStoreField {
+	
+	private static final long serialVersionUID = -8469984129928896643L;
+
+	protected static String cssClass = "select-cmd";
+
+	/**
+	 * 计算多值选项
+	 * 
+	 * @uml.property name="optionsScript"
+	 */
+	protected String optionsScript;
+
+	private String calculateOnRefresh;
+
+	private String validateLibs;
+
+	private String authority;
+
+	private String editMode;
+
+	public String getEditMode() {
+		return editMode;
+	}
+
+	public void setEditMode(String editMode) {
+		this.editMode = editMode;
+	}
+
+	public String getAuthority() {
+		return authority;
+	}
+
+	public void setAuthority(String authority) {
+		this.authority = authority;
+	}
+
+	public String getValidateLibs() {
+		return validateLibs;
+	}
+
+	public void setValidateLibs(String validateLibs) {
+		this.validateLibs = validateLibs;
+	}
+
+	public String getCalculateOnRefresh() {
+		return calculateOnRefresh;
+	}
+
+	public void setCalculateOnRefresh(String calculateOnRefresh) {
+		this.calculateOnRefresh = calculateOnRefresh;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	private String name;
+
+	private String id;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	private String size;
+
+	public String getSize() {
+		return size;
+	}
+
+	public void setSize(String size) {
+		this.size = size;
+	}
+
+	/**
+	 * @roseuid 41ECB66D031D
+	 */
+	public SelectAboutField() {
+
+	}
+
+	/**
+	 * 返回多值选项脚本
+	 * 
+	 * @return Returns the optionsScript.
+	 * @uml.property name="optionsScript"
+	 */
+	public String getOptionsScript() {
+		return optionsScript;
+	}
+
+	/**
+	 * 设置多值选项脚本
+	 * 
+	 * @param optionsScript
+	 *            The optionsScript to set.
+	 * @uml.property name="optionsScript"
+	 */
+	public void setOptionsScript(String optionsScript) {
+		this.optionsScript = optionsScript;
+	}
+
+	/**
+	 * SelectField. 重新计算SelectField.
+	 * 
+	 * @roseuid 41DB89D700F9
+	 */
+	public void recalculate(IRunner runner, Document doc, WebUser webUser) throws Exception {
+		getLog().debug("SelectAboutField.recalculate");
+		runValueScript(runner, doc);
+		runOptionsScript(runner, doc);
+	}
+
+	public String toHtmlTxt(Document doc, IRunner runner, WebUser webUser) throws Exception {
+		StringBuffer html = new StringBuffer();
+		int displayType = getDisplayType(doc, runner, webUser);
+		if (displayType == PermissionType.HIDDEN) {
+			return this.getHiddenValue();
+		} else {
+			if (doc != null) {
+				if (displayType == PermissionType.MODIFY) {
+					try {
+						html.append("<select");
+						html.append(toAttr(doc, displayType));
+						html.append(">");
+	
+						html.append(runOptionsScript(runner, doc));
+						html.append("</select>");
+	
+						html.append(getInitScript(doc));
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}else{
+					html.append(getText(doc,runner,webUser));
+				}
+			}
+		}
+		return html.toString();
+	}
+
+	public String toGridHtmlText(Document doc, IRunner runner, WebUser webUser) throws Exception {
+		StringBuffer html = new StringBuffer();
+		int displayType = getDisplayType(doc, runner, webUser);
+		if (displayType == PermissionType.HIDDEN) {
+			return this.getHiddenValue();
+		} else {
+			if (doc != null) {
+				if (displayType == PermissionType.MODIFY) {
+					try {
+						html.append("<select");
+						html.append(toAttr(doc, displayType));
+						html.append(">");
+						html.append(runOptionsScript(runner, doc));
+						html.append("</select>");
+	
+						html.append(getInitScript(doc));
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}else{
+					html.append(getText(doc,runner,webUser));
+				}
+			}
+		}
+		return html.toString();
+	}
+
+	public String getInitScript(Document doc) {
+		StringBuffer script = new StringBuffer();
+		script.append("<script type='text/javascript'>");
+		script.append("jQuery('#" + getFieldId(doc) + "').multiselect2side({");
+		script.append("selectedPosition: 'right',");
+		script.append("moveOptions: false,");
+		script.append("labelsx: '',");
+		script.append("labeldx: ''");
+		script.append("});");
+		script.append("</script>");
+
+		return script.toString();
+	}
+
+	public String getRefreshScript(IRunner runner, Document doc, WebUser webUser) throws Exception {
+		return super.getRefreshScript(runner, doc, webUser);
+	}
+
+	private String toAttr(Document doc, int displayType) {
+		StringBuffer html = new StringBuffer();
+
+		html.append(" style='display:");
+		html.append(getTextType().equals("hidden") ? "none" : "inline");
+		html.append("'");
+		html.append(" id='" + getFieldId(doc) + "'");
+		html.append(" name='" + getName() + "'");
+		html.append(" fieldType='" + getTagName() + "'");
+		html.append(" multiple=true");
+		if (isRefreshOnChanged()) {
+			html.append(" onchange='dy_refresh(this.id)'");
+		}
+		if (displayType == PermissionType.READONLY || getTextType().equals("readonly")) {
+			html.append(" disabled ");
+		} else if (displayType == PermissionType.DISABLED) {
+			html.append(" disabled ");
+		}
+
+		return html.toString();
+	}
+
+	/**
+	 * 返回模板描述下拉选项
+	 * 
+	 * @return java.lang.String
+	 * @roseuid 41E7917A033F
+	 */
+	public String toTemplate() {
+		StringBuffer template = new StringBuffer();
+		template.append("<select'");
+		template.append(" className='" + this.getClass().getName() + "'");
+		template.append(" id='" + getId() + "'");
+		template.append(" name='" + getName() + "'");
+		template.append(" formid='" + getFormid() + "'");
+		template.append(" discript='" + getDiscript() + "'");
+		template.append(" hiddenScript='" + getHiddenScript() + "'");
+		template.append(" hiddenPrintScript='" + getHiddenPrintScript() + "'");
+		template.append(" refreshOnChanged='" + isRefreshOnChanged() + "'");
+		template.append(" validateRule='" + getValidateRule() + "'");
+		template.append(" valueScript='" + getValueScript() + "'");
+		template.append(" optionScript='" + getOptionsScript() + "'");
+		template.append(" onRefresh='" + isCalculateOnRefresh() + "'");
+		template.append("/>");
+		return template.toString();
+
+	}
+
+	/**
+	 * 返回执行多值选项脚本后重定义后的html，通过强化HTML标签及语法，表达下拉选项的布局、属性、事件、样式、等。
+	 * 
+	 * @param runner
+	 *            AbstractRunner<code>(执行脚本接口类)</code>
+	 * @see JavaScriptRunner#run(String, String)
+	 * 
+	 * @param doc
+	 *            文档对象
+	 * @return 字符串内容为重定义后的html的下拉选框标签及值
+	 * @throws Exception
+	 */
+	public String runOptionsScript(IRunner runner, Document doc) throws Exception {
+		return runOptionsScript(runner, doc, "HTML");
+	}
+
+	private String runOptionsScript(IRunner runner, Document doc, String stringType) throws Exception {
+
+		StringBuffer html = new StringBuffer();
+		Options options = getOptions(runner, doc);
+
+		if (stringType.equals("HTML")) {
+			if (options != null) {
+				return toOptionForHtml(options, doc);
+			}
+		} else if (stringType.equals("XML")) {
+			if (options != null) {
+				return toOptionForXml(options, doc);
+			} else {
+				html.append("<").append(MobileConstant.TAG_OPTION).append(">");
+				html.append("</").append(MobileConstant.TAG_OPTION).append(">");
+			}
+		}
+		return html.toString();
+	}
+
+	private Options getOptions(IRunner runner, Document doc) throws Exception {
+		Object result = null;
+		Options options = null;
+		if (getOptionsScript() != null && getOptionsScript().trim().length() > 0) {
+
+			result = runner.run(getScriptLable("OptionsScript"), StringUtil.dencodeHTML(getOptionsScript()));
+			if (result != null && result instanceof String) {
+
+				String[] strlst = ((String) result).split(";");
+				options = new Options();
+				for (int i = 0; i < strlst.length; i++) {
+					options.add(strlst[i], strlst[i]);
+				}
+			} else if (result instanceof Options) {
+				options = (Options) result;
+			}
+		}
+		return options;
+	}
+
+	/**
+	 * 返回执行多值选项脚本后重定义后的xml，通过强化HTML标签及语法，表达下拉选项的布局、属性、事件、样式、等。
+	 * 
+	 * @param runner
+	 *            AbstractRunner<code>(执行脚本接口类)</code>
+	 * @see JavaScriptRunner#run(String, String)
+	 * 
+	 * @param doc
+	 *            文档对象
+	 * @return 字符串内容为重定义后的xml的下拉选框标签及值
+	 * @throws Exception
+	 */
+	private String runOptionsScriptToXML(IRunner runner, Document doc) throws Exception {
+		return runOptionsScript(runner, doc, "XML");
+	}
+
+	/**
+	 * 根据打印时对应SelectField的显示类型不同,默认为MODIFY,返回的结果字符串不同.
+	 * 若Document不为空且打印时对应SelectField的显示类型不为HIDDEN且字段类型不为HIDDEN,
+	 * <P>
+	 * 并根据Form模版的SelectField组件内容结合Document中的ITEM存放的值,返回重定义后的打印html文本. 否则为空字符串.
+	 * 
+	 * @param doc
+	 *            Document
+	 * @param runner
+	 *            AbstractRunner(执行脚本的接口类)
+	 * @param params
+	 *            参数
+	 * @param user
+	 *            webuser
+	 * 
+	 * @see AbstractRunner#run(String, String)
+	 * @return 重定义后的打印html为Form模版的SelectField组件内容结合Document中的ITEM存放的值
+	 * @throws Exception
+	 */
+	public String toPrintHtmlTxt(Document doc, IRunner runner, WebUser webUser) throws Exception {
+		String html = "";
+		if (doc != null) {
+			int displayType = getPrintDisplayType(doc, runner, webUser);
+
+			if (displayType == PermissionType.HIDDEN) {
+				html = this.getPrintHiddenValue();
+			}else{
+				html = getText(doc, runner, webUser)+printHiddenElement(doc);
+			}
+		}
+//		else{
+//			html = printHiddenElement(doc);
+//		}
+		return html;
+	}
+
+	private String toOptionForHtml(Options options, Document doc) {
+		StringBuffer html = new StringBuffer();
+
+		Collection<String> selectedList = new ArrayList<String>();
+		if (doc != null) {
+			Item item = doc.findItem(this.getName());
+			if (item != null) {
+				String valueStr = item.getTextvalue();
+				if (!StringUtil.isBlank(valueStr)) {
+					String[] values = valueStr.split(";");
+					selectedList = Arrays.asList(values);
+				}
+			}
+		}
+
+		Iterator<Option> iter = options.getOptions().iterator();
+		while (iter.hasNext()) {
+			Option element = iter.next();
+			if (element.getValue() != null) {
+				html.append("<option");
+				if (selectedList.contains(element.getValue())) {
+					html.append(" selected ");
+				} else {
+					if (element.isDef()) {
+						html.append(" selected ");
+					}
+				}
+				html.append(" class='" + cssClass + "'");
+				html.append(" value='");
+			}
+			html.append(HtmlEncoder.encode(element.getValue()));
+			html.append("'");
+			html.append(">");
+			html.append(element.getOption()).append("</option>");
+		}
+		// 默认选中一个空选项
+		html.append("<option class='" + cssClass + "' value=''></option>");
+		
+		return html.toString();
+	}
+
+	public boolean isRender(String destVal, String origVal) {
+		if (optionsScript != null && optionsScript.trim().length() > 0) {
+			return true;
+		}
+		return super.isRender(destVal, origVal);
+	}
+
+	public String toMbXMLText(Document doc, IRunner runner, WebUser webUser) throws Exception {
+		StringBuffer xmlText = new StringBuffer();
+		int displayType = getDisplayType(doc, runner, webUser);
+
+		if (doc != null) {
+			xmlText.append("<").append(MobileConstant.TAG_SELECTFIELD);
+			xmlText.append(" ").append(MobileConstant.ATT_ID + "='" + getId() + "'");
+			xmlText.append(" ").append(MobileConstant.ATT_NAME + "='" + getName() + "'");
+			xmlText.append(" ").append(MobileConstant.ATT_LABEL).append("='").append(getName()).append("'");
+
+			if (displayType == PermissionType.READONLY || (getTextType() != null && getTextType().equalsIgnoreCase("readonly"))
+					|| displayType == PermissionType.DISABLED) {
+				xmlText.append(" ").append(MobileConstant.ATT_READONLY + "='true' ");
+			}
+			if (displayType == PermissionType.HIDDEN) {
+				xmlText.append(" ").append(MobileConstant.ATT_HIDDEN).append(" ='true' ");
+			}
+			if (isRefreshOnChanged()) {
+				xmlText.append(" ").append(MobileConstant.ATT_REFRESH).append(" ='true' ");
+			}
+			xmlText.append(">");
+			try {
+				xmlText.append(runOptionsScriptToXML(runner, doc));
+				xmlText.append("</").append(MobileConstant.TAG_SELECTFIELD + ">");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		}
+		return xmlText.toString();
+	}
+
+	private String toOptionForXml(Options options, Document doc) {
+		StringBuffer html = new StringBuffer();
+
+		Object value = null;
+		if (doc != null) {
+			Item item = doc.findItem(this.getName());
+			if (item != null)
+				value = item.getValue();
+		}
+
+		Iterator<Option> iter = options.getOptions().iterator();
+		int count = 0;
+		boolean flag = true;
+		while (iter.hasNext()) {
+			Option element = iter.next();
+			if (element.getValue() != null) {
+				html.append("<").append(MobileConstant.TAG_OPTION).append("");
+				if (flag) {
+					if (value != null && element.getValue() != null) {
+						if (value.equals(element.getValue())) {
+							html.append(" ").append(MobileConstant.ATT_SELECTED).append("='" + count + "'");
+							flag = false;
+						}
+					} else {
+						if (element.isDef()) {
+							html.append(" ").append(MobileConstant.ATT_SELECTED).append("='" + count + "'");
+							flag = false;
+						}
+					}
+				}
+				html.append(" ").append(MobileConstant.ATT_VALUE).append("='");
+
+				html.append(HtmlEncoder.encode(element.getValue()));
+				html.append("'");
+
+				html.append(">");
+
+				if (element.getOption() != null && !element.getOption().trim().equals(""))
+					html.append(HtmlEncoder.encode(element.getOption()));
+				else
+					html.append("{*[Select]*}");
+				html.append("</").append(MobileConstant.TAG_OPTION).append(">");
+				count++;
+			}
+		}
+		return html.toString();
+	}
+
+	/**
+	 * 视图中显示的真实值
+	 */
+	public String getText(Document doc, IRunner runner, WebUser webUser) throws Exception {
+		if (!StringUtil.isBlank(doc.getParentid()) && getDisplayType(doc, runner, webUser) == PermissionType.HIDDEN) {
+			return this.getHiddenValue();
+		}
+		Options options = getOptions(runner, doc);
+		if (options != null&&!doc.getItemValueAsString(getName()).equals("")) {
+			StringBuffer sb = new StringBuffer();
+			for (Iterator<Option> iterator = options.getOptions().iterator(); iterator.hasNext();) {
+				Option option = iterator.next();
+				String[] itemArray = doc.getItemValueAsString(getName()).split(";");
+				for(int i=0;i<itemArray.length;i++){
+					if (option.getValue().equals(itemArray[i])) {
+						sb.append(option.getOption());
+						sb.append(";");
+						break;
+					}
+				}
+			}
+			if(sb.lastIndexOf(";")!=-1){
+				sb.deleteCharAt(sb.lastIndexOf(";"));
+			}
+			return sb.toString();
+		}
+
+		return "";
+	}
+}

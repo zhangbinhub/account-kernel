@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="OLink.bpm.core.report.reportconfig.ejb.ReportConfig"
+        table="T_REPORTCONFIG"
+    >
+
+        <id
+            name="id"
+            column="ID"
+            type="java.lang.String"
+        >
+            <generator class="assigned">
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-ReportConfig.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="creatReportType"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="CREATREPORTTYPE"
+        />
+
+        <property
+            name="title"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="TITLE"
+        />
+
+        <set
+            name="fields"
+            table="T_TABLECOLUMN"
+            lazy="false"
+            cascade="all"
+            sort="unsorted"
+        >
+
+            <key
+                column="REPORTCONFIG_ID"
+            >
+            </key>
+
+            <one-to-many
+                  class="OLink.bpm.core.report.tablecolumn.ejb.TableColumn"
+            />
+
+        </set>
+
+        <many-to-one
+            name="query"
+            class="OLink.bpm.core.report.query.ejb.Query"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            column="QUERY_ID"
+        />
+
+        <many-to-one
+            name="application"
+            class="OLink.bpm.core.deploy.application.ejb.ApplicationVO"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            column="APPLICATION"
+        />
+
+        <many-to-one
+            name="module"
+            class="OLink.bpm.core.deploy.module.ejb.ModuleVO"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            column="MODULE"
+        />
+
+        <property
+            name="reportType"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="REPORTTYPE"
+        />
+
+        <many-to-one
+            name="dataSource"
+            class="OLink.bpm.core.dynaform.dts.datasource.ejb.DataSource"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            column="DATASOURCE_ID"
+        />
+
+        <many-to-one
+            name="form_application"
+            class="OLink.bpm.core.deploy.application.ejb.ApplicationVO"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            column="FORM_APPLICATION"
+        />
+
+        <many-to-one
+            name="form_module"
+            class="OLink.bpm.core.deploy.module.ejb.ModuleVO"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            column="FORM_MODULE"
+        />
+
+        <property
+            name="jrxml"
+            type="text"
+            update="true"
+            insert="true"
+            column="JRXML"
+        />
+
+        <set
+            name="mappingconfigs"
+            table="T_REPORT_MAPPING_SET"
+            lazy="true"
+            cascade="save-update"
+            sort="unsorted"
+        >
+
+            <key
+                column="REPORT_ID"
+            >
+            </key>
+
+            <many-to-many
+                class="OLink.bpm.core.dynaform.dts.exp.mappingconfig.ejb.MappingConfig"
+                column="MAPPINGCONFIGS_ID"
+                outer-join="auto"
+             />
+
+        </set>
+
+        <property
+            name="name"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="NAME"
+        />
+
+        <many-to-one
+            name="searchForm"
+            class="OLink.bpm.core.dynaform.form.ejb.Form"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            column="FORM_ID"
+        />
+
+        <property
+            name="crossTable_CalculateType"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="CROSSTABLE_CALCULATETYPE"
+        />
+
+        <property
+            name="crossTable_CalculateField"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="CROSSTABLE_CALCULATEFIELD"
+        />
+
+        <property
+            name="sortId"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="SORTID"
+        />
+
+        <property
+            name="instanceId"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="INSTANCEID"
+        />
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-ReportConfig.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class
+		name="OLink.bpm.core.shortmessage.submission.ejb.SubmitMessageVO"
+		table="T_SHORTMESSAGE_SUBMIT" lazy="true" batch-size="10">
+
+		<id name="id" column="ID" type="java.lang.String" length="100">
+			<generator class="assigned">
+				<!--  
+					To add non XDoclet generator parameters, create a file named 
+					hibernate-generator-params-PersonalMessageVO.xml 
+					containing the additional parameters and place it in your merge dir. 
+				-->
+			</generator>
+		</id>
+
+		<property name="contentType" type="int" update="true"
+			insert="true" column="CONTENTTYPE" />
+
+		<property name="title" type="java.lang.String" update="true"
+			insert="true" column="TITLE" />
+
+		<property name="content" type="text" update="true" insert="true"
+			column="CONTENT" />
+
+		<property name="sendDate" type="java.util.Date" update="true"
+			insert="true" column="SENDDATE" />
+
+		<property name="replyCode" type="java.lang.String" update="true"
+			insert="true" column="REPLYCODE" />
+
+		<property name="sender" type="java.lang.String" update="true"
+			insert="true" column="SENDER" />
+
+		<property name="receiverUserID" type="java.lang.String" update="true"
+			insert="true" column="RECEIVERUSERID" />
+			
+		<property name="receiver" type="text" update="true"
+			insert="true" column="RECEIVER" />
+
+		<property name="submission" type="boolean" update="true"
+			insert="true" column="SUBMISSION" />
+
+		<property name="failure" type="boolean" update="true"
+			insert="true" column="ISFAILURE" />
+
+		<property name="reply" type="boolean" update="true"
+			insert="true" column="ISREPLY" />
+
+		<property name="trash" type="boolean" update="true"
+			insert="true" column="ISTRASH" />
+
+		<property name="draft" type="boolean" update="true"
+			insert="true" column="ISDRAFT" />
+
+		<property name="needReply" type="boolean" update="true"
+			insert="true" column="NEEDREPLY" />
+
+		<property name="mass" type="boolean" update="true" insert="true"
+			column="MASS" />
+
+		<property name="docid" type="java.lang.String" update="true"
+			insert="true" column="DOCID" />
+
+		<property name="applicationid" type="java.lang.String"
+			update="true" insert="true" column="APPLICATIONID" />
+			
+		<property name="domainid" type="java.lang.String"
+			update="true" insert="true" column="DOMAINID" />
+
+		<!--
+			To add non XDoclet property mappings, create a file named
+			hibernate-properties-PersonalMessageVO.xml
+			containing the additional properties and place it in your merge dir.
+		-->
+
+	</class>
+
+</hibernate-mapping>

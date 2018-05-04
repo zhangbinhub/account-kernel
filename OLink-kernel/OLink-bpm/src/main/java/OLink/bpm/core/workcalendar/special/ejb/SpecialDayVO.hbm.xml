@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="OLink.bpm.core.workcalendar.special.ejb.SpecialDayVO"
+        table="T_SPECIALDAY"
+        lazy="false"
+        batch-size="10"
+    >
+
+        <id
+            name="id"
+            column="ID"
+            type="java.lang.String"
+            length="100"
+        >
+            <generator class="assigned">
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-DepartmentVO.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        
+       <many-to-one
+            name="calendar"
+            class="OLink.bpm.core.workcalendar.calendar.ejb.CalendarVO"
+            cascade="save-update"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            column="CALENDAR"
+        />
+        
+        <property
+            name="workingDayStatus"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="STATUS"
+        />
+
+       <property
+            name="startDate"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="STARTDATE"
+        />
+		
+		<property
+            name="endDate"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="ENDDATE"
+        />
+        
+        <property
+            name="startTime1"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="STARTTIME1"
+        />
+		
+		<property
+            name="endTime1"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="ENDTIME1"
+        />
+        
+        <property
+            name="startTime2"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="STARTTIME2"
+        />
+		
+		<property
+            name="endTime2"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="ENDTIME2"
+        />
+        
+        <property
+            name="startTime3"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="STARTTIME3"
+        />
+		
+		<property
+            name="endTime3"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="ENDTIME3"
+        />
+        
+        <property
+            name="startTime4"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="STARTTIME4"
+        />
+		
+		<property
+            name="endTime4"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="ENDTIME4"
+        />
+        
+        <property
+            name="startTime5"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="STARTTIME5"
+        />
+		
+		<property
+            name="endTime5"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="ENDTIME5"
+        />
+        
+        <property
+            name="weekDays"
+            type="int"
+            update="true"
+            insert="true"
+            column="WORKDAYS"
+        />
+        
+        <property
+            name="domainid"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="DOMAINID"
+        />
+		
+        <property
+            name="lastModifyDate"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="LASTMODIFYDATE"
+        />
+
+        <property
+            name="sortId"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="SORTID"
+        />
+
+        <property
+            name="applicationid"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="APPLICATIONID"
+        />
+		
+		<property
+			name="remark"
+			type="java.lang.String"
+            update="true"
+            insert="true"
+            column="CONTEXT"
+        />
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-DepartmentVO.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

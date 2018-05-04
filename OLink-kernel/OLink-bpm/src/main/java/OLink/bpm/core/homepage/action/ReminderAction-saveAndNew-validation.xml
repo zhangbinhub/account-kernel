@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE validators PUBLIC
+  		"-//OpenSymphony Group//XWork Validator 1.0//EN" 
+  		"http://www.opensymphony.com/xwork/xwork-validator-1.0.2.dtd">
+
+<validators>
+	<field name="content.title">
+		<field-validator type="requiredstring">
+			<message>{*[page.title.notexist]*}!</message>
+		</field-validator>
+	</field>
+	<field name="content.moduleid">
+		<field-validator type="requiredstring">
+			<message>{*[page.moduleid.notexist]*}!</message>
+		</field-validator>
+	</field>
+	<field name="content.formId">
+		<field-validator type="requiredstring">
+			<message>{*[page.formid.notexist]*}!</message>
+		</field-validator>
+	</field>
+	<field name="content.orderby">
+		<field-validator type="requiredstring">
+			<message>{*[page.orderby.notexist]*}!</message>
+		</field-validator>
+	</field>
+</validators>

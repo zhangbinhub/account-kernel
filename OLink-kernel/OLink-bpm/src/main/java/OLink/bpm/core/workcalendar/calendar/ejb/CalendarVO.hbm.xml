@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="OLink.bpm.core.workcalendar.calendar.ejb.CalendarVO"
+        table="T_CALENDAR"
+        lazy="false"
+        batch-size="10"
+    >
+
+        <id
+            name="id"
+            column="ID"
+            type="java.lang.String"
+            length="100"
+        >
+            <generator class="assigned">
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-DepartmentVO.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+       <property
+            name="type"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="CALENDARTYPE"
+        />
+		
+		<property
+            name="name"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="CALENDARNAME"
+        />
+      
+		<set
+            name="standardDays"
+            table="T_STANDARDDAY"
+            lazy="false"
+            cascade="all"
+            sort="unsorted"
+        >
+
+            <key
+                column="CALENDAR_ID"
+            >
+            </key>
+
+            <one-to-many
+                  class="OLink.bpm.core.workcalendar.standard.ejb.StandardDayVO"
+            />
+
+        </set>
+        
+        <set
+            name="specialDays"
+            table="T_SPECIALDAY"
+            lazy="false"
+            cascade="delete"
+            sort="unsorted"
+        >
+
+            <key
+                column="CALENDARID"
+            >
+            </key>
+
+            <one-to-many
+                  class="OLink.bpm.core.workcalendar.special.ejb.SpecialDayVO"
+            />
+
+        </set>
+        
+        <property
+            name="lastModifyDate"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="LASTMODIFYDATE"
+        />
+
+        <property
+            name="sortId"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="SORTID"
+        />
+        
+        <property
+            name="applicationid"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="APPLICATIONID"
+        />
+        
+        <property
+            name="domainid"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="DOMAINID"
+        />
+		
+		<property
+			name="remark"
+			type="java.lang.String"
+            update="true"
+            insert="true"
+            column="REMARK"
+        />
+        
+        <property
+			name="workingTime"
+			type="int"
+            update="true"
+            insert="true"
+            column="WORKINGTIME"
+        />
+        
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-DepartmentVO.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

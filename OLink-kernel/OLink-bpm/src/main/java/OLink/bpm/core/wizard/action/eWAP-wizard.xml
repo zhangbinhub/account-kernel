@@ -1,0 +1,449 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+
+	<!-- workflow FlogLog package -->
+	<package name="wizard" extends="eWAP-default" namespace="/core/wizard">
+
+		<action name="tostart" class="OLink.bpm.core.wizard.action.WizardAction"
+			method="doStart">
+			<interceptor-ref name="scope">
+				<param name="key">wizard</param>
+				<param name="type">start</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result type="dispatcher">step1_module.jsp</result>
+		</action>
+
+		<action name="toStep2" class="OLink.bpm.core.wizard.action.WizardAction"
+			method="doToStep2">
+			<interceptor-ref name="scope">
+				<param name="key">wizard</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="input" type="dispatcher">step1_module.jsp</result>
+			<result name="success" type="dispatcher">step2_form.jsp</result>
+		</action>
+		<action name="backToStep1" class="OLink.bpm.core.wizard.action.WizardAction"
+			method="doBackToStep1">
+			<interceptor-ref name="scope">
+				<param name="key">wizard</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="input" type="dispatcher">step2_form.jsp</result>
+			<result name="success" type="dispatcher">step1_module.jsp</result>
+		</action>
+
+		<action name="toStep2FormInfo" class="OLink.bpm.core.wizard.action.WizardAction"
+			method="doToStep2FormInfo">
+			<interceptor-ref name="scope">
+				<param name="key">wizard</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="input" type="dispatcher">step2_form.jsp</result>
+			<result name="success" type="dispatcher">step2_form_info.jsp</result>
+		</action>
+
+		<action name="toStep2FormInfoSub" class="OLink.bpm.core.wizard.action.WizardAction"
+			method="doToStep2FormInfoSub">
+			<interceptor-ref name="scope">
+				<param name="key">wizard</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="input" type="dispatcher">step2_form.jsp</result>
+			<result name="success" type="dispatcher">step2_form_info_sub.jsp
+			</result>
+		</action>
+
+		<action name="backToFormType" class="OLink.bpm.core.wizard.action.WizardAction"
+			method="doBackToFormType">
+			<interceptor-ref name="scope">
+				<param name="key">wizard</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="input" type="dispatcher">step2_form_info.jsp</result>
+			<result name="success" type="dispatcher">step2_form.jsp</result>
+		</action>
+
+		<action name="backToFormTypeSub" class="OLink.bpm.core.wizard.action.WizardAction"
+			method="doBacktoformTypeSub">
+			<interceptor-ref name="scope">
+				<param name="key">wizard</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="input" type="dispatcher">step2_form_info_sub.jsp
+			</result>
+			<result name="success" type="dispatcher">step2_form.jsp</result>
+		</action>
+
+		<action name="toStep2Field" class="OLink.bpm.core.wizard.action.WizardAction"
+			method="doToStep2Field">
+			<interceptor-ref name="scope">
+				<param name="key">wizard</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="input" type="dispatcher">step2_form_info.jsp</result>
+			<result name="success" type="dispatcher">step2_form_fields.jsp
+			</result>
+		</action>
+
+		<action name="backToFormInfo" class="OLink.bpm.core.wizard.action.WizardAction"
+			method="doBackToFormInfo">
+			<interceptor-ref name="scope">
+				<param name="key">wizard</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="input" type="dispatcher">step2_form_fields.jsp
+			</result>
+			<result name="success" type="dispatcher">step2_form_info.jsp</result>
+		</action>
+
+		<action name="toStep2FieldSub" class="OLink.bpm.core.wizard.action.WizardAction"
+			method="doToStep2FieldSub">
+			<interceptor-ref name="scope">
+				<param name="key">wizard</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="input" type="dispatcher">step2_form_info_sub.jsp
+			</result>
+			<result name="success" type="dispatcher">step2_form_fields_sub.jsp
+			</result>
+		</action>
+
+		<action name="backToFormInfoSub" class="OLink.bpm.core.wizard.action.WizardAction"
+			method="doBackToFormInfoSub">
+			<interceptor-ref name="scope">
+				<param name="key">wizard</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="input" type="dispatcher">step2_form_fields_sub.jsp
+			</result>
+			<result name="success" type="dispatcher">step2_form_info_sub.jsp
+			</result>
+		</action>
+
+		<action name="toStep2Style" class="OLink.bpm.core.wizard.action.WizardAction"
+			method="doToStep2Style">
+			<interceptor-ref name="scope">
+				<param name="key">wizard</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="input" type="dispatcher">step2_form_fields.jsp
+			</result>
+			<result name="success" type="dispatcher">step2_form_style.jsp</result>
+		</action>
+
+		<action name="toSubFormView" class="OLink.bpm.core.wizard.action.WizardAction"
+			method="doToSubFormView">
+			<interceptor-ref name="scope">
+				<param name="key">wizard</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="input" type="dispatcher">step2_form_style.jsp</result>
+			<result name="success" type="dispatcher">step2_form_sub_view.jsp
+			</result>
+		</action>
+
+		<action name="backToField" class="OLink.bpm.core.wizard.action.WizardAction"
+			method="doBackToField">
+			<interceptor-ref name="scope">
+				<param name="key">wizard</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="input" type="dispatcher">step2_form_style.jsp</result>
+			<result name="success" type="dispatcher">step2_form_fields.jsp
+			</result>
+		</action>
+
+		<action name="toStep2StyleSub" class="OLink.bpm.core.wizard.action.WizardAction"
+			method="doToStep2StyleSub">
+			<interceptor-ref name="scope">
+				<param name="key">wizard</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="input" type="dispatcher">step2_form_fields_sub.jsp
+			</result>
+			<result name="success" type="dispatcher">step2_form_style_sub.jsp
+			</result>
+		</action>
+
+		<action name="backToFieldSub" class="OLink.bpm.core.wizard.action.WizardAction"
+			method="doBackToFieldSub">
+			<interceptor-ref name="scope">
+				<param name="key">wizard</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="input" type="dispatcher">step2_form_style_sub.jsp
+			</result>
+			<result name="success" type="dispatcher">step2_form_fields_sub.jsp
+			</result>
+		</action>
+
+		<action name="toFormSuccess" class="OLink.bpm.core.wizard.action.WizardAction"
+			method="doToFormSuccess">
+			<interceptor-ref name="scope">
+				<param name="key">wizard</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="input" type="dispatcher">step2_form_style.jsp</result>
+			<result name="success" type="dispatcher">step3_workflow.jsp</result>
+			<result name="toSubForm" type="dispatcher">step2_form_info_sub.jsp
+			</result>
+		</action>
+		
+		<action name="toSubFormSuccess" class="OLink.bpm.core.wizard.action.WizardAction"
+			method="doToSubFormSuccess">
+			<interceptor-ref name="scope">
+				<param name="key">wizard</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="input" type="dispatcher">step2_form_sub_view.jsp</result>
+			<result name="success" type="dispatcher">step3_workflow.jsp</result>
+		</action>
+
+		<action name="backToFormSuccess" class="OLink.bpm.core.wizard.action.WizardAction"
+			method="doBackFormSuccess">
+			<interceptor-ref name="scope">
+				<param name="key">wizard</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="input" type="dispatcher">step3 _workflow.jsp</result>
+			<result name="success" type="dispatcher">step2_success.jsp</result>
+		</action>
+
+		<action name="toewebedit" class="OLink.bpm.core.wizard.action.WizardAction"
+			method="doToEwebEdit">
+
+			<interceptor-ref name="defaultStack" />
+			<result name="input" type="dispatcher">step2_success.jsp</result>
+			<result name="success" type="chain">
+				<param name="actionName">toewebedit</param>
+				<param name="namespace">/core/dynaform/form</param>
+			</result>
+			<result name="toSubForm">step2_form_info_sub.jsp
+			</result>
+		</action>
+
+		<action name="backtoStep2Style" class="OLink.bpm.core.wizard.action.WizardAction"
+			method="doBackToStep2Style">
+			<interceptor-ref name="scope">
+				<param name="key">wizard</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<result name="toStyle" type="dispatcher">step2_form_style.jsp</result>
+			<result name="toStyleSub" type="dispatcher">step2_form_style_sub.jsp
+			</result>
+		</action>
+
+		<action name="tostep4" class="OLink.bpm.core.wizard.action.WizardAction"
+			method="doTostep4">
+			<interceptor-ref name="scope">
+				<param name="key">wizard</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="input" type="dispatcher">step2_success.jsp</result>
+			<result name="success" type="dispatcher">step4_resource.jsp</result>
+		</action>
+		<action name="toviewtype" class="OLink.bpm.core.wizard.action.WizardAction"
+			method="doToviewType">
+			<interceptor-ref name="scope">
+				<param name="key">wizard</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="input" type="dispatcher">step5_view.jsp</result>
+			<result name="success" type="dispatcher">step5_view_type.jsp</result>
+		</action>
+		<action name="toviewcolumn" class="OLink.bpm.core.wizard.action.WizardAction"
+			method="doToviewColumn">
+			<interceptor-ref name="scope">
+				<param name="key">wizard</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="input" type="dispatcher">step5_view_type.jsp</result>
+			<result name="success" type="dispatcher">step5_view_column.jsp
+			</result>
+		</action>
+		<action name="backtostep2" class="OLink.bpm.core.wizard.action.WizardAction"
+			method="doBacktostep2">
+			<interceptor-ref name="scope">
+				<param name="key">wizard</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="input" type="dispatcher">step4_resource.jsp</result>
+			<result name="success" type="dispatcher">step2_form.jsp</result>
+		</action>
+
+		<action name="tostep5" class="OLink.bpm.core.wizard.action.WizardAction"
+			method="doTostep5">
+			<interceptor-ref name="scope">
+				<param name="key">wizard</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="input" type="dispatcher">step4_resource.jsp</result>
+			<result name="success" type="dispatcher">step5_view.jsp</result>
+		</action>
+
+		<action name="backtostep4" class="OLink.bpm.core.wizard.action.WizardAction"
+			method="doBacktostep4">
+			<interceptor-ref name="scope">
+				<param name="key">wizard</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="input" type="dispatcher">step5_view.jsp</result>
+			<result name="success" type="dispatcher">step4_resource.jsp</result>
+		</action>
+
+		<action name="toviewfilter" class="OLink.bpm.core.wizard.action.WizardAction"
+			method="doViewFilter">
+			<interceptor-ref name="scope">
+				<param name="key">wizard</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="input" type="dispatcher">step5_view_column.jsp
+			</result>
+			<result name="success" type="dispatcher">step5_view_filter.jsp
+			</result>
+		</action>
+		<action name="toviewsuccess" class="OLink.bpm.core.wizard.action.WizardAction"
+			method="doViewSuccess">
+			<interceptor-ref name="scope">
+				<param name="key">wizard</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="input" type="dispatcher">step5_view_filter.jsp
+			</result>
+			<result name="success" type="dispatcher">step5_viewsuccess.jsp
+			</result>
+		</action>
+		<action name="tonewflow" class="OLink.bpm.core.wizard.action.WizardAction"
+			method="doNewFlow">
+			<interceptor-ref name="scope">
+				<param name="key">wizard</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="input" type="dispatcher">step2_success.jsp</result>
+			<result name="success" type="dispatcher">step3_workflow.jsp</result>
+		</action>
+		<action name="toworkflowtype" class="OLink.bpm.core.wizard.action.WizardAction"
+			method="doWorkFlowType">
+			<interceptor-ref name="scope">
+				<param name="key">wizard</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="input" type="dispatcher">step3_workflow.jsp</result>
+			<result name="success" type="dispatcher">step3_workflow_type.jsp
+			</result>
+		</action>
+		<action name="toworkflowRole" class="OLink.bpm.core.wizard.action.WizardAction"
+			method="doWorkFlowRole">
+			<interceptor-ref name="scope">
+				<param name="key">wizard</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="input" type="dispatcher">step3_workflow_type.jsp
+			</result>
+			<result name="success" type="dispatcher">step3_workflow_role.jsp
+			</result>
+		</action>
+		<action name="toworkflowSuccess" class="OLink.bpm.core.wizard.action.WizardAction"
+			method="doWorkFlowConfirm">
+			<interceptor-ref name="scope">
+				<param name="key">wizard</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="input" type="dispatcher">step3_workflow_role.jsp
+			</result>
+			<result name="success" type="dispatcher">step4_resource.jsp
+			</result>
+		</action>
+		<action name="toWorkflowConfirm" class="OLink.bpm.core.wizard.action.WizardAction"
+			method="doWorkFlowConfirm">
+			<interceptor-ref name="scope">
+				<param name="key">wizard</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="input" type="dispatcher">step3_workflow_role.jsp
+			</result>
+			<result name="success" type="dispatcher">step4_resource.jsp
+			</result>
+		</action>
+
+		<action name="backtostep5" class="OLink.bpm.core.wizard.action.WizardAction"
+			method="doBacktostep5">
+			<interceptor-ref name="scope">
+				<param name="key">wizard</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="input" type="dispatcher">step5_view_type.jsp</result>
+			<result name="success" type="dispatcher">step5_view.jsp</result>
+		</action>
+		<action name="confirm" class="OLink.bpm.core.wizard.action.WizardAction"
+			method="doConfirm">
+			<interceptor-ref name="scope">
+				<param name="type">end</param>
+				<param name="key">wizard</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="input" type="dispatcher">step5_viewsuccess.jsp
+			</result>
+			<result name="success" type="dispatcher">
+				step6_success.jsp
+			</result>
+		</action>
+
+		<action name="cancel" class="OLink.bpm.core.wizard.action.WizardAction"
+			method="doCancel">
+			<interceptor-ref name="scope">
+				<param name="type">end</param>
+				<param name="key">wizard</param>
+				<param name="session">content</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="input" type="dispatcher">
+				step1_module.jsp
+			</result>
+			<result name="success" type="chain">
+				<param name="actionName">edit</param>
+				<param name="namespace">/core/deploy/application</param>
+			</result>
+		</action>
+		
+		<action name="validateFormname" class="OLink.bpm.core.wizard.action.WizardAction"
+			method="doValidate">
+			<result name="success" type="dispatcher">step2_validate.jsp</result>
+		</action>
+	</package>
+</xwork>

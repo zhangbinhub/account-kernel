@@ -1,0 +1,132 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<package name="eWAP-personalmessage-front" extends="eWAP-default"
+		namespace="/portal/personalmessage">
+		<action name="new"
+			class="OLink.bpm.core.personalmessage.action.PersonalMessageAction"
+			method="doNew">
+			<result name="success" type="OBPMdispatcher">
+				/portal/share/personalmessage/content.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		<action name="edit"
+			class="OLink.bpm.core.personalmessage.action.PersonalMessageAction"
+			method="doEdit">
+			<result name="success" type="OBPMdispatcher">
+				/portal/share/personalmessage/content.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		<action name="save"
+			class="OLink.bpm.core.personalmessage.action.PersonalMessageAction"
+			method="doSave">
+			<result name="input" type="OBPMdispatcher">
+				/portal/share/personalmessage/content.jsp
+			</result>
+			<result name="success" type="redirect">outbox.action</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="validationWorkflowStack" />
+
+		</action>
+		<action name="delete"
+			class="OLink.bpm.core.personalmessage.action.PersonalMessageAction"
+			method="doDelete">
+			<interceptor-ref name="params" />
+			<interceptor-ref name="basicStack" />
+			<result name="success" type="dispatcher">/portal/share/personalmessage/list.jsp
+			</result>
+			<result name="input" type="dispatcher">/portal/share/personalmessage/list.jsp
+			</result>
+
+		</action>
+		<action name="list"
+			class="OLink.bpm.core.personalmessage.action.PersonalMessageAction"
+			method="doList">
+			<interceptor-ref name="chain" />
+			<interceptor-ref name="basicStack" />
+			<result name="success" type="dispatcher">/portal/share/personalmessage/list.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+
+		<action name="inbox"
+			class="OLink.bpm.core.personalmessage.action.PersonalMessageAction"
+			method="doInbox">
+			<interceptor-ref name="basicStack" />
+			<result name="success" type="dispatcher">/portal/share/personalmessage/list.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+		
+		<action name="searchInbox"
+			class="OLink.bpm.core.personalmessage.action.PersonalMessageAction"
+			method="doSearchInbox">
+			<interceptor-ref name="basicStack" />
+			<result name="success" type="dispatcher">/portal/share/personalmessage/list.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+		
+		<action name="outbox"
+			class="OLink.bpm.core.personalmessage.action.PersonalMessageAction"
+			method="doOutbox">
+			<interceptor-ref name="basicStack" />
+			<result name="success" type="dispatcher">/portal/share/personalmessage/list.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+		<action name="trash"
+			class="OLink.bpm.core.personalmessage.action.PersonalMessageAction"
+			method="doTrash">
+			<interceptor-ref name="basicStack" />
+			<result name="success" type="dispatcher">/portal/share/personalmessage/list.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+		<action name="read"
+			class="OLink.bpm.core.personalmessage.action.PersonalMessageAction"
+			method="doRead">
+			<interceptor-ref name="basicStack" />
+			<result name="success" type="dispatcher">/portal/share/personalmessage/list.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+		<action name="show"
+			class="OLink.bpm.core.personalmessage.action.PersonalMessageAction"
+			method="doShow">
+			<interceptor-ref name="basicStack" />
+			<result name="success" type="OBPMdispatcher">/portal/share/personalmessage/showmsg.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+		<action name="reply"
+			class="OLink.bpm.core.personalmessage.action.PersonalMessageAction"
+			method="doReply">
+			<interceptor-ref name="basicStack" />
+			<result name="success" type="chain">outbox</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+		<action name="totrash"
+			class="OLink.bpm.core.personalmessage.action.PersonalMessageAction"
+			method="doToTrash">
+			<interceptor-ref name="basicStack" />
+			<result name="success" type="chain">trash</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+		<action name="count"
+			class="OLink.bpm.core.personalmessage.action.PersonalMessageAction"
+			method="doCount">
+
+		</action>
+	</package>
+</xwork>

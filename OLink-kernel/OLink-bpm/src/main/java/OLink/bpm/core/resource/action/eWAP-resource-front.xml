@@ -1,0 +1,15 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+<package name="portal-resource" extends="eWAP-default"
+		namespace="/portal/resource">
+	<action name="menuslist" class="OLink.bpm.core.resource.action.ResourceAction"
+			method="getHtmlOfSubMenus">
+		<result name="success" type="dispatcher">
+				content.jsp
+		</result>
+		<interceptor-ref name="params" />
+	</action>
+	
+</package>
+
+</xwork>

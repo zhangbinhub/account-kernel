@@ -1,0 +1,74 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+<package name="deploy_module" extends="eWAP-default"
+		namespace="/core/deploy/module">
+		<action name="new"
+			class="OLink.bpm.core.deploy.module.action.ModuleAction"
+			method="doNew">
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="moddelete"
+			class="OLink.bpm.core.deploy.module.action.ModuleAction"
+			method="doDelete">
+			<result name="success" type="redirect">
+					/core/deploy/application/frames.jsp?id=${application}&amp;refresh=rightFrame
+			</result>
+			<result name="input" type="redirect">
+					/core/deploy/application/frames.jsp?id=${application}&amp;error=1
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		<action name="edit"
+			class="OLink.bpm.core.deploy.module.action.ModuleAction"
+			method="doEdit">
+			<result name="success" type="dispatcher">
+				/core/deploy/module/content.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="listelement"
+			class="OLink.bpm.core.deploy.module.action.ModuleAction"
+			method="doListElement">
+			<result name="success" type="dispatcher">
+				/core/deploy/module/listAllElement.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="save"
+			class="OLink.bpm.core.deploy.module.action.ModuleAction"
+			method="doSave">
+			<result name="input" type="dispatcher">
+				content.jsp
+			</result>
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="validationWorkflowStack"/>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="defaultStack" />
+		</action>
+		<action name="delete"
+			class="OLink.bpm.core.deploy.module.action.ModuleAction"
+			method="doDelete">
+			<interceptor-ref name="params" />
+			<interceptor-ref name="basicStack" />
+			<result name="success" type="chain">list</result>
+			<result name="input" type="chain">list</result>
+		</action>
+		<action name="list"
+			class="OLink.bpm.core.deploy.module.action.ModuleAction"
+			method="doList">
+			<interceptor-ref name="chain" />
+			<interceptor-ref name="basicStack" />
+			<result name="success" type="dispatcher">list.jsp</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+	</package>
+</xwork>

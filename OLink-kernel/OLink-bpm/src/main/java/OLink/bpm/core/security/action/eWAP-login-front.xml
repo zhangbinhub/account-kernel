@@ -1,0 +1,180 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<package name="eWAP-login-front" extends="eWAP-default" namespace="/portal/login">
+		<action name="sso"
+			class="OLink.bpm.core.security.action.LoginAction"
+			method="doSSO">
+			<result name="success" type="OBPMredirect">
+				/portal/dispatch/main.jsp?returnUrl=${returnUrl}&amp;application=${application}
+			</result>
+			<result name="input" type="OBPMdispatcher">
+				/portal/share/security/login.jsp
+			</result>
+			<interceptor-ref name="validationWorkflowStack"/>
+			<interceptor-ref name="params" />
+			<!-- <interceptor-ref name="cookies" /> -->
+			<interceptor-ref name="logInterceptor">
+ 				<param name="type">{*[Login]*}</param>
+ 				<param name="description">{*[Login]*}{*[System]*}</param>
+ 			</interceptor-ref>
+		</action>
+	
+		<action name="login"
+			class="OLink.bpm.core.security.action.LoginAction"
+			method="doLogin">
+			<result name="success" type="OBPMredirect">
+				/portal/dispatch/main.jsp?returnUrl=${returnUrl}&amp;application=${application}
+			</result>
+			<result name="proxy" type="OBPMdispatcher">
+				/portal/share/security/agent.jsp
+			</result>
+			<result name="smsauth" type="chain">smsauth</result>
+			<result name="error" type="OBPMdispatcher">
+				/portal/share/security/login.jsp
+			</result>
+			<result name="input" type="OBPMdispatcher">
+				/portal/share/security/login.jsp
+			</result>
+			<interceptor-ref name="validationWorkflowStack"/>
+			<interceptor-ref name="params" />
+			<!-- <interceptor-ref name="cookies" /> -->
+			<interceptor-ref name="logInterceptor">
+ 				<param name="type">{*[Login]*}</param>
+ 				<param name="description">{*[Login]*}{*[System]*}</param>
+ 			</interceptor-ref>
+		</action>
+		<action name="H5login"
+			class="OLink.bpm.core.security.action.LoginAction"
+			method="doLoginH5">
+			<result name="success" type="OBPMredirect">
+				/portal/dispatch/main.jsp?returnUrl=${returnUrl}&amp;application=${application}
+			</result>
+			<result name="proxy" type="OBPMdispatcher">
+				/portal/share/security/agent.jsp
+			</result>
+			<result name="smsauth" type="chain">smsauth</result>
+			<result name="error" type="OBPMredirect">
+				/view/hsh/m/login.jsp?from=error
+			</result>
+			<result name="input" type="OBPMdispatcher">
+				/portal/share/security/login.jsp
+			</result>
+			<interceptor-ref name="validationWorkflowStack"/>
+			<interceptor-ref name="params" />
+			<!-- <interceptor-ref name="cookies" /> -->
+			<interceptor-ref name="logInterceptor">
+ 				<param name="type">{*[Login]*}</param>
+ 				<param name="description">{*[Login]*}{*[System]*}</param>
+ 			</interceptor-ref>
+		</action>
+		<!-- 增加pc网页端请求跳转 -->
+		<action name="PClogin"
+			class="OLink.bpm.core.security.action.LoginAction"
+			method="doLoginH5">
+			<result name="success" type="OBPMredirect">
+				/portal/dispatch/main.jsp?returnUrl=${returnUrl}&amp;application=${application}
+			</result>
+			<result name="proxy" type="OBPMdispatcher">
+				/portal/share/security/agent.jsp
+			</result>
+			<result name="smsauth" type="chain">smsauth</result>
+			<result name="error" type="OBPMredirect">
+				/view/hsh/user/login.jsp?showcode=true
+			</result>
+			<result name="input" type="OBPMdispatcher">
+				/portal/share/security/login.jsp
+			</result>
+			<interceptor-ref name="validationWorkflowStack"/>
+			<interceptor-ref name="params" />
+			<!-- <interceptor-ref name="cookies" /> -->
+			<interceptor-ref name="logInterceptor">
+ 				<param name="type">{*[Login]*}</param>
+ 				<param name="description">{*[Login]*}{*[System]*}</param>
+ 			</interceptor-ref>
+		</action>
+		<action name="smsauth"
+			class="OLink.bpm.core.security.action.LoginAction"
+			method="doSMSAuth">
+			<result name="success" type="OBPMdispatcher">
+				/portal/share/security/smsAuth.jsp
+			</result>
+			<result name="error" type="OBPMdispatcher">
+				/portal/share/security/login.jsp
+			</result>
+			<result name="input" type="OBPMdispatcher">
+				/portal/share/security/login.jsp
+			</result>
+			<interceptor-ref name="validationWorkflowStack"/>
+			<interceptor-ref name="params" />
+			<!-- <interceptor-ref name="cookies" /> -->
+		</action>
+
+		<action name="debuglogin"
+			class="OLink.bpm.core.security.action.LoginAction"
+			method="doLogin">
+			<result name="success" type="redirect">
+				/portal/dispatch/main.jsp?returnUrl=${returnUrl}&amp;application=${application}
+			</result>
+			<result name="proxy" type="OBPMdispatcher">
+				/portal/share/security/agent.jsp
+			</result>
+			<result name="error" type="OBPMdispatcher">
+				/portal/share/security/login_debug.jsp
+			</result>
+			<result name="input" type="OBPMdispatcher">
+				/portal/share/security/login_debug.jsp
+			</result>
+			<interceptor-ref name="validationWorkflowStack"/>
+			<interceptor-ref name="params" />
+			<!-- <interceptor-ref name="cookies" /> -->
+		</action>
+
+		<action name="urlLogin"
+			class="OLink.bpm.core.security.action.LoginAction"
+			method="doUrlLogin">
+			<result name="success" type="OBPMdispatcher">
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="loginProxy"
+			class="OLink.bpm.core.security.action.LoginAction"
+			method="doLoginProxy">
+			<result name="success" type="OBPMredirect">
+				/portal/dispatch/main.jsp?returnUrl=${returnUrl}&amp;application=${application}
+			</result>
+			<result name="error" type="OBPMdispatcher">
+				/portal/share/security/agent.jsp
+			</result>
+			<result name="input" type="OBPMdispatcher">
+				/portal/share/security/agent.jsp
+			</result>
+			<result name="proxy" type="OBPMdispatcher">
+				/portal/share/security/agent.jsp
+			</result>
+			<interceptor-ref name="validationWorkflowStack"/>
+			<interceptor-ref name="params" />
+			<!-- <interceptor-ref name="cookies" /> -->
+		</action>
+		
+		<action name="loginSMS"
+			class="OLink.bpm.core.security.action.LoginAction"
+			method="doLoginSMS">
+			<result name="success" type="OBPMredirect">
+				/portal/dispatch/main.jsp?returnUrl=${returnUrl}&amp;application=${application}
+			</result>
+			<result name="error" type="OBPMdispatcher">
+				/portal/share/security/login.jsp
+			</result>
+			<result name="input" type="OBPMdispatcher">
+				/portal/share/security/login.jsp
+			</result>
+			<interceptor-ref name="validationWorkflowStack"/>
+			<interceptor-ref name="params" />
+			<!-- <interceptor-ref name="cookies" /> -->
+		</action>
+		
+	</package>
+
+	
+</xwork>

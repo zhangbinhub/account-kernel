@@ -1,0 +1,108 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<!-- billflow package -->
+	<package name="billflow" extends="eWAP-default" namespace="/core/workflow/billflow/defi">
+		<action name="view"
+			class="OLink.bpm.core.workflow.storage.definition.action.BillDefiAction"
+			method="doView">
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+
+		<action name="new"
+			class="OLink.bpm.core.workflow.storage.definition.action.BillDefiAction"
+			method="doNew">
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+
+		<action name="save"
+			class="OLink.bpm.core.workflow.storage.definition.action.BillDefiAction"
+			method="doSave">
+			<result name="input" type="dispatcher">
+				content.jsp
+           </result>
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+			<interceptor-ref name="validationWorkflowStack" />
+		</action>
+
+		<action name="edit"
+			class="OLink.bpm.core.workflow.storage.definition.action.BillDefiAction"
+			method="doEdit">
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+		<action name="editWorkFlow"
+			class="OLink.bpm.core.workflow.storage.definition.action.BillDefiAction"
+			method="doEdit">
+			<result name="success" type="dispatcher">
+				content2.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+
+		<action name="list"
+			class="OLink.bpm.core.workflow.storage.definition.action.BillDefiAction"
+			method="doList">
+			<result name="success" type="dispatcher">list.jsp</result>
+			<result name="input" type="dispatcher">list.jsp</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+		<action name="delete"
+			class="OLink.bpm.core.workflow.storage.definition.action.BillDefiAction"
+			method="doDelete">
+			<result name="success" type="chain">list</result>
+			<result name="input" type="chain">list</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+
+		<action name="selectflow"
+			class="OLink.bpm.core.workflow.storage.definition.action.BillDefiAction"
+			method="doList">
+			<result name="success" type="dispatcher">selectflow.jsp</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+
+		<action name="selectsubform" class="OLink.bpm.core.dynaform.form.action.FormAction"
+			method="doFormList">
+			<result name="success" type="dispatcher">selectsubform.jsp</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+		<action name="checkout" class="OLink.bpm.core.workflow.storage.definition.action.BillDefiAction"
+		method="doCheckout">
+			<result name="success" type="dispatcher">content.jsp</result>
+			<result name="input" type="dispatcher">content.jsp</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="basicStack" />
+		</action>
+		
+		<action name="checkin" class="OLink.bpm.core.workflow.storage.definition.action.BillDefiAction"
+		method="doCheckin">
+			<result name="success" type="dispatcher">content.jsp</result>
+			<result name="input" type="dispatcher">content.jsp</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="basicStack" />
+		</action>
+		
+		
+	</package>
+
+</xwork>

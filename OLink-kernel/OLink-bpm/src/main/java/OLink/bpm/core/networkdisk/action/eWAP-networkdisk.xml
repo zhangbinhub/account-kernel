@@ -1,0 +1,55 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<package name="networkdisk" extends="eWAP-default"
+		namespace="/core/networkdisk">
+
+		<action name="edit"
+				class="OLink.bpm.core.networkdisk.action.NetworkDiskAction" method="doEdit">
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="save"
+				class="OLink.bpm.core.networkdisk.action.NetworkDiskAction" method="doSave">
+			<result name="input" type="dispatcher">content.jsp</result>
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+
+			<interceptor-ref name="validationWorkflowStack" />
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="saveAll"
+				class="OLink.bpm.core.networkdisk.action.NetworkDiskAction" method="doSaveAll">
+			<result name="input" type="dispatcher">content.jsp</result>
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+
+			<interceptor-ref name="validationWorkflowStack" />
+			<interceptor-ref name="params" />
+		</action>
+		
+	
+		
+		<action name="networkList"
+			class="OLink.bpm.core.networkdisk.action.NetworkDiskAction"
+			method="networkList">
+			<result name="success" type="dispatcher">
+				list.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				list.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="chain" />
+		</action>		
+		
+		
+	</package>
+
+</xwork>

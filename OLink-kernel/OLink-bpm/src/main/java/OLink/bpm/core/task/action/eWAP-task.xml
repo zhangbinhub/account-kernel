@@ -1,0 +1,101 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+<package name="task" extends="eWAP-default"
+		namespace="/core/task">
+		
+		<action name="view" class="OLink.bpm.core.task.action.TaskAction"
+			method="doView">
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="new" class="OLink.bpm.core.task.action.TaskAction"
+			method="doNew">
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="save" class="OLink.bpm.core.task.action.TaskAction"
+			method="doSave">
+      		<result name="input" type="dispatcher">
+				content.jsp
+			</result>
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<result name="invalid.token" type="dispatcher">
+				token.jsp
+			</result>
+			
+			<interceptor-ref name="token"/>
+			<interceptor-ref name="validationWorkflowStack"/>
+		</action>
+
+		<action name="saveAndNew" class="OLink.bpm.core.task.action.TaskAction"
+			method="doSaveAndNew">
+      		<result name="input" type="dispatcher">
+				content.jsp
+			</result>
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<result name="invalid.token" type="dispatcher">
+				token.jsp
+			</result>
+			
+			<interceptor-ref name="token"/>
+			<interceptor-ref name="validationWorkflowStack"/>
+		</action>
+		
+		<action name="edit" class="OLink.bpm.core.task.action.TaskAction"
+			method="doEdit">
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="list" class="OLink.bpm.core.task.action.TaskAction"
+			method="doList">
+			<interceptor-ref name="chain" />
+			<interceptor-ref name="basicStack" />
+			<result name="success" type="dispatcher">list.jsp</result>
+			<result name="input" type="dispatcher">list.jsp</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+
+		<action name="delete"
+				class="OLink.bpm.core.task.action.TaskAction" method="doDelete">
+			<interceptor-ref name="params" />
+			<interceptor-ref name="basicStack" />
+			<result name="success" type="chain">
+				list
+			</result>
+			<result name="input" type="chain">list</result>
+		</action>
+		
+		<action name="start"
+				class="OLink.bpm.core.task.action.TaskAction" method="doStart">
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				content.jsp
+			</result>
+			
+			<interceptor-ref name="validationWorkflowStack"/>
+		</action>
+	
+		<action name="stop"
+				class="OLink.bpm.core.task.action.TaskAction" method="doStop">
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+		</action>
+	</package>
+	</xwork>

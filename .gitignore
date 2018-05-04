@@ -1,0 +1,13 @@
+# Intellij IDEA
+.idea
+.gradle
+.svn
+.git
+
+out/
+build/
+logs/
+
+# OSX
+#
+.DS_Store

@@ -1,0 +1,73 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<package name="login" extends="eWAP-default" namespace="/">
+		<action name="login"
+			class="OLink.bpm.core.security.action.LoginAction"
+			method="doLogin">
+			<result name="success" type="redirect">
+				portal/dispatch/main.jsp
+			</result>
+			<result name="proxy" type="dispatcher">
+				/portal/share/security/agent.jsp
+			</result>
+			<result name="error" type="dispatcher">
+				portal/share/security/login.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				portal/share/security/login.jsp
+			</result>
+		   	<interceptor-ref name="validationWorkflowStack"/>
+			<interceptor-ref name="params" />
+		  	<!-- <interceptor-ref name="cookies" /> -->
+		</action>
+		
+		<action name="urlLogin"
+			class="OLink.bpm.core.security.action.LoginAction"
+			method="doUrlLogin">
+			<result name="success" type="dispatcher">
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="crmlogin"
+			class="OLink.bpm.core.security.action.LoginAction"
+			method="doLogin">
+			<result name="success" type="redirect">
+				portal/dispatch/main.jsp
+			</result>
+			<result name="proxy" type="dispatcher">
+				/portal/share/security/agent.jsp
+			</result>
+			<result name="error" type="dispatcher">
+				core/security/after.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				addin/crm/index.jsp
+			</result>
+		   	<interceptor-ref name="validationWorkflowStack"/>
+			<interceptor-ref name="params" />
+		</action>
+		<action name="loginProxy"
+			class="OLink.bpm.core.security.action.LoginAction"
+			method="doLoginProxy">
+			<result name="success" type="redirect">
+				portal/dispatch/main.jsp
+			</result>
+			<result name="error" type="dispatcher">
+				/portal/share/security/agent.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				/portal/share/security/agent.jsp
+			</result>
+			<result name="proxy" type="dispatcher">
+				/portal/share/security/agent.jsp
+			</result>
+		   	<interceptor-ref name="validationWorkflowStack"/>
+			<interceptor-ref name="params" />
+		  	<!-- <interceptor-ref name="cookies" /> -->
+		</action>
+		
+	</package>
+
+	
+</xwork>

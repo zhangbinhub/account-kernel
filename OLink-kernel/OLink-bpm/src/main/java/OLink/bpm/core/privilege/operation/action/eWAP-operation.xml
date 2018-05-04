@@ -1,0 +1,40 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<package name="eWAP-operation" extends="eWAP-default" namespace="/core/privilege/operation">
+		<action name="list"
+			class="OLink.bpm.core.privilege.operation.action.OperationAction"
+			method="doList">
+			<interceptor-ref name="chain"></interceptor-ref>
+			<interceptor-ref name="params"></interceptor-ref>
+			<result name="success" type="dispatcher">list.jsp</result>
+			<result name="input" type="dispatcher">list.jsp</result>
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="edit"
+			class="OLink.bpm.core.privilege.operation.action.OperationAction"
+			method="doEdit">
+			<result name="input" type="dispatcher">content.jsp</result>
+			<result name="success" type="dispatcher">content.jsp</result>
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="delete"
+			class="OLink.bpm.core.privilege.operation.action.OperationAction"
+			method="doDelete">
+			<interceptor-ref name="params" />
+			<interceptor-ref name="basicStack" />
+			<result name="success" type="chain">list</result>
+			<result name="input" type="chain">list</result>
+		</action>
+		
+		<action name="undo"
+			class="OLink.bpm.core.privilege.operation.action.OperationAction"
+			method="doUndo">
+			<interceptor-ref name="params" />
+			<interceptor-ref name="basicStack" />
+			<result name="success" type="chain">list</result>
+			<result name="input" type="chain">list</result>
+		</action>
+	</package>
+</xwork>

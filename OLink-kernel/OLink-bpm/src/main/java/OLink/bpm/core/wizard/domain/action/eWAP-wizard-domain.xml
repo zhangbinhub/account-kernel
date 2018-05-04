@@ -1,0 +1,42 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+
+	<!-- workflow FlogLog package -->
+	<package name="wizard_domain" extends="eWAP-default"
+		namespace="/core/wizard/domain">
+
+		<action name="step1_login"
+			class="OLink.bpm.core.security.action.LoginAction"
+			method="doLogin">
+			<result name="success" type="redirect">
+				step2_content.jsp
+			</result>
+			<result name="error" type="dispatcher">
+				step2_content.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				step2_content.jsp
+			</result>
+			<interceptor-ref name="validationWorkflowStack" />
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="step2_create"
+			class="OLink.bpm.core.domain.action.DomainAction"
+			method="doNew">
+			<result name="success" type="dispatcher">step2_content.jsp</result>
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="step2_save"
+			class="OLink.bpm.core.domain.action.DomainAction"
+			method="doSave">
+			<result name="input" type="dispatcher">step2_content.jsp</result>
+			<result name="success" type="redirect">
+				/admin/detail.jsp
+			</result>
+			<interceptor-ref name="validationWorkflowStack" />
+			<interceptor-ref name="params" />
+		</action>
+	</package>
+</xwork>

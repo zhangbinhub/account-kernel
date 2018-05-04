@@ -1,0 +1,69 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<package name="superuser" extends="eWAP-default"
+		namespace="/core/superuser">
+		<action name="new" class="OLink.bpm.core.superuser.action.SuperUserAction"
+			method="doNew">
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="edit"
+				class="OLink.bpm.core.superuser.action.SuperUserAction" method="doEdit">
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="editPersonal"
+				class="OLink.bpm.core.superuser.action.SuperUserAction" method="doEdit">
+			<result name="success" type="dispatcher">
+				personalSetting.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="save"
+				class="OLink.bpm.core.superuser.action.SuperUserAction" method="doSave">
+			<result name="input" type="dispatcher">content.jsp</result>
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+
+			<interceptor-ref name="validationWorkflowStack" />
+			<interceptor-ref name="params" />
+		</action>
+
+		<action name="savePersonal"
+			class="OLink.bpm.core.superuser.action.SuperUserAction"
+			method="doSavePersonal">
+			<result name="input" type="dispatcher">
+				personalSetting.jsp
+			</result>
+			<result name="success" type="dispatcher">
+				personalSetting.jsp
+			</result>
+			<interceptor-ref name="validationWorkflowStack" />
+		</action>
+
+		<action name="delete"
+				class="OLink.bpm.core.superuser.action.SuperUserAction" method="doDelete">
+			<interceptor-ref name="params" />
+			<result name="success" type="chain">list</result>
+			<result name="input" type="dispatcher">list.jsp</result>
+		</action>
+
+		<action name="list"
+				class="OLink.bpm.core.superuser.action.SuperUserAction" method="doList">
+			<result name="success" type="dispatcher">list.jsp</result>
+			<result name="input" type="dispatcher">list.jsp</result>
+		</action>
+			
+		
+	</package>
+
+</xwork>

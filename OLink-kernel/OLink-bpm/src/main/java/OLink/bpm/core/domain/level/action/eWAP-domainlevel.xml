@@ -1,0 +1,74 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+<!-- domain package -->
+	<package name="domainlevel" extends="eWAP-default"
+		namespace="/core/domain/level">
+
+		<action name="new"
+			class="OLink.bpm.core.domain.level.action.DomainLevelAction"
+			method="doNew">
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="edit"
+			class="OLink.bpm.core.domain.level.action.DomainLevelAction"
+			method="doEdit">
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="save"
+			class="OLink.bpm.core.domain.level.action.DomainLevelAction"
+			method="doSave">
+			<result name="input" type="dispatcher">
+				content.jsp
+			</result>
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<!-- interceptor-ref name="params" / -->
+			<interceptor-ref name="validationWorkflowStack"/>
+		
+		</action>
+		
+		<action name="delete"
+			class="OLink.bpm.core.domain.level.action.DomainLevelAction"
+			method="doDelete">
+			<result name="success" type="chain">list</result>
+			<result name="input" type="chain">list</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="defaultStack" />
+		</action>
+		
+		<action name="list"
+			class="OLink.bpm.core.domain.level.action.DomainLevelAction"
+			method="doList">
+			<interceptor-ref name="defaultStack" />
+			<result name="success" type="dispatcher">list.jsp</result>
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="removeDomain"
+			class="OLink.bpm.core.domain.level.action.DomainLevelAction"
+			method="doRemoveDomain">
+			<interceptor-ref name="defaultStack" />
+			<result name="input" type="dispatcher">
+				content.jsp
+			</result>
+			<result name="success" type="chain">holdDomain</result>
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="holdDomain"
+				class="OLink.bpm.core.domain.action.DomainAction" method="doList">
+			<result name="success" type="dispatcher">holdDomainlist.jsp</result>
+			<interceptor-ref name="params" />
+		</action>
+		
+	</package>
+</xwork>

@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="OLink.bpm.core.dynaform.view.ejb.View"
+        table="T_VIEW"
+        dynamic-update="true"
+    >
+
+        <id
+            name="id"
+            column="ID"
+            type="java.lang.String"
+            length="100"
+        >
+            <generator class="assigned">
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-View.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="filterCondition"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="FILTERCONDITION"
+            length="1000"
+        />
+
+        <property
+            name="sqlFilterScript"
+            type="text"
+            update="true"
+            insert="true"
+            column="SQLFILTER_SCRIPT"
+        />
+        
+        <!-- 2.6版本新增调用存储过程的脚本字段 -->
+        <property 
+        	name="procedureFilterScript"
+        	type="text"
+        	update="true"
+        	insert="true"
+        	column="PROCEDUREFILTER_SCRIPT"
+        />
+
+        <property
+            name="editMode"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="EDITMODE"
+        />
+
+        <many-to-one
+            name="module"
+            class="OLink.bpm.core.deploy.module.ejb.ModuleVO"
+            cascade="none"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            column="MODULE"
+        />
+	
+        <property
+            name="activityXML"
+            type="text"
+            update="true"
+            insert="true"
+            column="ACTIVITYXML"
+        />
+        
+        <property
+            name="columnXML"
+            type="text"
+            update="true"
+            insert="true"
+            column="COLUMNXML"
+        />
+        
+        <property
+            name="filterScript"
+            type="text"
+            update="true"
+            insert="true"
+            column="FILTER_SCRIPT"
+        />
+
+        <property
+            name="name"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="NAME"
+        />
+
+        <many-to-one
+            name="searchForm"
+            class="OLink.bpm.core.dynaform.form.ejb.Form"
+            cascade="none"
+            outer-join="true"
+            update="true"
+            insert="true"
+            column="FORM_ID"
+        />
+
+        <many-to-one
+            name="style"
+            class="OLink.bpm.core.style.repository.ejb.StyleRepositoryVO"
+            cascade="none"
+            lazy="false"
+            outer-join="auto"
+            update="true"
+            insert="true"
+            column="STYLE"
+        />
+
+        <property
+            name="relatedResourceid"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="RELATEDRESOURCEID"
+        />
+
+        <property
+            name="pagination"
+            type="boolean"
+            update="true"
+            insert="true"
+            column="ISPAGINATION"
+        />
+
+        <property
+            name="pagelines"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="PAGELINES"
+        />
+
+        <property
+            name="openType"
+            type="int"
+            update="true"
+            insert="true"
+            column="OPENTYPE"
+        />
+
+  	    <property
+            name="viewType"
+            type="int"
+            update="true"
+            insert="true"
+            not-null="true"
+            column="VIEWTYPE"
+        />
+
+        <property
+            name="showTotalRow"
+            type="boolean"
+            update="true"
+            insert="true"
+            column="SHOWTOTALROW"
+        />
+        
+        <property
+            name="orderField"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="ORDERFIELD"
+        />
+        
+         <property
+            name="orderType"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="ORDERTYPE"
+        />
+
+        <property
+            name="relatedForm"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="RELATEDFORM"
+        />
+         <property
+            name="templateForm"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="TEMPLATEFORM"
+        />
+
+		<property
+            name="relationDateColum"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="RELATIONDATECOLUM"
+        />
+        
+        <property
+            name="innerType"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="INNERTYPE"
+        />
+
+        <property
+            name="lastmodifytime"
+            type="java.util.Date"
+            update="true"
+            insert="true"
+            column="LASTMODIFYTIME"
+        />
+
+        <property
+            name="auth_user"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="AUTH_USER"
+        />
+        
+        <property
+            name="auth_role"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="AUTH_ROLE"
+        />
+        
+        <property
+            name="refresh"
+            type="boolean"
+            update="true"
+            insert="true"
+            column="REFRESH"
+        />
+        
+        <property
+            name="departments"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="DEPARTMENTS"
+        />
+
+        <property
+            name="auth_fields"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="AUTH_FIELDS"
+        />
+         <property
+            name="authFieldScope"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="AUTHFIELD_SCOPE"
+        />
+        
+        
+        
+          <property
+            name="readonly"
+            type="java.lang.Boolean"
+            update="true"
+            insert="true"
+            column="READONLY"
+        />
+
+        <property
+            name="description"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="DESCRIPTION"
+        />
+
+        <property
+            name="applicationid"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="APPLICATIONID"
+        />
+        
+         <property
+            name="nodeLinkId"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="NODELINKID"
+        />
+        
+        <property
+            name="relatedMap"
+            type="text"
+            update="true"
+            insert="true"
+            column="RELATEDMAP"
+        />
+        <property name="checkout" 
+			type="boolean" 
+			update="true" insert="true">
+			<column name="CHECKOUT" 
+				default="0"
+			/>
+		</property>
+		
+		<property name="checkoutHandler" type="java.lang.String" update="true"
+			insert="true" column="CHECKOUTHANDLER" />
+			
+		<property name="displayType" type="java.lang.String" update="true"
+			insert="true" column="DISPLAYTYPE" />
+        
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-View.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

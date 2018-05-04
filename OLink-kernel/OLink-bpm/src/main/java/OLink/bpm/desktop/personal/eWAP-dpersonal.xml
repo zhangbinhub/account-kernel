@@ -1,0 +1,59 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<package name="dpersonal" extends="eWAP-default" namespace="/desktop/personal">
+		<action name="edit"
+			class="OLink.bpm.desktop.personal.DPersonalAction"
+			method="doEdit">
+			<result name="success" type="dispatcher">
+				/desktop/xml.jsp
+			</result>
+			<result name="error" type="dispatcher">
+				../error.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				../error.jsp
+			</result>
+		</action>
+		<action name="list"
+			class="OLink.bpm.desktop.personal.DPersonalAction"
+			method="doList">
+			<result name="success" type="dispatcher">
+				/desktop/xml.jsp
+			</result>
+			<result name="error" type="dispatcher">
+				../error.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				../error.jsp
+			</result>
+		</action>
+		<action name="save"
+			class="OLink.bpm.desktop.personal.DPersonalAction"
+			method="doSave">
+			<result name="success" type="dispatcher">
+				/desktop/xml.jsp
+			</result>
+			<result name="error" type="dispatcher">
+				../error.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				../error.jsp
+			</result>
+		</action>
+		<action name="delete"
+			class="OLink.bpm.desktop.personal.DPersonalAction"
+			method="doDelete">
+			<result name="success" type="dispatcher">
+				/desktop/xml.jsp
+			</result>
+			<result name="error" type="dispatcher">
+				../error.jsp
+			</result>
+			<result name="input" type="dispatcher">
+				../error.jsp
+			</result>
+		</action>
+	</package>
+
+	
+</xwork>

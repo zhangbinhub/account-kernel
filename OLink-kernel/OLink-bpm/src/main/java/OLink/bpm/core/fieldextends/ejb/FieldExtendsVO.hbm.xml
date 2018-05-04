@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="OLink.bpm.core.fieldextends.ejb.FieldExtendsVO" table="T_FIELD_EXTENDS" lazy="false" batch-size="10">
+		<id name="fid" column="ID" type="java.lang.String" length="100">
+			<generator class="uuid"/>
+		</id>
+		
+		<property name="forTable" type="java.lang.String" column="FOR_TABLE" />
+		
+		<property name="name" type="java.lang.String" column="NAME" />
+		
+		<property name="label" type="java.lang.String" column="LABEL" />
+		
+		<property name="type" type="java.lang.String" column="TYPE" />
+		
+		<property name="isNull" type="java.lang.Boolean" column="IS_NULL" not-null="false"/>
+		
+		<property name="enabel" type="java.lang.Boolean" column="ENABEL" />
+		
+		<property name="sortNumber" type="java.lang.Integer" column="SORT_NUMBER" />
+		
+		<property name="domainid" type="java.lang.String" update="true"
+			insert="true" column="DOMAINID" />
+		
+	</class>
+</hibernate-mapping>

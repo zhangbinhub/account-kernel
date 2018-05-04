@@ -1,0 +1,59 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+
+	<package name="style_repository" extends="eWAP-default"
+		namespace="/core/style/repository">
+		<action name="new"
+			class="OLink.bpm.core.style.repository.action.StyleRepositoryAction"
+			method="doNew">
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		<action name="edit"
+			class="OLink.bpm.core.style.repository.action.StyleRepositoryAction"
+			method="doEdit">
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		<action name="save"
+			class="OLink.bpm.core.style.repository.action.StyleRepositoryAction"
+			method="doSave">
+			<result name="success" type="dispatcher">
+				content.jsp
+			</result>
+			<result name="input" type="dispatcher">content.jsp</result>
+			<interceptor-ref name="validationWorkflowStack" />
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="checkexitname"
+				class="OLink.bpm.core.style.repository.action.StyleRepositoryAction" method="checkExitName">
+			 <result name="success" type="stream" >content.jsp</result>
+			 <result name="input" type="stream" >content.jsp</result> 
+		</action>
+		
+		<action name="delete"
+			class="OLink.bpm.core.style.repository.action.StyleRepositoryAction"
+			method="doDelete">
+			<interceptor-ref name="params" />
+			<interceptor-ref name="basicStack" />
+			<result name="success" type="chain">list</result>
+			<result name="input" type="chain">list</result>
+		</action>
+		<action name="list"
+			class="OLink.bpm.core.style.repository.action.StyleRepositoryAction"
+			method="doList">
+			<interceptor-ref name="chain" />
+			<interceptor-ref name="basicStack" />
+			<result name="success" type="dispatcher">list.jsp</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+	</package>
+
+
+</xwork>

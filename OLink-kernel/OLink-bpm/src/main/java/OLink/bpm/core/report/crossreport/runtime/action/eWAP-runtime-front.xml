@@ -1,0 +1,55 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<package name="eWAP-report-crossreport-runtime" extends="eWAP-default"
+		namespace="/portal/report/crossreport/runtime">
+		
+		<action name="runreport"
+			class="OLink.bpm.core.report.crossreport.runtime.action.RuntimeFrontAction"
+			method="doRunReport">
+			<result name="success" type="dispatcher">
+				/portal/share/report/crossreport/runtime/content.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+		
+		<action name="runreportprint"
+			class="OLink.bpm.core.report.crossreport.runtime.action.RuntimeFrontAction"
+			method="doRunReport">
+			<result name="success" type="dispatcher">
+				/portal/share/report/crossreport/runtime/print.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+		
+		<action name="doSearchForm"
+			class="OLink.bpm.core.report.crossreport.runtime.action.RuntimeFrontAction"
+			method="doSearchForm">
+			<result name="success" type="dispatcher">
+				/portal/share/report/crossreport/runtime/query.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+		
+		<action name="detailreport"
+			class="OLink.bpm.core.report.crossreport.runtime.action.RuntimeDetailFrontAction"
+			method="doDetailReport">
+			<result name="success" type="dispatcher">
+				/portal/share/report/crossreport/runtime/detail.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+		<action name="export"
+			class="OLink.bpm.core.report.crossreport.runtime.action.RuntimeAction"
+			method="doExport">
+			<result name="success" type="dispatcher">
+				/portal/share/report/crossreport/runtime/export.jsp
+			</result>
+			<interceptor-ref name="params" />
+			<interceptor-ref name="prepare" />
+		</action>
+	</package>
+</xwork>

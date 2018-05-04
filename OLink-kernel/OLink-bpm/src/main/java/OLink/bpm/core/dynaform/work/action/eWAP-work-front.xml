@@ -1,0 +1,58 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.1.1//EN" "http://www.opensymphony.com/xwork/xwork-1.1.1.dtd">
+<xwork>
+	<!-- document package -->
+	<package name="work-front" extends="eWAP-default"
+		namespace="/portal/dynaform/work">
+
+		<interceptors>
+			<interceptor-stack name="basicStack">
+				<interceptor-ref name="params" />
+				<interceptor-ref name="prepare" />
+			</interceptor-stack>
+
+
+			<interceptor-stack name="validationWorkflowStack">
+				<interceptor-ref name="basicStack" />
+				<interceptor-ref name="validation" />
+				<interceptor-ref name="workflow" />
+			</interceptor-stack>
+		</interceptors>
+
+		<action name="workList"
+			class="OLink.bpm.core.dynaform.work.action.WorkAction"
+			method="doWorkList">
+			<result name="success" type="OBPMdispatcher">
+				/portal/share/dynaform/work/list.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="flow"
+			class="OLink.bpm.core.dynaform.work.action.WorkAction"
+			method="doFlow">
+			<result name="success" type="OBPMdispatcher">
+				/portal/share/dynaform/work/list.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="commissionedWork"
+			class="OLink.bpm.core.dynaform.work.action.WorkAction"
+			method="doCommissionedWork">
+			<result name="success" type="OBPMdispatcher">
+				/portal/share/dynaform/work/list.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		
+		<action name="removeWork"
+			class="OLink.bpm.core.dynaform.work.action.WorkAction"
+			method="doRemoveWork">
+			<result name="success" type="OBPMdispatcher">
+				/portal/share/dynaform/work/list.jsp
+			</result>
+			<interceptor-ref name="params" />
+		</action>
+		
+	</package>
+</xwork>

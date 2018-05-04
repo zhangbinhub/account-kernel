@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+>
+    <class
+        name="OLink.bpm.core.dynaform.activity.ejb.Activity"
+        table="T_ACTIVITY"
+    >
+
+        <id
+            name="id"
+            column="ID"
+            type="java.lang.String"
+            length="100"
+        >
+            <generator class="assigned">
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-Activity.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+        </id>
+
+        <property
+            name="orderno"
+            type="int"
+            update="true"
+            insert="true"
+            column="ORDERNO"
+        />
+
+        <property
+            name="name"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="NAME"
+        />
+
+        <property
+            name="beforeActionScript"
+            type="text"
+            update="true"
+            insert="true"
+            column="BEFOREACTIONSCRIPT"
+        />
+
+        <property
+            name="hiddenScript"
+            type="text"
+            update="true"
+            insert="true"
+            column="HIDDENSCRIPT"
+        />
+
+        <property
+            name="onActionForm"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="ONACTIONFORM_ID"
+        />
+
+        <property
+            name="onActionView"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="ONACTIONVIEW_ID"
+        />
+
+        <property
+            name="onActionFlow"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="ONACTIONFLOW_ID"
+        />
+        <property
+            name="onActionPrint"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="ONACTIONPRINT_ID"
+        />
+
+        <property
+            name="type"
+            type="int"
+            update="true"
+            insert="true"
+            column="TYPE"
+        />
+
+        <property
+            name="iconurl"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="ICONURL"
+        />
+
+        <property
+            name="stateToShow"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="STATETOSHOW"
+        />
+
+        <property
+            name="afterActionScript"
+            type="text"
+            update="true"
+            insert="true"
+            column="AFTERACTIONSCRIPT"
+        />
+
+        <property
+            name="approveLimit"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="APPROVELIMIT"
+        />
+        
+        <property
+            name="flowShowType"
+            type="java.lang.String"
+            update="true"
+            insert="true"
+            column="FLOWSHOWTYPE"
+        />
+
+        <!--
+            To add non XDoclet property mappings, create a file named
+                hibernate-properties-Activity.xml
+            containing the additional properties and place it in your merge dir.
+        -->
+
+    </class>
+
+</hibernate-mapping>

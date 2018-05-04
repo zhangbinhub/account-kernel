@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+	>
+	<class
+		name="OLink.bpm.core.logger.ejb.LogVO"
+		table="T_LOG"
+		>
+
+		<id
+			name="id"
+			column="ID"
+			type="java.lang.String"
+			length="100"
+			>
+			<generator class="assigned">
+			</generator>
+		</id>
+
+		<many-to-one 
+        	name="user" 
+        	insert="true" 
+        	update="true" 
+        	not-null="true">
+			<column name="USER_ID"></column>
+		</many-to-one>
+		
+		<many-to-one 
+        	name="superUser" 
+        	insert="true" 
+        	update="true" 
+        	not-null="true">
+			<column name="SUPERUSER_ID"></column>
+		</many-to-one>
+		
+		<property
+			name="operator"
+			type="java.lang.String"
+			update="true"
+			insert="true"
+			column="OPERATOR"
+			/>
+
+		<property
+			name="description"
+			type="java.lang.String"
+			update="true"
+			insert="true"
+			column="DESCRIPTION"
+			/>
+        
+		<property
+			name="type"
+			type="java.lang.String"
+			update="true"
+			insert="true"
+			column="TYPE"
+			/>
+		
+		<property
+			name="ip"
+			type="java.lang.String"
+			update="false"
+			insert="true"
+			column="IP"
+			/>
+			
+		<property
+			name="applicationid"
+			type="java.lang.String"
+			update="true"
+			insert="true"
+			column="APPLICATIONID"
+			/>
+			
+		<property
+			name="domainid"
+			type="java.lang.String"
+			update="true"
+			insert="true"
+			column="DOMAINID"
+		/>
+			
+		<property
+			name="date"
+			type="java.util.Date"
+			update="true"
+			insert="true"
+			column="LOGDATE"
+			/>
+
+		<property
+			name="sortId"
+			type="java.lang.String"
+			update="true"
+			insert="true"
+			column="SORTID"
+			/>
+
+	</class>
+
+</hibernate-mapping>
